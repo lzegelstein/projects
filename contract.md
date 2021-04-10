@@ -1,6 +1,6 @@
 
 # **CS 225 Data Structures**
-### *Team Contract: shree2, jafrank2, angelaj4*
+### *Team Contract: shree2, jafrank2, angelaj4, lrz2*
 ## Communication:
 #### Team Meetings 
 Our team will meet at least twice a week every Tuesday and Thursday from 5-7 PM using Discord. We will meet for longer or on a different day if necessary. Each member will rotate being the designated note-taker, starting with angelaj4. Notes will be stored in our shared Google folder, time-stamped for each meeting. The note-taker is also responsible for drafting the weekly development log entry, which is approved by the team at the start of the following week’s meeting.
