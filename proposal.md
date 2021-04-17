@@ -15,9 +15,9 @@ Airport ID | Name | City | Country | IATA| ICAO | Latitude | Longitude | Altitud
 
 We will analyze the data given in [routes.dat](https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat) to create our graph. The file is organized in the order below (example data given):
 
-Airline | Airline ID | Source Airport| Source Airport ID| Destination Airport||Destination Airport ID|Codeshare| Stops|Equipment. 
+Airline | Airline ID | Source Airport | Source Airport ID | Destination Airport | Destination Airport ID | Codeshare | Stops| Equipment. 
 ---|---|---|---|---|---|---|---|---
- 2B | 410 | AER | 2965 |KZN |2990| | 0 | CR2
+ 2B | 410 | AER | 2965 | KZN | 2990 | | 0 | CR2
 
 
 ## Traversals/Algorithms
