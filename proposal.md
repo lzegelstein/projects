@@ -98,10 +98,8 @@ We will use a force-directed graph drawing in order to visually display the airp
 ## Timeline
 Week of: | What we hope to accomplish: | What We Can Demonstrate: | Assignments: 
 ------------|---------------------------------------|--------------------------------------|------------------
-4/12 |Propose a valid project.| Get approval from project mentor
-| Note Taker: Angela  
+4/12 |Propose a valid project.| Get approval from project mentor | Note Taker: Angela  
 4/19 | Have an algorithm implemented. Import data from the website so that the algorithm creates nodes and edges based on the data. Be able to output the graph that it has created. | We will be able to show that our program has received the data correctly and has populated the edges and nodes. We also will be able to output our graph as a visual force directed graph. | Note Taker: Shree  
 4/26 |Implement and test BFS and Dijkstra’s Algorithm on our current dataset using test cases. |We should be able to receive the shortest distance path from any two or more airport nodes by naming starting airport “a” and stops/destination airports through the 3-digit codes.|Note Taker: Jared 
-5/3| Finish debugging and have working test cases for the second half of the week.
-|Entire project works, including all individual functions and test cases to simulate use. New functionality will include calculating the busiest airport.|Note Taker: Lyla
+5/3| Finish debugging and have working test cases for the second half of the week. |Entire project works, including all individual functions and test cases to simulate use. New functionality will include calculating the busiest airport.|Note Taker: Lyla
 5/10|Finish report and video | Have all the components of the final project done. The code, test cases, report, and video | Note Taker: Angela
