@@ -7,11 +7,14 @@ We are going to create a visual representation of different airline flights to s
 
 ## Dataset Aquisition and Processing
 Our nodes will be created using data from [airports.dat](https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat). This file is organized in the order below (example data given):
+
 Airport ID | Name | City | Country | IATA| ICAO | Latitude | Longitude | Altitude | Timezone | DST | Tz database time zone | Type | Source
 ---|---|---|---|---|---|---|---|---|---|---|---|---|---
-
 507|"London Heathrow Airport"|"London"|"United Kingdom"|"LHR"|"EGLL"|51.4706|-0.461941|83|0|"E"|"Europe/London"|"airport"|"OurAirports"
+
+
 We will analyze the data given in [routes.dat](https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat) to create our graph. The file is organized in the order below (example data given):
+
 Airline | Airline ID | Source Airport| Source Airport ID| Destination Airport||Destination Airport ID|Codeshare| Stops|Equipment. 
 ---|---|---|---|---|---|---|---|---
  2B | 410 | AER | 2965 |KZN |2990| | 0 | CR2
