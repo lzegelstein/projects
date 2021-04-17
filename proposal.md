@@ -1,18 +1,20 @@
 # Project Proposal 
-### **
+### *Airport Travel Analysis*
 ####  By: Angela, Jared, Lyla, and Shree
 
 ## Leading Statement
-Hearing the same artist repeatedly can get old even if they are your favorite. So, it would be nice to listen to other singers of a similar genre. We plan to use data from Spotify or Billboard to create recommendations of other artists to explore based on genre similarity. Our algorithm will take into account one or more artists that a user likes and will output recommendations of other artists.
-
-To add more complexity to our project we will add one or more of the following if we have enough time:
-* Number of collaborations the artists have with each other
-* Use Finding Nearest Neighbor to find a polar opposite genre and recommend that  as well
-* Adjust the weight of the lines connecting the nodes to be more specific to create a more concise list of artist recommendations
-
+We are going to create a visual representation of different airline flights to specific airports. From this data, we will be analyzing which airport hubs are the most popular, the shortest airtime from specific starting locations to destinations, and most effective trip travel with several destinations looping back to the original starting location. 
 
 ## Dataset Aquisition and Processing
-For our project we will be analyzing data taken from Spotify or Billboard and creating a graph with nodes representing artists that are connected by edges representing genre similarity. We would take the inverse of the number of genres they share and this will create a representation of genre ‘distance;’ the more genres shared, the closer two artists are. This graph can recommend similar artists based on a chosen starting artist or potentially a couple artist and finding a happy medium. 
+Our nodes will be created using data from [airports.dat](https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat). This file is organized in the order below (example data given):
+Airport ID | Name | City | Country | IATA| ICAO | Latitude | Longitude | Altitude | Timezone | DST | Tz database time zone | Type | Source
+---|---|---|---|---|---|---|---|---|---|---|---|---|---
+507|"London Heathrow Airport"|"London"|"United Kingdom"|"LHR"|"EGLL"|51.4706|-0.461941|83|0|"E"|"Europe/London"|"airport"|"OurAirports"
+We will analyze the data given in [routes.dat](https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat) to create our graph. The file is organized in the order below (example data given):
+Airline | Airline ID | Source Airport| Source Airport ID| Destination Airport||Destination Airport ID|Codeshare| Stops|Equipment. 
+---|---|---|---|---|---|---|---|---
+ 2B | 410 | AER | 2965 |KZN |2990| | 0 | CR2
+
 
 ## Traversals/Algorithms
 ##### BFS & DFS
