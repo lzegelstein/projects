@@ -14,7 +14,7 @@ Airport ID | Name | City | Country | IATA| ICAO | Latitude | Longitude | Altitud
 ---|---|---|---|---|---|---|---|---|---|---|---|---|---
 507|"London Heathrow Airport"|"London"|"United Kingdom"|"LHR"|"EGLL"|51.4706|-0.461941|83|0|"E"|"Europe/London"|"airport"|"OurAirports"
 
-Explaination from website:
+### Explaination from website:
 
 **Airport ID** Unique OpenFlights identifier for this airport.
 
@@ -48,9 +48,9 @@ We will analyze the data given in [routes.dat](https://raw.githubusercontent.com
 
 Airline | Airline ID | Source Airport | Source Airport ID | Destination Airport | Destination Airport ID | Codeshare | Stops| Equipment. 
 ---|---|---|---|---|---|---|---|---
- 2B | 410 | AER | 2965 | KZN | 2990 | | 0 | CR2
+2B | 410 | AER | 2965 | KZN | 2990 | | 0 | CR2
 
- Explaination from website:
+### Explaination from website:
 
 **Airline** 2-letter or 3- letter Unique OpenFlights identifier for this airport
 
