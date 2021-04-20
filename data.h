@@ -43,7 +43,7 @@ class AirTravel {
      */
     struct Flights {
         char other_airport; //connected node
-        int distance; //weight
+        double distance; //weight
     };
 
     /**
@@ -55,5 +55,5 @@ class AirTravel {
         double latitude;
         double longitude;
     };
-    
+
 };
