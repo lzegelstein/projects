@@ -15,7 +15,7 @@ AirTravel::AirTravel(AirTravel& other){
 
 }
 
-~AirTravel(){
+AirTravel::~AirTravel(){
 
 }
 
