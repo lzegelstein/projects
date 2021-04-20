@@ -10,7 +10,7 @@
  * We created a Node struct and plan to use recursion to aid in finding specific airports.
  * Clarification: Data does not get read in by this class, it simply gets organized. 
  */
-class AirTravel::AlphabetAirports{
+class AlphabetAirports::AirTravel{
     public:
 
     /**
@@ -34,7 +34,7 @@ class AirTravel::AlphabetAirports{
      * 
      * @returns pointer to the airport
      */
-    Airport* findAirport(char[3] Airport); 
+    Airport* findAirport(char* Airport); 
 
     private:
 
