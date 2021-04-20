@@ -50,10 +50,10 @@ class AirTravel {
      * Nodes for our graph
      */
     struct Airport {
-        std::string name;
-        std::vector<Flights> destinations;
-        double latitude;
-        double longitude;
+        std::string name; //name of airport
+        std::vector<Flights> destinations; //outgoing flights from airport
+        double latitude; //latitude of airport
+        double longitude; //longitude of airport
     };
 
 };
