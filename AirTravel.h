@@ -42,7 +42,7 @@ class AirTravel {
      * Takes into account one way flights!!
      */
     struct Flights {
-        char other_airport; //connected node
+        Airport* other_airport; //connected node
         double distance; //weight
     };
 
@@ -51,9 +51,10 @@ class AirTravel {
      */
     struct Airport {
         std::string name; //name of airport
-        std::vector<Flights> destinations; //outgoing flights from airport
+        char[3] IATA;
         double latitude; //latitude of airport
         double longitude; //longitude of airport
+        std::vector<Flights> destinations; //outgoing flights from airport
     };
 
 };

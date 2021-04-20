@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "AirTravel.h"
+#include "parse.h"
 
 AirTravel::AirTravel(){
 
