@@ -21,28 +21,30 @@ WIP -> last touched at 10:18 pm by LZ
 Will be touched again tomorrow @6:30 am, so push any further changes before then plz :)
 */
 void parse_line(std::string input);
-void readData();
+void readData(std::string fileName);
 
 
 int main(int argc, char** argv) {
     
-    readData();
+    readData("/Users/lylazegelstein/Desktop/airportnames.csv");
     
     return 0;
 }
 
-void readData() {
+void readData(std::string fileName) {
     std::cout<<"entered readData()"<<std::endl;
     std::fstream data_file;
     std::string trial;
-    data_file.open("/Users/lylazegelstein/Desktop/airportnames.csv", std::ios::in);
-    if (data_file.is_open()) {
-        getline(data_file, trial);
-        std::cout<<"from data_file: "<<trial<<std::endl;
-        parse_line(trial);
-    }
-    else {
-        std::cout<<"open failed"<<std::endl;
+    data_file.open(fileName, std::ios::in);
+    for (int x = 0; x < 25; x++) {
+        if (data_file.is_open()) {
+            getline(data_file, trial);
+            std::cout<<"from data_file: "<<trial<<std::endl;
+            parse_line(trial);
+        }
+        else {
+            std::cout<<"open failed"<<std::endl;
+        }
     }
     data_file.close();
     std::cout<<"finished readInAirportData"<<std::endl;
