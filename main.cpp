@@ -59,7 +59,7 @@ void readData() {
 //double longitude, latitude;
 //Columns we care about when starting at a zero index: 1, 2, 3, 4, 6, 7
 
-void parse_line(std::string & input) { //TODO
+void parse_line(std::string input) { //TODO
     // you know the length (size) of the string
     // You can iterate via operator [] through the string
     int str_size = (int)input.size();
