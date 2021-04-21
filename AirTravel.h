@@ -5,40 +5,9 @@
 #include <map>
 
 class AirTravel {
-    public:
-
-    /**
-     * Constructor
-     */
-    AirTravel();
-
-    /**
-     * Constructor with parameters
-     * 
-     * @param Airport_File name of csv file containing airport data 
-     * @param Routes_File name of csv file containing routes data
-     */
-    AirTravel(std::string Airport_File, std::string Routes_File);
-
-    /**
-     * Copy Contructor
-     */
-    AirTravel(AirTravel& other);
-
-    /**
-     * Destructor
-     */
-    ~AirTravel();
-
-    /**
-     * Copy Assignment Constructor
-     */
-    AirTravel& operator=(const AirTravel& other);
-
     private:
 
     //Member Variables for disconnected graph
-
     /**
      * Nodes for our graph
      */
@@ -102,7 +71,20 @@ class AirTravel {
      * 
      */
     Airport* findAirport(std::string Airport);
-
     
+    public:
+
+    /**
+     * Constructor
+     * 
+     * @param Airport_File name of csv file containing airport data 
+     * @param Routes_File name of csv file containing routes data
+     */
+    AirTravel(std::string Airport_File, std::string Routes_File);
+
+    /**
+     * getter for airport
+     */
+    Airport* IATAsearch(std::string code);
 
 };

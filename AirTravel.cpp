@@ -10,24 +10,12 @@
 
 using std::string;
 
-AirTravel::AirTravel(){
-    //TODO
-}
-
 AirTravel::AirTravel(std::string Airport_File, std::string Routes_File){
-    //TODO
+    readInAirportData(Airport_File);
 }
 
-AirTravel::AirTravel(AirTravel& other){
-    //TODO
-}   
-
-AirTravel::~AirTravel(){
-    //TODO
-}
-
-AirTravel::AirTravel& AirTravel::operator=(const AirTravel& other){
-    //TODO
+AirTravel::Airport* AirTravel::IATAsearch(std::string code){
+    return AirportList[code];
 }
 
 void AirTravel::readInAirportData(std::string fileName){
@@ -165,7 +153,7 @@ bool AirTravel::AirportLineCheck(int field_num, std::string value) {
 }
 
 void AirTravel::addAirport(Airport* Airport){
-    //TODO
+    AirportList[Airport->IATA] = Airport;
 }
 
 AirTravel::Airport* AirTravel::findAirport(std::string Airport){
