@@ -34,6 +34,7 @@ void readData() {
         std::string trial;
         getline(data_file, trial);
         std::cout<<"from data_file: "<<trial<<std::endl;
+        parse_line(trial);
     }
     else {
         std::cout<<"open failed"<<std::endl;
