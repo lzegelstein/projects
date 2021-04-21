@@ -59,35 +59,38 @@ void readData() {
 //double longitude, latitude;
 //Columns we care about when starting at a zero index: 1, 2, 3, 4, 6, 7
 
-void parse_line(std::string & input) {
-    //int count = 0;
-    std::vector<std::string> separate_strings;
-    std::string airport_name;
+void parse_line(std::string & input) { //TODO -> make it more scalable
+    int str_size = (int)input.size();
     std::string temp;
-    int count = 0;
+    int begin_index = 0;
+    int field_num = 0;
     
-    while (!input.empty()) {
+    for (int x = 0; x < str_size; x++) {
         
-        char first = input.front();
-        char comma = ',';
-        if (first != comma) {
-            temp.append(first); //I'm having issues on this line. Will look again at it in the morning. There's a type error
-        }
-        else {
-            separate_strings[count] = temp;
-            count ++;
+        if (input[x] == ',') {
+            std::cout <<"We found a comma at location " << x << std::endl;
+            temp.append(input, begin_index, x - begin_index);
+            std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
+            begin_index = x + 1;
+            
+            if (field_num == 0) {
+                int some_num = std::stoi(temp);
+                std::cout<<"found num: " << some_num << std::endl;
+            } else if ((field_num == 6) || (field_num == 7)) {
+                double some_dbl = std::stod(temp);
+                //std::setprecision(std::numeric_limits<T>::digits10)
+                std::cout<<"found dbl: " << some_dbl << std::endl;
+            }
+            field_num++;
+            temp.erase();
         }
     }
+    //Took care of the no trailing comma case
+    temp.append(input, begin_index, str_size - begin_index);
+    std::cout<<"emp: " <<temp<<std::endl;
+    temp.erase();
 }
-/*
- This function will be a helper to check if the string that is read in is acceptable or not for our program. If the columns we care about are filled in, then data_check returns true.
- */
-bool data_check (std::string & input, int & count) {
-    if (count == 0) {
-        
-    }
-    return true;
-}
+
 
 /* Map
  Key is airport code
