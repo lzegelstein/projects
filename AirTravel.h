@@ -78,12 +78,20 @@ class AirTravel {
     std::vector<Node*> Alphabet;
 
     //Member Functions for disconnected graph
-    
+    /**
+     * 
+     */
+    void readInAirportData();
 
     //Member Functions for alphabetized graph
+    /**
+     * 
+     */
+    void addAirport(Airport* Airport);
 
-    void addAiport(Airport* Airport);
-
+    /**
+     * 
+     */
     Airport* findAirport(std::string Airport);
 
     
