@@ -59,11 +59,24 @@ void readData() {
 //double longitude, latitude;
 //Columns we care about when starting at a zero index: 1, 2, 3, 4, 6, 7
 
-void parse_line(std::string & input) { //TODO -> make it more scalable
+void parse_line(std::string & input) { //TODO
+    // you know the length (size) of the string
+    // You can iterate via operator [] through the string
     int str_size = (int)input.size();
     std::string temp;
     int begin_index = 0;
     int field_num = 0;
+    
+    struct Airport {
+        std::string name;
+        std::string country;
+        std::string city;
+        std::string IATA;
+        double latitude;
+        double longitude;
+        };
+    
+    Airport airport;
     
     for (int x = 0; x < str_size; x++) {
         
@@ -76,11 +89,23 @@ void parse_line(std::string & input) { //TODO -> make it more scalable
             if (field_num == 0) {
                 int some_num = std::stoi(temp);
                 std::cout<<"found num: " << some_num << std::endl;
-            } else if ((field_num == 6) || (field_num == 7)) {
-                double some_dbl = std::stod(temp);
-                //std::setprecision(std::numeric_limits<T>::digits10)
-                std::cout<<"found dbl: " << some_dbl << std::endl;
             }
+            else if (field_num == 6) {
+                double some_dbl = std::stod(temp);
+                airport.latitude = some_dbl;
+            }
+            else if (field_num == 7) {
+                double some_dbl = std::stod(temp);
+                airport.longitude = some_dbl;
+            }
+            /*
+             field_num #1: airport name
+             field_num #2: city
+             field_num #3: country
+             field_num #4: 3 letter code
+             field_num #6: latitude
+             field_num #7: longitude
+             */
             field_num++;
             temp.erase();
         }
@@ -90,8 +115,6 @@ void parse_line(std::string & input) { //TODO -> make it more scalable
     std::cout<<"emp: " <<temp<<std::endl;
     temp.erase();
 }
-
-
 /* Map
  Key is airport code
  the value would be everything in the airport class
