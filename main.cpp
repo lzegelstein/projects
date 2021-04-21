@@ -22,7 +22,7 @@ Will be touched again tomorrow @6:30 am, so push any further changes before then
 */
 void parse_line(std::string input);
 void readData(std::string fileName);
-
+bool line_check(int field_num, std::string value);
 
 int main(int argc, char** argv) {
     
@@ -68,6 +68,7 @@ void parse_line(std::string input) { //TODO
     std::string temp;
     int begin_index = 0;
     int field_num = 0;
+    int num_commas = 0;
     
     struct Airport {
         std::string name;
@@ -83,33 +84,67 @@ void parse_line(std::string input) { //TODO
     for (int x = 0; x < str_size; x++) {
         
         if (input[x] == ',') {
+            num_commas ++;
             std::cout <<"We found a comma at location " << x << std::endl;
             temp.append(input, begin_index, x - begin_index);
             std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
             begin_index = x + 1;
             
-
+            if ((field_num == 0) && !line_check(field_num, temp)) {
+                return;
+            }
+            
             if (field_num == 1) {
-                airport.name = temp;
+                if (line_check(field_num, temp)) {
+                    airport.name = temp;
+                }
+                else{
+                    return;
+                }
             }
             else if (field_num == 2) {
-                airport.city = temp;
+                if (line_check(field_num, temp)) {
+                    airport.city = temp;
+                }
+                else{
+                    return;
+                }
             }
             else if (field_num == 3) {
-                airport.country = temp;
+                if (line_check(field_num, temp)) {
+                    airport.country = temp;
+                }
+                else{
+                    return;
+                }
             }
             else if (field_num == 4) {
-                airport.IATA = temp;
+                if (line_check(field_num, temp)) {
+                    airport.IATA = temp;
+                }
+                else{
+                    return;
+                }
             }
             else if (field_num == 6) {
-                //double some_dbl = std::stod(temp);
-                //airport.latitude = some_dbl;
-                airport.latitude = std::stod(temp);
+                double latitude = std::stod(temp);
+                if ((latitude <= 90) && (latitude >= -90)) {
+                    airport.latitude = latitude;
+                }
+                else {
+                    temp.erase(); //TODO - see if it works without this line :)
+                    return; //ignore line
+                }
             }
             else if (field_num == 7) {
-                //double some_dbl = std::stod(temp);
-                //airport.longitude = some_dbl;
-                airport.longitude = std::stod(temp);
+                double longitude = std::stod(temp);
+                if ((longitude <= 180) && (longitude >= -180)) {
+                    airport.longitude = longitude;
+                }
+                else {
+                    temp.erase();
+                    return; //ignore line
+                }
             }
             field_num++;
             temp.erase();
@@ -121,8 +156,28 @@ void parse_line(std::string input) { //TODO
     temp.erase();
 }
 
+
+
+bool line_check(int field_num, std::string value) {
+    char first_char = value[0];
+    
+    if (field_num == 0) { //Checking for an integer value
+        if ((first_char > 0x2F) && (first_char < 0x3A)) {
+            return true;
+        }
+    }
+    first_char = value[1];
+   //else case: checking for upper case first letter
+    if ((first_char > 0x40) && (first_char < 0x5B)){
+        return true;
+    }
+    return false;
+}
+
+
 /* Map
  Key is airport code
  the value would be everything in the airport class
  */
+
 
