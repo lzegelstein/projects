@@ -32,6 +32,10 @@ class AirTravel {
         std::vector<Flights> destinations; //outgoing flights from airport
     };
 
+    /** Map
+     * Key is airport code
+     * the value is pointer to airport struct
+     * */
     std::map<std::string, Airport*> AirportList;
 
     //Member Functions for disconnected graph
