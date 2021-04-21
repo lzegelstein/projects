@@ -2,6 +2,7 @@
 #include <_stdio.h>
 #include <vector>
 #include <string>
+#include <map>
 
 class AirTravel {
     public:
@@ -43,6 +44,8 @@ class AirTravel {
      */
     struct Airport {
         std::string name;   //name of airport
+        std::string city;   //city of airport
+        std::string country;//country of airport 
         std::string IATA;   //IATA code of airport
         double latitude;    //latitude of airport
         double longitude;   //longitude of 
@@ -60,32 +63,38 @@ class AirTravel {
         std::vector<Flights> destinations; //outgoing flights from airport
     };
 
-    //Memeber Variables for alaphabetized graph
-
-    /**
-     * Node Structure for our BST's
-     */
-    struct Node{
-        std::string code;
-        Airport* port; //COME BACK TO (MAY NOT BE VALID TYPE)
-        Node* right;
-        Node* left;
-    };
-
-    /**
-     * Vector of root nodes in alphabetical order
-     */
-    std::vector<Node*> Alphabet;
+    std::map<std::string, Airport*> AirportList;
 
     //Member Functions for disconnected graph
     /**
+     * Reads data from airport file
      * 
+     * @param fileName name of file to be analyzed
      */
-    void readInAirportData();
+    void readInAirportData(std::string fileName);
 
-    //Member Functions for alphabetized graph
+    /**
+     * Takes a line of code
+     * Goes through character by character looking for a comma
+     * As we parse, build the data structure -> be populating the map
+     * field_num #1: airport name
+     * field_num #2: city
+     * field_num #3: country
+     * field_num #4: 3 letter code
+     * field_num #6: latitude
+     * field_num #7: longitude
+     * 
+     * @param input Line to be parsed
+     */
+    void AirportParseLine(std::string input);
+
     /**
      * 
+     */
+    bool AirportLineCheck(int field_num, std::string value);
+
+    /**
+     * Adds values to our map with the key of IATA values;
      */
     void addAirport(Airport* Airport);
 
