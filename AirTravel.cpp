@@ -1,8 +1,8 @@
 #include <_stdio.h>
 #include <vector>
 #include <string>
+//#include "air_travel.hpp"
 #include "AirTravel.h"
-//#include "parse.h"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -35,7 +35,7 @@ void AirTravel::readInAirportData(std::string fileName){
     }
     data_file.close();
     std::cout<<"finished readInAirportData"<<std::endl;
-}  
+}
 
 void AirTravel::AirportParseLine(std::string input) { //TODO
     int str_size = (int)input.size();
@@ -43,23 +43,13 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
     int begin_index = 0;
     int field_num = 0;
     int num_commas = 0;
-    
-    // struct Airport {
-    //     std::string name;
-    //     std::string country;
-    //     std::string city;
-    //     std::string IATA;
-    //     double latitude;
-    //     double longitude;
-    //     };
-    
     Airport* airport = new Airport;
     
     for (int x = 0; x < str_size; x++) {
         
         if (input[x] == ',') {
             num_commas ++;
-            std::cout <<"We found a comma at location " << x << std::endl;
+            //std::cout <<"We found a comma at location " << x << std::endl;
             temp.append(input, begin_index, x - begin_index);
             std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
             begin_index = x + 1;
@@ -67,7 +57,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
             if ((field_num == 0) && !AirportLineCheck(field_num, temp)) {
                 return;
             }
-            
+             
             if (field_num == 1) {
                 if (AirportLineCheck(field_num, temp)) {
                     airport->name = temp;
@@ -105,24 +95,38 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
                 }
             }
             else if (field_num == 6) {
-                double latitude = std::stod(temp);
-                if ((latitude <= 90) && (latitude >= -90)) {
-                    airport->latitude = latitude;
+                if (!temp.empty()) {
+                    double latitude = std::stod(temp);
+                    if ((latitude <= 90) && (latitude >= -90)) {
+                        airport->latitude = latitude;
+                    }
+                    else {
+                        delete airport;
+                        return; //ignore line
+                    }
                 }
                 else {
                     delete airport;
-                    return; //ignore line
+                    return;
                 }
+                
             }
             else if (field_num == 7) {
-                double longitude = std::stod(temp);
-                if ((longitude <= 180) && (longitude >= -180)) {
-                    airport->longitude = longitude;
+                if (!temp.empty()){
+                    double longitude = std::stod(temp);
+                    if ((longitude <= 180) && (longitude >= -180)) {
+                        airport->longitude = longitude;
+                    }
+                    else {
+                        delete airport;
+                        return; //ignore line
+                    }
                 }
                 else {
                     delete airport;
-                    return; //ignore line
+                    return;
                 }
+               
             }
             field_num++;
             temp.erase();
@@ -147,6 +151,12 @@ bool AirTravel::AirportLineCheck(int field_num, std::string value) {
     first_char = value[1];
    //else case: checking for upper case first letter
     if ((first_char > 0x40) && (first_char < 0x5B)){
+        if(first_char == 'N'){
+            first_char = value[0];
+            if(!((first_char > 0x40) && (first_char < 0x5B))){
+               return false;
+            }
+        }
         return true;
     }
     return false;
@@ -156,7 +166,5 @@ void AirTravel::addAirport(Airport* Airport){
     AirportList[Airport->IATA] = Airport;
 }
 
-AirTravel::Airport* AirTravel::findAirport(std::string Airport){
-    //TODO
-}
+
 

@@ -14,14 +14,14 @@ class AirTravel {
     struct Airport {
         std::string name;   //name of airport
         std::string city;   //city of airport
-        std::string country;//country of airport 
+        std::string country;//country of airport
         std::string IATA;   //IATA code of airport
         double latitude;    //latitude of airport
-        double longitude;   //longitude of 
+        double longitude;   //longitude of
         
         /**
         * Weighted edges for our graph
-        * 
+        *
         * Takes into account one way flights!!
         */
         struct Flights {
@@ -41,7 +41,7 @@ class AirTravel {
     //Member Functions for disconnected graph
     /**
      * Reads data from airport file
-     * 
+     *
      * @param fileName name of file to be analyzed
      */
     void readInAirportData(std::string fileName);
@@ -56,13 +56,13 @@ class AirTravel {
      * field_num #4: 3 letter code
      * field_num #6: latitude
      * field_num #7: longitude
-     * 
+     *
      * @param input Line to be parsed
      */
     void AirportParseLine(std::string input);
 
     /**
-     * 
+     *
      */
     bool AirportLineCheck(int field_num, std::string value);
 
@@ -72,16 +72,16 @@ class AirTravel {
     void addAirport(Airport* Airport);
 
     /**
-     * 
+     *
      */
-    Airport* findAirport(std::string Airport);
+   // Airport* findAirport(std::string Airport);
     
     public:
 
     /**
      * Constructor
-     * 
-     * @param Airport_File name of csv file containing airport data 
+     *
+     * @param Airport_File name of csv file containing airport data
      * @param Routes_File name of csv file containing routes data
      */
     AirTravel(std::string Airport_File, std::string Routes_File);
