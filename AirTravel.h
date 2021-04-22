@@ -77,6 +77,7 @@ class AirTravel {
     /**
      *
      */
+    std::string removeQuotes(std::string temp);
    // Airport* findAirport(std::string Airport);
     
     public:
