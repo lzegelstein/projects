@@ -62,6 +62,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
              
             if (field_num == 1) {
                 if (AirportLineCheck(field_num, temp)) {
+                    temp = removeQuotes(temp);
                     airport->name = temp;
                 }
                 else{
@@ -71,6 +72,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
             }
             else if (field_num == 2) {
                 if (AirportLineCheck(field_num, temp)) {
+                    temp = removeQuotes(temp);
                     airport->city = temp;
                 }
                 else{
@@ -80,6 +82,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
             }
             else if (field_num == 3) {
                 if (AirportLineCheck(field_num, temp)) {
+                    temp = removeQuotes(temp);
                     airport->country = temp;
                 }
                 else{
@@ -89,6 +92,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
             }
             else if (field_num == 4) {
                 if (AirportLineCheck(field_num, temp)) {
+                    temp = removeQuotes(temp);
                     airport->IATA = temp;
                 }
                 else{
@@ -140,6 +144,12 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
     temp.erase();
 
     addAirport(airport);
+}
+
+std::string AirTravel::removeQuotes(std::string temp){
+    temp.erase(0, 1); //removing the first quotation 
+    temp.pop_back(); //removing the last quotation
+    return temp;
 }
 
 bool AirTravel::AirportLineCheck(int field_num, std::string value) {
