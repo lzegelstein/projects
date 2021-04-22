@@ -147,7 +147,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
 }
 
 std::string AirTravel::removeQuotes(std::string temp){
-    temp.erase(0, 1); //removing the first quotation 
+    temp.erase(0, 1); //removing the first quotation
     temp.pop_back(); //removing the last quotation
     return temp;
 }
@@ -225,8 +225,9 @@ void AirTravel::RoutesParseLine(std::string input){
                 auto it = AirportList.find(temp);
                     //if it is not found
                     if (it == AirportList.end()){
-                        field_num++;
-                        temp.erase();
+                        //field_num++;
+                        //temp.erase();
+                        return;
                     }
                     else {
                         //if it is found
@@ -237,8 +238,9 @@ void AirTravel::RoutesParseLine(std::string input){
                 auto it = AirportList.find(temp);
                     //if it is not found
                     if (it == AirportList.end()) {
-                        field_num++;
-                        temp.erase();
+                        //field_num++;
+                        //temp.erase();
+                        return;
                     }
                     else {
                         //if it is found
