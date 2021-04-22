@@ -25,11 +25,13 @@ class AirTravel {
         * Takes into account one way flights!!
         */
         struct Flights {
+           // Flights(Airport* airport_name, double distance) : other_airport(airport_name), distance(distance) {}
             Airport* other_airport; //connected node
             double distance; //weight
         };
 
         std::vector<Flights> destinations; //outgoing flights from airport
+        void addDestination(Airport* other);
     };
 
     /** Map
@@ -45,7 +47,8 @@ class AirTravel {
      * @param fileName name of file to be analyzed
      */
     void readInAirportData(std::string fileName);
-
+    void readInRoutesData(std::string fileName);
+  
     /**
      * Takes a line of code
      * Goes through character by character looking for a comma
@@ -60,7 +63,7 @@ class AirTravel {
      * @param input Line to be parsed
      */
     void AirportParseLine(std::string input);
-
+    void RoutesParseLine(std::string input);
     /**
      *
      */
@@ -70,31 +73,7 @@ class AirTravel {
      * Adds values to our map with the key of IATA values;
      */
     void addAirport(Airport* Airport);
-
-    //Member Functions for disconnected graph
-    /**
-     * Reads data from routes.csv file
-     *
-     * @param fileName name of file to be analyzed
-     */
-    void AirTravel::readInRoutesData(std::string fileName);
-    
-    /**
-     * Takes a line of code
-     * Goes through character by character looking for a comma
-     * As we parse, update the data structure -> be populating the map edges
-     * field_num #2: Source Airport
-     * field_num #4: Destination Airport
-     * field_num #7: Stops -> Dont care for now
-     * @param input Line to be parsed
-     * */
-    void RoutesParseLine(std::string input);
-
-    /**
-     * Adds edges to our map;
-     */
-    void addRoute(Airport* start, Airport* arrive);
-    
+    void addRoutes(Airport* start, Airport* arrive);
     /**
      *
      */

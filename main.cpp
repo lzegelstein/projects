@@ -12,6 +12,6 @@ This file name is for debugging in xcode!
 */
 
 int main(int argc, char** argv) {
-    AirTravel ourmap("/Users/lylazegelstein/Desktop/airportnames.csv", "hello");
+    AirTravel ourmap("/Users/lylazegelstein/Desktop/airportnames.csv", "/Users/lylazegelstein/Desktop/routes-short.csv");
     return 0;
 }
