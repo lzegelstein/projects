@@ -166,5 +166,86 @@ void AirTravel::addAirport(Airport* Airport){
     AirportList[Airport->IATA] = Airport;
 }
 
+void AirTravel::readInRoutesData(std::string fileName){
+    std::cout<<"entered readInRoutesData()"<<std::endl;
+    std::fstream data_file;
+    std::string trial;
+    data_file.open(fileName, std::ios::in);
+    for (int x = 0; x < 25; x++) {
+        if (data_file.is_open()) {
+            getline(data_file, trial);
+            std::cout<<"from data_file: "<<trial<<std::endl;
+            AirportParseLine(trial);
+        }
+        else {
+            std::cout<<"open failed"<<std::endl;
+        }
+    }
+    data_file.close();
+    std::cout<<"finished readInRoutesData"<<std::endl;
+}
 
+void AirTravel::RoutesParseLine(std::string input){
+    int str_size = (int)input.size();
+    std::string temp;
+    int begin_index = 0;
+    int field_num = 0;
+    int num_commas = 0;
+    Airport* source;
+    Airport* destination;
+    for (int x = 0; x < str_size; x++) {
+        
+        if (input[x] == ',') {
+            num_commas ++;
+            //std::cout <<"We found a comma at location " << x << std::endl;
+            temp.append(input, begin_index, x - begin_index);
+            std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
+            begin_index = x + 1;
+            
+            //We do not need to check for line validity since all routes have a source and destination
+            if ((field_num != 2 || field_num != 4){
+                return;
+            }
+             
+            if (field_num == 2) {
+            std::map<std::string, Airport*>::iterator it;
+                it = AirportList.find(temp);
+                    //if it is not found
+                    if (it != AirportList.end()){
+                        field_num++;
+                        temp.erase();
+                        continue;
+                    } else {
+                        //if it is found
+                        source = AirportList.find(temp)->second;
+                    }           
+            } else if (field_num == 7) {
+                std::map<std::string, Airport*>::iterator it;
+                it = AirportList.find(temp);
+                    //if it is not found
+                    if (it != AirportList.end()){
+                        field_num++;
+                        temp.erase();
+                        continue;
+                    } else {
+                        //if it is found
+                        destination = AirportList.find(temp)->second;
+                    }
+            }
+        }
+        field_num++;
+        temp.erase();
+        addRoute(source, destination);
+    }
+    //Took care of the no trailing comma case
+    temp.append(input, begin_index, str_size - begin_index);
+    //std::cout<<"emp: " <<temp<<std::endl;
+    temp.erase();
+}
+
+void AirTravel::addRoutes(Airport* start, Airport* arrive){
+
+    AirportList[start->IATA].destination.push_back(AirportList[arrive->IATA]);
+
+}
 
