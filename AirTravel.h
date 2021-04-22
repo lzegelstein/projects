@@ -77,7 +77,7 @@ class AirTravel {
      *
      * @param fileName name of file to be analyzed
      */
-    void AirTravel::readInRoutesData()
+    void AirTravel::readInRoutesData(std::string fileName);
     
     /**
      * Takes a line of code

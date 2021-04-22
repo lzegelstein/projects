@@ -245,7 +245,20 @@ void AirTravel::RoutesParseLine(std::string input){
 
 void AirTravel::addRoutes(Airport* start, Airport* arrive){
 
-    AirportList[start->IATA].destination.push_back(AirportList[arrive->IATA]);
+
+    AirportList[start->IATA]->destinations.push_back(AirportList[arrive->IATA]);
 
 }
 
+void AirTravel::Airport::addDestination(Airport* other){
+    double lat_diff = this->latitude - other->latitude;
+    double lon_diff = this->longitude - other->longitude;
+
+    //Math
+
+    Flights route;
+    route.other_airport = other;
+    route.distance = //Math
+
+    this->destinations.push_back(route);
+}
