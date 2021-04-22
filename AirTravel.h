@@ -71,6 +71,30 @@ class AirTravel {
      */
     void addAirport(Airport* Airport);
 
+    //Member Functions for disconnected graph
+    /**
+     * Reads data from routes.csv file
+     *
+     * @param fileName name of file to be analyzed
+     */
+    void AirTravel::readInRoutesData()
+    
+    /**
+     * Takes a line of code
+     * Goes through character by character looking for a comma
+     * As we parse, update the data structure -> be populating the map edges
+     * field_num #2: Source Airport
+     * field_num #4: Destination Airport
+     * field_num #7: Stops -> Dont care for now
+     * @param input Line to be parsed
+     * */
+    void RoutesParseLine(std::string input);
+
+    /**
+     * Adds edges to our map;
+     */
+    void addRoute(Airport* start, Airport* arrive);
+    
     /**
      *
      */
