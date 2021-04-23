@@ -1,5 +1,5 @@
 #pragma once
-#include <_stdio.h>
+#include <stdio.h>
 #include <vector>
 #include <string>
 #include <map>
@@ -34,6 +34,7 @@ class AirTravel {
         void addDestination(Airport* other);
     };
 
+    
     /** Map
      * Key is airport code
      * the value is pointer to airport struct
@@ -80,8 +81,9 @@ class AirTravel {
     std::string removeQuotes(std::string temp);
 
     void DFS(int Airports);
-    Airports* findIndex(Airports* item);
+    int findIndex(Airport* item);
     void createGraph();
+    
    // Airport* findAirport(std::string Airport);
     
     public:
@@ -99,8 +101,11 @@ class AirTravel {
      */
     Airport* IATAsearch(std::string code);
 
+    
+
     private:
     std::vector<Airport*> graph; //We will be populating this
     bool* visited;
+    
 
 };

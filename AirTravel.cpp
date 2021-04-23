@@ -1,4 +1,4 @@
-#include <_stdio.h>
+#include <stdio.h>
 #include <vector>
 #include <string>
 //#include "air_travel.hpp"
@@ -329,8 +329,8 @@ void AirTravel::DFS(int vertex){
     }
 }
 
-Airport* AirTravel::findIndex(Airport* item) {
-    for (auto i = 0; i < graph.size(); ++i) {
+int AirTravel::findIndex(Airport* item) {
+    for (int i = 0; i < (int) graph.size(); ++i) {
         if (graph[i] == item)
             return i;
     }
