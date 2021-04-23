@@ -5,12 +5,13 @@
 #include <map>
 
 class AirTravel {
-    private:
+
 
     //Member Variables for disconnected graph
     /**
      * Nodes for our graph
      */
+public:
     struct Airport {
         std::string name;   //name of airport
         std::string city;   //city of airport
@@ -26,7 +27,11 @@ class AirTravel {
         */
         struct Flights {
            // Flights(Airport* airport_name, double distance) : other_airport(airport_name), distance(distance) {}
-            Airport* other_airport = new Airport(); //connected node
+            //Airport* other_airport = new Airport(); //connected node
+            Airport * other_airport; //Modified 4/23 @ 7 am. We shouldn't be creating a new airport object
+            /*
+             Need to find the airport in the map and when populating the edges, find the other airport
+             */
             double distance; //weight
         };
 
@@ -34,7 +39,7 @@ class AirTravel {
         void addDestination(Airport* other);
     };
 
-    
+private:
     /** Map
      * Key is airport code
      * the value is pointer to airport struct

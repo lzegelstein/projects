@@ -19,9 +19,18 @@
 
 using std::string;
 
+/*
+ Perhaps, we need to create different print routines i.e. print all the destinations of _______ airport
+ Be able to pass it in a 3 letter code
+ */
+
+/*
+ When time permits, move these function calls out of the constructor
+ */
 AirTravel::AirTravel(std::string Airport_File, std::string Routes_File){
     readInAirportData(Airport_File);
     readInRoutesData(Routes_File);
+    createGraph();
 }
 
 AirTravel::Airport* AirTravel::IATAsearch(std::string code){
@@ -240,6 +249,7 @@ void AirTravel::RoutesParseLine(std::string input){
                     else {
                         //if it is found
                         source = AirportList.find(temp)->second;
+                        // TODO - verify that source was found, otherwise, print error and skip line
                     }
             }
             else if (field_num == 4) {
@@ -253,6 +263,7 @@ void AirTravel::RoutesParseLine(std::string input){
                     else {
                         //if it is found
                         destination = AirportList.find(temp)->second;
+                        // TODO - verify that destination was found, otherwise, print error and skip line
                     }
             }
         field_num++;
@@ -267,7 +278,7 @@ void AirTravel::RoutesParseLine(std::string input){
         std::cout<<"source is NULL in RoutesParseLine(), error"<<std::endl;
         return;
     }
-    source->addDestination(destination);
+    source->addDestination(destination); //Add in check to make sure
 }
 /*
 void AirTravel::addRoutes(Airport* start, Airport* arrive){
@@ -278,7 +289,7 @@ We need a function inside of the airport struct to create the flight struct!
 }
 */
 
-void AirTravel::Airport::addDestination(Airport* that){
+void AirTravel::Airport::addDestination(Airport* that) {
     double lat_diff = this->latitude - that->latitude;
     double lon_diff = this->longitude - that->longitude;
 
@@ -312,9 +323,10 @@ void AirTravel::createGraph(){
     }
     std::cout<<std::endl;
 }
+
 //maybe change something other than a int for choosing starting node
 void AirTravel::DFS(int vertex){
-    int numNodes = AirportList.size();
+    int numNodes = (int)AirportList.size();
     visited[vertex] = true;
 
     for (int i = 0; i < graph[vertex]->destinations.size(); i++){
