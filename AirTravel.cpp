@@ -309,10 +309,14 @@ AirTravel::Airport* AirTravel::findBusiestAirport() {
     return current_busiest;
 }
 
-bool isThereADirectFlight(const std::string & start, const std::string & end) {
-    
-    //takes the string name of the first
-    
+bool AirTravel::isDirectFlight(std::string & start, std::string & end) {
+    Airport* source = AirportList[start];
+    Airport* dest = AirportList[end];
+    for (unsigned int i; i< source->destinations.size(); i++){
+        if(source->destinations[i]->IATA == dest->IATA){
+            return true;
+        }
+    }
     return false;
 }
 
