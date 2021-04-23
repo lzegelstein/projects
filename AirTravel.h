@@ -6,12 +6,16 @@
 
 class AirTravel {
 
-
-    //Member Variables for disconnected graph
-    /**
-     * Nodes for our graph
-     */
 public:
+    /**
+     * Aiport struct are the nodes of the graphs
+     * This holds all of the relevent information for an airport
+     * 
+     * TODO:
+     * Fix Flights stuct to be more straighforward
+     * Lyla's Comments:
+     * //Modified 4/23 @ 7 am. We shouldn't be creating a new airport object
+     */
     struct Airport {
         std::string name;   //name of airport
         std::string city;   //city of airport
@@ -26,25 +30,29 @@ public:
         * Takes into account one way flights!!
         */
         struct Flights {
-           // Flights(Airport* airport_name, double distance) : other_airport(airport_name), distance(distance) {}
             //Airport* other_airport = new Airport(); //connected node
-            Airport * other_airport; //Modified 4/23 @ 7 am. We shouldn't be creating a new airport object
-            /*
-             Need to find the airport in the map and when populating the edges, find the other airport
-             */
+            Airport * other_airport;
+            //Need to find the airport in the map and when populating the edges, find the other airport
             double distance; //weight
         };
 
         std::vector<Flights> destinations; //outgoing flights from airport
+        
+        /**
+         * Function for calculating distance between airports and adding a new Flight struct to the destinations vector
+         * 
+         * @param other A pointer to the destination airport to be added
+         */
         void addDestination(Airport* other);
     };
 
-private:
     /** Map
      * Key is airport code
      * the value is pointer to airport struct
      * */
     std::map<std::string, Airport*> AirportList;
+
+    private:
 
     //Member Functions for disconnected graph
     /**
@@ -53,10 +61,10 @@ private:
      * @param fileName name of file to be analyzed
      */
     void readInAirportData(std::string fileName);
-    void readInRoutesData(std::string fileName);
+    
   
     /**
-     * Takes a line of code
+     * Takes a line of the airport data
      * Goes through character by character looking for a comma
      * As we parse, build the data structure -> be populating the map
      * field_num #1: airport name
@@ -65,32 +73,65 @@ private:
      * field_num #4: 3 letter code
      * field_num #6: latitude
      * field_num #7: longitude
-     *
+     * All other fields will be ignored
+     * 
      * @param input Line to be parsed
      */
     void AirportParseLine(std::string input);
-    void RoutesParseLine(std::string input);
+
     /**
-     *
+     * Removes the quotation marks from the string
+     * (first and last indexes of the array)
+     * 
+     * @param temp string to modify
+     */
+    std::string removeQuotes(std::string temp);
+    
+    /**
+     * Makes sure that inputed data of airports is valid.
+     * 
+     * @param field_num corresponding feild number since each field has different requirements
+     * @param value string to be checked
+     * 
+     * @returns true if string is valid
      */
     bool AirportLineCheck(int field_num, std::string value);
 
     /**
      * Adds values to our map with the key of IATA values;
+     * 
+     * @param Airport new pointer to be added to the map of airports
      */
     void addAirport(Airport* Airport);
-    void addRoutes(Airport* start, Airport* arrive);
-    /**
-     *
-     */
-    std::string removeQuotes(std::string temp);
 
+    /**
+     * Reads data from routes file
+     * 
+     * @param fileName name of file to analyzed
+     */
+    void readInRoutesData(std::string fileName);
+
+    /**
+     * Takes a line of the routes data
+     * Goes through character by character looking for a comma
+     * As we parse, build the data structure by adding edges
+     * field_num #2: source airport
+     * field_num #4: destination airport 
+     * All other fields will be ignored
+     * 
+     * @param input the string of the current line from the routes file
+     */
+    void RoutesParseLine(std::string input);
+
+    //Unused functions :
+    /*
     void DFS(int Airports);
     int findIndex(Airport* item);
     void createGraph();
     
-   // Airport* findAirport(std::string Airport);
-    
+    Airport* findAirport(std::string Airport);
+    */
+
     public:
 
     /**
@@ -103,14 +144,12 @@ private:
 
     /**
      * getter for airport
+     * 
+     * @param code Three letter IATA code for the airport in question
+     * 
+     * @returns pointer to the airport with corresponding code
+     * NULL if airport not found;
      */
     Airport* IATAsearch(std::string code);
-
-    
-
-    private:
-    std::vector<Airport*> graph; //We will be populating this
-    bool* visited;
-    
 
 };

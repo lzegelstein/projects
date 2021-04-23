@@ -30,7 +30,7 @@ using std::string;
 AirTravel::AirTravel(std::string Airport_File, std::string Routes_File){
     readInAirportData(Airport_File);
     readInRoutesData(Routes_File);
-    createGraph();
+    // createGraph();
 }
 
 AirTravel::Airport* AirTravel::IATAsearch(std::string code){
@@ -280,14 +280,7 @@ void AirTravel::RoutesParseLine(std::string input){
     }
     source->addDestination(destination); //Add in check to make sure
 }
-/*
-void AirTravel::addRoutes(Airport* start, Airport* arrive){
 
-    AirportList[start->IATA]->destinations.push_back(AirportList[arrive->IATA], );
-We need a function inside of the airport struct to create the flight struct!
-     
-}
-*/
 
 void AirTravel::Airport::addDestination(Airport* that) {
     double lat_diff = this->latitude - that->latitude;
@@ -304,47 +297,47 @@ void AirTravel::Airport::addDestination(Airport* that) {
     this->destinations.push_back(route);
 }
 
-//populate the std::vector graph
-void AirTravel::createGraph(){
-    std::map<std::string, Airport*>::iterator it = AirportList.begin();
-    while (it != AirportList.end())
-    {
-        // Accessing VALUE from element pointed by it.
-        Airport* count = it->second;
-        graph.push_back(count);
-        it++;
-    }
-    visited = new bool[graph.size()]; //instatiate visited
+// //populate the std::vector graph
+// void AirTravel::createGraph(){
+//     std::map<std::string, Airport*>::iterator it = AirportList.begin();
+//     while (it != AirportList.end())
+//     {
+//         // Accessing VALUE from element pointed by it.
+//         Airport* count = it->second;
+//         graph.push_back(count);
+//         it++;
+//     }
+//     visited = new bool[graph.size()]; //instatiate visited
 
 
-    //our attempt to have output of some kind
-    for(int i=0; i < graph.size(); i++){
-        std::cout<<graph[i]<<" ";
-    }
-    std::cout<<std::endl;
-}
+//     //our attempt to have output of some kind
+//     for(int i=0; i < graph.size(); i++){
+//         std::cout<<graph[i]<<" ";
+//     }
+//     std::cout<<std::endl;
+// }
 
-//maybe change something other than a int for choosing starting node
-void AirTravel::DFS(int vertex){
-    int numNodes = (int)AirportList.size();
-    visited[vertex] = true;
+// //maybe change something other than a int for choosing starting node
+// void AirTravel::DFS(int vertex){
+//     int numNodes = (int)AirportList.size();
+//     visited[vertex] = true;
 
-    for (int i = 0; i < graph[vertex]->destinations.size(); i++){
-        Airport* temp = graph[vertex]->destinations[i].other_airport;
-        int index = findIndex(temp);
-        if(index == -1){
-            continue;
-        }
-        if (!visited[index]){
-            DFS(index);
-        }
-    }
-}
+//     for (int i = 0; i < graph[vertex]->destinations.size(); i++){
+//         Airport* temp = graph[vertex]->destinations[i].other_airport;
+//         int index = findIndex(temp);
+//         if(index == -1){
+//             continue;
+//         }
+//         if (!visited[index]){
+//             DFS(index);
+//         }
+//     }
+// }
 
-int AirTravel::findIndex(Airport* item) {
-    for (int i = 0; i < (int) graph.size(); ++i) {
-        if (graph[i] == item)
-            return i;
-    }
-    return -1;
-}
+// int AirTravel::findIndex(Airport* item) {
+//     for (int i = 0; i < (int) graph.size(); ++i) {
+//         if (graph[i] == item)
+//             return i;
+//     }
+//     return -1;
+// }
