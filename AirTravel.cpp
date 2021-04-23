@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include <vector>
 #include <string>
@@ -310,11 +309,11 @@ AirTravel::Airport* AirTravel::findBusiestAirport() {
     return current_busiest;
 }
 
-bool AirTravel::isDirectFlight(std::string & start, std::string & end) {
+bool AirTravel::isDirectFlight(std::string start, std::string end) {
     Airport* source = AirportList[start];
     Airport* dest = AirportList[end];
     for (unsigned int i; i< source->destinations.size(); i++){
-        if(source->destinations[i]->IATA == dest->IATA){
+        if(source->destinations[i].other_airport->IATA == dest->IATA){
             return true;
         }
     }
@@ -368,5 +367,3 @@ bool AirTravel::isDirectFlight(std::string & start, std::string & end) {
 //     return -1;
 // }
 
-=======
->>>>>>> 029dfefb330b78e40a8bcb717c74f296a0280bb8
