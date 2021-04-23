@@ -30,6 +30,7 @@ using std::string;
 AirTravel::AirTravel(std::string Airport_File, std::string Routes_File){
     readInAirportData(Airport_File);
     readInRoutesData(Routes_File);
+    // createGraph();
 }
 
 AirTravel::Airport* AirTravel::IATAsearch(std::string code){
@@ -312,7 +313,7 @@ bool AirTravel::isDirectFlight(std::string & start, std::string & end) {
     Airport* source = AirportList[start];
     Airport* dest = AirportList[end];
     for (unsigned int i; i< source->destinations.size(); i++){
-        if(source->destinations[i].other_airport->IATA == dest->IATA){
+        if(source->destinations[i]->IATA == dest->IATA){
             return true;
         }
     }
