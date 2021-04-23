@@ -317,8 +317,8 @@ void AirTravel::DFS(int vertex){
     int numNodes = AirportList.size();
     visited[vertex] = true;
 
-    for (int i = 0; i < graph[vertex].destination.size(); i++){
-        Airport* temp = graph[vertex].destination[i].other_airport;
+    for (int i = 0; i < graph[vertex]->destinations.size(); i++){
+        Airport* temp = graph[vertex]->destinations[i].other_airport;
         int index = findIndex(temp);
         if(index == -1){
             continue;
