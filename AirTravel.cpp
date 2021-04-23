@@ -239,7 +239,7 @@ void AirTravel::RoutesParseLine(std::string input){
                 //do nothing
             }
             else if (field_num == 2) {
-                auto it = AirportList.find(temp);
+                std::map<std::string, Airport*>::iterator it = AirportList.find(temp);
                     //if it is not found
                     if (it == AirportList.end()){
                         //field_num++;
@@ -253,7 +253,7 @@ void AirTravel::RoutesParseLine(std::string input){
                     }
             }
             else if (field_num == 4) {
-                auto it = AirportList.find(temp);
+                std::map<std::string, Airport*>::iterator it = AirportList.find(temp);
                     //if it is not found
                     if (it == AirportList.end()) {
                         //field_num++;
