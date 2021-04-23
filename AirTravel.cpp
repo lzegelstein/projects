@@ -27,22 +27,22 @@ using std::string;
 /*
  When time permits, move these function calls out of the constructor
  */
-AirTravel::AirTravel(std::string Airport_File, std::string Routes_File){
+AirTravel::AirTravel(std::string Airport_File, std::string Routes_File) {
     readInAirportData(Airport_File);
     readInRoutesData(Routes_File);
-    // createGraph();
 }
 
-AirTravel::Airport* AirTravel::IATAsearch(std::string code){
+AirTravel::Airport* AirTravel::IATAsearch(std::string code) {
     return AirportList[code];
 }
 
-void AirTravel::readInAirportData(std::string fileName){
-    std::cout<<"entered readData()"<<std::endl;
+void AirTravel::readInAirportData(std::string fileName) {
+   // std::cout<<"entered readData()"<<std::endl;
     std::fstream data_file;
     std::string trial;
     data_file.open(fileName, std::ios::in);
     for (int x = 0; x < 25; x++) {
+        
         if (data_file.is_open()) {
             getline(data_file, trial);
           //  std::cout<<"from data_file: "<<trial<<std::endl;
@@ -53,15 +53,14 @@ void AirTravel::readInAirportData(std::string fileName){
         }
     }
     data_file.close();
-    std::cout<<"finished readInAirportData"<<std::endl;
+   // std::cout<<"finished readInAirportData"<<std::endl;
 }
 
 void AirTravel::AirportParseLine(std::string input) { //TODO
     int str_size = (int)input.size();
+    int begin_index, field_num, num_commas;
+    begin_index = field_num = num_commas = 0;
     std::string temp;
-    int begin_index = 0;
-    int field_num = 0;
-    int num_commas = 0;
     Airport* airport = new Airport;
     
     for (int x = 0; x < str_size; x++) {
@@ -78,48 +77,54 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
             }
              
             if (field_num == 1) {
+                
                 if (AirportLineCheck(field_num, temp)) {
                     temp = removeQuotes(temp);
                     airport->name = temp;
                 }
-                else{
+                else {
                     delete airport;
                     return;
                 }
             }
             else if (field_num == 2) {
+                
                 if (AirportLineCheck(field_num, temp)) {
                     temp = removeQuotes(temp);
                     airport->city = temp;
                 }
-                else{
+                else {
                     delete airport;
                     return;
                 }
             }
             else if (field_num == 3) {
+                
                 if (AirportLineCheck(field_num, temp)) {
                     temp = removeQuotes(temp);
                     airport->country = temp;
                 }
-                else{
+                else {
                     delete airport;
                     return;
                 }
             }
             else if (field_num == 4) {
+                
                 if (AirportLineCheck(field_num, temp)) {
                     temp = removeQuotes(temp);
                     airport->IATA = temp;
                 }
-                else{
+                else {
                     delete airport;
                     return;
                 }
             }
             else if (field_num == 6) {
+                
                 if (!temp.empty()) {
                     double latitude = std::stod(temp);
+                    
                     if ((latitude <= 90) && (latitude >= -90)) {
                         airport->latitude = latitude;
                     }
@@ -135,8 +140,10 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
                 
             }
             else if (field_num == 7) {
-                if (!temp.empty()){
+                
+                if (!temp.empty()) {
                     double longitude = std::stod(temp);
+                    
                     if ((longitude <= 180) && (longitude >= -180)) {
                         airport->longitude = longitude;
                     }
@@ -163,7 +170,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
     addAirport(airport);
 }
 
-std::string AirTravel::removeQuotes(std::string temp){
+std::string AirTravel::removeQuotes(std::string temp) {
     temp.erase(0, 1); //removing the first quotation
     temp.pop_back(); //removing the last quotation
     return temp;
@@ -172,17 +179,21 @@ std::string AirTravel::removeQuotes(std::string temp){
 bool AirTravel::AirportLineCheck(int field_num, std::string value) {
     char first_char = value[0];
     
-    if (field_num == 0) { //Checking for an integer value
+    if (field_num == 0) {                                  //Checking for an integer value
         if ((first_char > 0x2F) && (first_char < 0x3A)) {
             return true;
         }
     }
+    //else case: checking for upper case first letter
     first_char = value[1];
-   //else case: checking for upper case first letter
-    if ((first_char > 0x40) && (first_char < 0x5B)){
-        if(first_char == 'N'){
+
+    if ((first_char > 0x40) && (first_char < 0x5B)) {
+        
+        if(first_char == 'N') {
+            
             first_char = value[0];
-            if(!((first_char > 0x40) && (first_char < 0x5B))){
+            
+            if(!((first_char > 0x40) && (first_char < 0x5B))) {
                return false;
             }
         }
@@ -191,21 +202,21 @@ bool AirTravel::AirportLineCheck(int field_num, std::string value) {
     return false;
 }
 
-void AirTravel::addAirport(Airport* Airport){
+void AirTravel::addAirport(Airport* Airport) {
     AirportList[Airport->IATA] = Airport;
 }
 
-/* ************************************************* */
-
-void AirTravel::readInRoutesData(std::string fileName){
-    std::cout<<"entered readInRoutesData()"<<std::endl;
+void AirTravel::readInRoutesData(std::string fileName) {
+    //std::cout<<"entered readInRoutesData()"<<std::endl;
     std::fstream data_file;
     std::string trial;
     data_file.open(fileName, std::ios::in);
+    
     for (int x = 0; x < 25; x++) {
+        
         if (data_file.is_open()) {
             getline(data_file, trial);
-            std::cout<<"from data_file: "<<trial<<std::endl;
+         //   std::cout<<"from data_file: "<<trial<<std::endl;
             RoutesParseLine(trial);
         }
         else {
@@ -213,7 +224,7 @@ void AirTravel::readInRoutesData(std::string fileName){
         }
     }
     data_file.close();
-    std::cout<<"finished readInRoutesData"<<std::endl;
+    //std::cout<<"finished readInRoutesData"<<std::endl;
 }
 
 void AirTravel::RoutesParseLine(std::string input){
@@ -230,34 +241,26 @@ void AirTravel::RoutesParseLine(std::string input){
             num_commas ++;
             //std::cout <<"We found a comma at location " << x << std::endl;
             temp.append(input, begin_index, x - begin_index);
-       //     std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
+           //std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
             begin_index = x + 1;
             
-            
-            //We do not need to check for line validity since all routes have a source and destination
-            if ((field_num != 2) && (field_num != 4)) {
-                //do nothing
+            if ((field_num != 2) && (field_num != 4)) { //do nothing
             }
             else if (field_num == 2) {
                 std::map<std::string, Airport*>::iterator it = AirportList.find(temp);
-                    //if it is not found
-                    if (it == AirportList.end()){
-                        //field_num++;
-                        //temp.erase();
+                                                    
+                    if (it == AirportList.end()) { //if it is not found
                         return;
                     }
                     else {
-                        //if it is found
-                        source = AirportList.find(temp)->second;
+                        source = AirportList.find(temp)->second;  //if it is found
                         // TODO - verify that source was found, otherwise, print error and skip line
                     }
             }
             else if (field_num == 4) {
                 std::map<std::string, Airport*>::iterator it = AirportList.find(temp);
-                    //if it is not found
-                    if (it == AirportList.end()) {
-                        //field_num++;
-                        //temp.erase();
+                    
+                    if (it == AirportList.end()) { //if it is not found
                         return;
                     }
                     else {
@@ -312,7 +315,7 @@ AirTravel::Airport* AirTravel::findBusiestAirport() {
 bool AirTravel::isDirectFlight(std::string start, std::string end) {
     Airport* source = AirportList[start];
     Airport* dest = AirportList[end];
-    for (unsigned int i; i< source->destinations.size(); i++){
+    for (unsigned int i = 0; i< source->destinations.size(); i++){
         if(source->destinations[i].other_airport->IATA == dest->IATA){
             return true;
         }
