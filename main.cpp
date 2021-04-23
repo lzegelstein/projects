@@ -11,8 +11,9 @@
  */
 
 /* NEXT STEPS:
- 1. Fixing the runtime of BusiestAirport(). Right now it is O(N) but we will continuously update it as the destination vector is filled in. That is a task for not today though
-
+1. Fixing the runtime of BusiestAirport(). Right now it is O(N) but we will continuously update it as the destination vector is filled in. That is a task for not today though
+2. Complete the algorithms
+3. Get a graphic output
  */
 
 //"/Users/lylazegelstein/Desktop/airportnames.csv"
@@ -22,6 +23,11 @@ int main(int argc, char** argv) {
     
     AirTravel::Airport* busiest = ourmap.findBusiestAirport();
     std::cout<<"busiest airport is "<<busiest->name<<std::endl;
+    
+    std::string ohare = "ORD";
+    std::string atlanta = "CDG";
+    bool x = ourmap.isDirectFlight(ohare, atlanta);
+    std::cout<<"Direct flight from ORD to ATL? "<< x << " routes"<<std::endl;
     
     std::cout << "AirTravel application ended" << std::endl;
     return 0;

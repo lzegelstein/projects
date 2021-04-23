@@ -144,22 +144,22 @@ public:
     Airport* IATAsearch(std::string code);
     
     /**
-     * The busiest airport is the airport which the most number of outgoing flights. 
+     * The busiest airport is the airport which the most number of outgoing flights.
      * We will find the busiest airport by comparing the size of the destination vector.
-     * 
+     *
      * @returns a pointer to the busiest airport
      */
     Airport* findBusiestAirport();
 
     /**
      * Determines whether or not there is a direct flight between two airports
-     * 
+     *
      * @param start source Airport's IATA code
      * @param end destination Airport's IATA code
-     * 
+     *
      * @returns true if there is a direct flight.
      */
-    bool isDirectFlight(std::string & start, std::string & end);
+    bool isDirectFlight(std::string start, std::string end);
 
 };
 
@@ -172,4 +172,5 @@ void createGraph();
 
 Airport* findAirport(std::string Airport);
 */
+
 
