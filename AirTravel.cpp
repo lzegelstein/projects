@@ -45,7 +45,7 @@ void AirTravel::readInAirportData(std::string fileName){
     for (int x = 0; x < 25; x++) {
         if (data_file.is_open()) {
             getline(data_file, trial);
-            std::cout<<"from data_file: "<<trial<<std::endl;
+          //  std::cout<<"from data_file: "<<trial<<std::endl;
             AirportParseLine(trial);
         }
         else {
@@ -230,7 +230,7 @@ void AirTravel::RoutesParseLine(std::string input){
             num_commas ++;
             //std::cout <<"We found a comma at location " << x << std::endl;
             temp.append(input, begin_index, x - begin_index);
-            std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
+       //     std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
             begin_index = x + 1;
             
             
@@ -297,6 +297,27 @@ void AirTravel::Airport::addDestination(Airport* that) {
     this->destinations.push_back(route);
 }
 
+
+AirTravel::Airport* AirTravel::findBusiestAirport() {
+    Airport* current_busiest = AirportList.begin()->second;
+    std::map<std::string, Airport*>::iterator it;
+    for (it = AirportList.begin(); it != AirportList.end(); it++) {
+        if (it->second->destinations.size() >= current_busiest->destinations.size()){
+            current_busiest = it->second;
+        }
+    }
+    return current_busiest;
+}
+
+bool isThereADirectFlight(const std::string & start, const std::string & end) {
+    
+    //takes the string name of the first
+    
+    return false;
+}
+
+
+
 // //populate the std::vector graph
 // void AirTravel::createGraph(){
 //     std::map<std::string, Airport*>::iterator it = AirportList.begin();
@@ -341,3 +362,4 @@ void AirTravel::Airport::addDestination(Airport* that) {
 //     }
 //     return -1;
 // }
+
