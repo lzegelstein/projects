@@ -9,6 +9,14 @@
 #include <map>
 #include <math.h>
 
+//added for DFS
+#include <iterator>
+#include <cmath>
+#include <list>
+#include <queue>
+#include <stack>
+
+
 using std::string;
 
 AirTravel::AirTravel(std::string Airport_File, std::string Routes_File){
@@ -283,4 +291,48 @@ void AirTravel::Airport::addDestination(Airport* that){
     route.distance = sqrt(lat_diff + lon_diff);
     
     this->destinations.push_back(route);
+}
+
+//populate the std::vector graph
+void AirTravel::createGraph(){
+    std::map<std::string, Airport*>::iterator it = AirportList.begin();
+    while (it != AirportList.end())
+    {
+        // Accessing VALUE from element pointed by it.
+        Airport* count = it->second;
+        graph.push_back(count);
+        it++;
+    }
+    visited = new bool[graph.size()]; //instatiate visited
+
+
+    //our attempt to have output of some kind
+    for(int i=0; i < graph.size(); i++){
+        std::cout<<graph[i]<<" ";
+    }
+    std::cout<<std::endl;
+}
+//maybe change something other than a int for choosing starting node
+void AirTravel::DFS(int vertex){
+    int numNodes = AirportList.size();
+    visited[vertex] = true;
+
+    for (int i = 0; i < graph[vertex].destination.size(); i++){
+        Airport* temp = graph[vertex].destination[i].other_airport;
+        int index = findIndex(temp);
+        if(index == -1){
+            continue;
+        }
+        if (!visited[index]){
+            DFS(index);
+        }
+    }
+}
+
+Airport* AirTravel::findIndex(Airport* item) {
+    for (auto i = 0; i < graph.size(); ++i) {
+        if (graph[i] == item)
+            return i;
+    }
+    return -1;
 }

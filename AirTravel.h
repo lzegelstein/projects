@@ -17,8 +17,8 @@ class AirTravel {
         std::string country;//country of airport
         std::string IATA;   //IATA code of airport
         double latitude;    //latitude of airport
-        double longitude;   //longitude of
-        
+        double longitude;   //longitude of airport
+
         /**
         * Weighted edges for our graph
         *
@@ -78,6 +78,10 @@ class AirTravel {
      *
      */
     std::string removeQuotes(std::string temp);
+
+    void DFS(int Airports);
+    Airports* findIndex(Airports* item);
+    void createGraph();
    // Airport* findAirport(std::string Airport);
     
     public:
@@ -94,5 +98,9 @@ class AirTravel {
      * getter for airport
      */
     Airport* IATAsearch(std::string code);
+
+    private:
+    std::vector<Airport*> graph; //We will be populating this
+    bool* visited;
 
 };
