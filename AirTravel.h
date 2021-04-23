@@ -26,7 +26,7 @@ class AirTravel {
         */
         struct Flights {
            // Flights(Airport* airport_name, double distance) : other_airport(airport_name), distance(distance) {}
-            Airport* other_airport; //connected node
+            Airport* other_airport = new Airport(); //connected node
             double distance; //weight
         };
 
