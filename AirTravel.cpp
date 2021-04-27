@@ -324,7 +324,6 @@ bool AirTravel::isDirectFlight(std::string start, std::string end) {
 }
 
 
-
 // //populate the std::vector graph
 // void AirTravel::createGraph(){
 //     std::map<std::string, Airport*>::iterator it = AirportList.begin();
