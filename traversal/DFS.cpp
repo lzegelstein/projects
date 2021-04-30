@@ -13,13 +13,11 @@
 
 //Copied from mp traversals
 /**
- * Initializes a depth-first ImageTraversal on a given `png` image,
- * starting at `start`, and with a given `tolerance`.
+ * Initializes a depth-first AirportTraversal on a given `png` image,
+ * starting at `start' Airport Node
  * 
- * @param map The image this DFS is going to traverse
+ * @param list The map this DFS is going to traverse
  * @param start The start point of this DFS
- * @param tolerance If the current point is too different (difference larger than tolerance) with the start point,
- * it will not be included in this DFS
  */
 
 DFS::DFS(const std::map<std::string, AirTravel::Airport*> list, const AirTravel::Airport & start) 
@@ -29,7 +27,7 @@ DFS::DFS(const std::map<std::string, AirTravel::Airport*> list, const AirTravel:
 
 
 /**
- * Returns an iterator for the traversal starting at the first point.
+ * Returns an iterator for the traversal starting at the first Airport
  */
 AirportTraversal::Iterator DFS::begin() {
   //Office hours question 

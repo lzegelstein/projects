@@ -79,11 +79,17 @@ inline std::ostream & operator<<(std::ostream & out, Node const & point) {
 
 /**
  * Draws the node onto the image PNG
+ * 
+ * @param circle current node to draw
+ * @param image PNG for the node to draw on
  */
 void drawNode(Node circle, cs225::PNG image);
 
 /**
  * Draws the edge line onto the image PNG
+ * 
+ * @param line current edge (line between two nodes) to draw
+ * @param image PNG for the node to draw on
  */
 void drawEdge(Edge line, cs225::PNG image);
 

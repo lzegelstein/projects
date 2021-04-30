@@ -32,13 +32,26 @@ public:
    */
   class Iterator : std::iterator<std::forward_iterator_tag, AirTravel::Airport> {
   public:
+    /**
+     * Default iterator constructor
+     */
     Iterator();
 
+    /**
+     * Iterator operations
+     */
     Iterator & operator++();
     AirTravel::Airport operator*();
     bool operator!=(const Iterator &other);
 
+    /**
+     * Iterator constructor
+     */
     Iterator(AirportTraversal* traversal, std::map<std::string, AirTravel::Airport*> list, AirTravel::Airport& start);
+
+    /**
+     * @returns true if node has not been visisted yet
+     */
     bool isValid(AirTravel::Airport node);
     
   private:
