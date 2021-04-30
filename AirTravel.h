@@ -90,18 +90,7 @@ public:
      */
     std::map<std::string, Airport*> AirportList;
 
-    private:
-
-    //Member Functions for disconnected graph
-    /**
-     * Reads data from airport file
-     *
-     * @param fileName name of file to be analyzed
-     */
-    void readInAirportData(std::string fileName);
-    
-  
-    /**
+    /** MOVED TO PUBLIC FOR TESTING
      * Takes a line of the airport data
      * Goes through character by character looking for a comma
      * As we parse, build the data structure -> be populating the map
@@ -117,6 +106,16 @@ public:
      */
     void AirportParseLine(std::string input);
 
+    private:
+
+    //Member Functions for disconnected graph
+    /**
+     * Reads data from airport file
+     *
+     * @param fileName name of file to be analyzed
+     */
+    void readInAirportData(std::string fileName);
+    
     /**
      * Removes the quotation marks from the string
      * (first and last indexes of the array)
@@ -162,6 +161,11 @@ public:
     void RoutesParseLine(std::string input);
 
     public:
+
+    /**
+     * Default Constructor
+     */
+    AirTravel();
 
     /**
      * Constructor

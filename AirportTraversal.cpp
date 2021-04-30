@@ -46,19 +46,18 @@ AirportTraversal::Iterator & AirportTraversal::Iterator::operator++() {
   visited.at(current.IATA) = true; //we have visisted this point
 
   //we should look at every Airport destination
-  int count = current.destinations.size();
-
-  //std::cout<<"count: "<<count<<std::endl;
+  std::vector<AirTravel::Airport> curr_dest;
+  for(auto it: current.destinations){
+    curr_dest.push_back(*(it.other_airport));
+  }
 
   //while stack is not empty and we have already visited the point, pop and move to the next point
   while(!traversal->empty() && !isValid(traversal->peek())){
     current = traversal->pop();
   }
 
-
-  for(int i = 0; i < count; i++){
-      AirTravel::Airport curr = *(current.destinations[i].other_airport);
-      //std::cout<<"curr: "<<curr.IATA<<std::endl;
+  for(unsigned i = 0; i < curr_dest.size(); i++){
+      AirTravel::Airport curr = curr_dest.at(i);
       if(isValid(curr)){
           traversal->add(curr);
       }

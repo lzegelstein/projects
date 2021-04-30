@@ -11,7 +11,19 @@ using namespace std;
 #include <string>
 #include <algorithm>
 
-//Error: JFK seems to not populate in the airport list correctly which messes up the other test cases, need to fix
+TEST_CASE("AirportParseLine Works Correctly", "[AirTravel]"){
+    std::string JFK = "3797,\"John F Kennedy International Airport\",\"New York\",\"United States\",\"JFK\",\"KJFK\",40.63980103,-73.77890015,13,-5,\"A\",\"America/New_York\",\"airport\",\"OurAirports\"";
+    AirTravel AT = AirTravel();
+    AT.AirportParseLine(JFK);
+    AirTravel::Airport jfk = *(AT.AirportList.at("JFK"));
+    REQUIRE(jfk.city == "New York");
+    REQUIRE(jfk.country == "United States");
+    REQUIRE(jfk.IATA == "JFK");
+    REQUIRE(jfk.latitude == 40.63980103);
+    REQUIRE(jfk.longitude == -73.77890015);
+    REQUIRE(jfk.name == "John F Kennedy International Airport");
+}
+
 
 TEST_CASE("Airport List Populated Correctly", "[AirTravel]"){
 

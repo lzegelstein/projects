@@ -27,6 +27,14 @@ using std::string;
 /*
  When time permits, move these function calls out of the constructor
  */
+
+/**
+ * Default Constructor
+ */
+AirTravel::AirTravel(){
+    
+}
+
 AirTravel::AirTravel (std::string Airport_File, std::string Routes_File) {
     readInAirportData(Airport_File);
     readInRoutesData(Routes_File);
@@ -87,6 +95,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
                     return;
                 }
             }
+            //JFK is failing here at x = 54, it doesn't pass the AirportLineCheck
             else if (field_num == 2) {
                 
                 if (AirportLineCheck(field_num, temp)) {
@@ -189,14 +198,20 @@ bool AirTravel::AirportLineCheck(int field_num, std::string value) {
 
     if ((first_char > 0x40) && (first_char < 0x5B)) {
         
+        //Consider deleting this commented out section:
+
+        //Seems like this is targetting JFK city "New York"
+        /*
         if(first_char == 'N') {
             
             first_char = value[0];
             
+            //This is where JFK is failing
             if(!((first_char > 0x40) && (first_char < 0x5B))) {
                return false;
             }
-        }
+        }*/
+
         return true;
     }
     return false;
@@ -212,7 +227,7 @@ void AirTravel::readInRoutesData(std::string fileName) {
     std::string trial;
     data_file.open(fileName, std::ios::in);
     
-    for (int x = 0; x < 25; x++) {
+    for (int x = 0; x < 28; x++) {
         
         if (data_file.is_open()) {
             getline(data_file, trial);
