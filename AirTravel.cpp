@@ -27,7 +27,7 @@ using std::string;
 /*
  When time permits, move these function calls out of the constructor
  */
-AirTravel::AirTravel(std::string Airport_File, std::string Routes_File) {
+AirTravel::AirTravel (std::string Airport_File, std::string Routes_File) {
     readInAirportData(Airport_File);
     readInRoutesData(Routes_File);
 }
@@ -322,50 +322,3 @@ bool AirTravel::isDirectFlight(std::string start, std::string end) {
     }
     return false;
 }
-
-
-// //populate the std::vector graph
-// void AirTravel::createGraph(){
-//     std::map<std::string, Airport*>::iterator it = AirportList.begin();
-//     while (it != AirportList.end())
-//     {
-//         // Accessing VALUE from element pointed by it.
-//         Airport* count = it->second;
-//         graph.push_back(count);
-//         it++;
-//     }
-//     visited = new bool[graph.size()]; //instatiate visited
-
-
-//     //our attempt to have output of some kind
-//     for(int i=0; i < graph.size(); i++){
-//         std::cout<<graph[i]<<" ";
-//     }
-//     std::cout<<std::endl;
-// }
-
-// //maybe change something other than a int for choosing starting node
-// void AirTravel::DFS(int vertex){
-//     int numNodes = (int)AirportList.size();
-//     visited[vertex] = true;
-
-//     for (int i = 0; i < graph[vertex]->destinations.size(); i++){
-//         Airport* temp = graph[vertex]->destinations[i].other_airport;
-//         int index = findIndex(temp);
-//         if(index == -1){
-//             continue;
-//         }
-//         if (!visited[index]){
-//             DFS(index);
-//         }
-//     }
-// }
-
-// int AirTravel::findIndex(Airport* item) {
-//     for (int i = 0; i < (int) graph.size(); ++i) {
-//         if (graph[i] == item)
-//             return i;
-//     }
-//     return -1;
-// }
-

@@ -89,6 +89,11 @@
         "xstring": "cpp",
         "xtr1common": "cpp",
         "xtree": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "*.tcc": "cpp",
+        "clocale": "cpp",
+        "condition_variable": "cpp",
+        "memory_resource": "cpp",
+        "shared_mutex": "cpp"
     }
 }

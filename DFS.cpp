@@ -5,81 +5,67 @@
 #include <queue>
 #include <stack>
 #include <vector>
-
 #include "DFS.h"
 
-//takes in # of vertices and the starting vertice
-DFS::DFS(std::vector<Vertex> v,  Vertex w){
-    std::map<std::string, Airport*>::iterator it = AirportList.begin();
-     while (it != AirportList.end())
-     {
-        //Accessing VALUE from element pointed by it.
-         Airport* count = it->second;
-         _vertice.push_back(count);
-         it++;
-     }
-    adj = std::map<Vertex, std::vector<Vertex>> ();
-    visited[i] = true;
-}
+
 
 //Copied from mp traversals
 /**
  * Initializes a depth-first ImageTraversal on a given `png` image,
  * starting at `start`, and with a given `tolerance`.
  * 
- * @param png The image this DFS is going to traverse
+ * @param map The image this DFS is going to traverse
  * @param start The start point of this DFS
  * @param tolerance If the current point is too different (difference larger than tolerance) with the start point,
  * it will not be included in this DFS
  */
-DFS::DFS(const PNG & png, const Point & start, double tolerance) 
-: image(png), current(start), tolerance(tolerance){  
-  /** @todo [Part 1] */
- S.push(start);
+
+DFS::DFS(const std::map<std::string, AirTravel::Airport*> list, const AirTravel::Airport & start) 
+: list(list), current(start) {
+    S.push(start);
 }
 
 /**
  * Returns an iterator for the traversal starting at the first point.
  */
-ImageTraversal::Iterator DFS::begin() {
-  /** @todo [Part 1] */
-  return ImageTraversal::Iterator(this, image, current, tolerance);
+AirportTraversal::Iterator DFS::begin() {
+  //Office hours question 
+  return AirportTraversal::Iterator(this, list, current);
 }
 
 /**
  * Returns an iterator for the traversal one past the end of the traversal.
  */
-ImageTraversal::Iterator DFS::end() {
-  /** @todo [Part 1] */
-  return ImageTraversal::Iterator();
+AirportTraversal::Iterator DFS::end() {
+
+  return AirportTraversal::Iterator();
 
 }
 
 /**
- * Adds a Point for the traversal to visit at some point in the future.
+ * Adds a Airport for the traversal to visit at some point in the future.
  */
-void DFS::add(const Point & point) {
-  /** @todo [Part 1] */
-    S.push(point);
+void DFS::add(const AirTravel::Airport & node) {
+
+    S.push(node);
 }
 
 /**
- * Removes and returns the current Point in the traversal.
+ * Removes and returns the current Airport in the traversal.
  */
-Point DFS::pop() {
-  /** @todo [Part 1] */
+AirTravel::Airport DFS::pop() {
   
-  Point p = S.top();
+  AirTravel::Airport p = S.top();
   S.pop();
   return p;
   
 }
 
 /**
- * Returns the current Point in the traversal.
+ * Returns the current Airport in the traversal.
  */
-Point DFS::peek() const {
-  /** @todo [Part 1] */
+AirTravel::Airport DFS::peek() const {
+  
   return S.top();
 }
 
@@ -87,6 +73,6 @@ Point DFS::peek() const {
  * Returns true if the traversal is empty.
  */
 bool DFS::empty() const {
-  /** @todo [Part 1] */
+
   return S.empty();
 }

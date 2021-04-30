@@ -3,6 +3,8 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <iostream>
+#include <fstream>
 
 class AirTravel {
 
@@ -131,7 +133,7 @@ public:
      * @param Airport_File name of csv file containing airport data
      * @param Routes_File name of csv file containing routes data
      */
-    AirTravel(std::string Airport_File, std::string Routes_File);
+    AirTravel (std::string Airport_File, std::string Routes_File);
 
     /**
      * getter for airport

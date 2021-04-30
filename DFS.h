@@ -4,38 +4,31 @@
 #include <cmath>
 #include <list>
 #include <stack>
-
-class DFS {
-    public:
-        DFS::DFS(std::vector<Vertex> v, Vertex n)
-    private:
-        std::vector<Vertex> _vertice;
-}
-
+#include "AirTravel.h"
+#include "AirportTraversal.h"
 //copied from mp traversals
-using namespace cs225;
 
 /**
  * A depth-first ImageTraversal.
  * Derived from base class ImageTraversal
  */
-class DFS : public AirTravel {
+class DFS  {
 public:
-  DFS(const PNG & png, const Point & start, double tolerance);
+  DFS(const std::map<std::string, AirTravel::Airport*> list, const AirTravel::Airport & start);
 
-  ImageTraversal::Iterator begin();
-  ImageTraversal::Iterator end();
+  AirportTraversal::Iterator begin();
+  AirportTraversal::Iterator end();
 
-  void add(const Point & point);
-  Point pop();
-  Point peek() const;
+  void add(const AirTravel::Airport & node);
+  AirTravel::Airport pop();
+  AirTravel::Airport peek() const;
   bool empty() const;
 
 private:
 	/** @todo [Part 1] */
 	/** add private members here*/
-  std::stack<Point> S;
-  PNG image;
-  Point current;
+  std::stack<AirTravel::Airport> S;
+  std::map<std::string, AirTravel::Airport*> list;
+  AirTravel::Airport current;
   double tolerance;
 };
