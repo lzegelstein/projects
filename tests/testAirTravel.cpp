@@ -1,7 +1,7 @@
 #include "../cs225/catch/catch.hpp"
 #include "../AirTravel.h"
-#include "../AirportTraversal.h"
-#include "../DFS.h"
+#include "../traversal/AirportTraversal.h"
+#include "../traversal/DFS.h"
 
 using namespace std;
 #include <iostream>

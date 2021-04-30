@@ -4,7 +4,11 @@ TEST = test
 
 # Add all object files needed for compiling:
 EXE_OBJ = main.o
-OBJS = AirTravel.o AirportTraversal.o DFS.o
+OBJS = AirTravel.o AirTravel_parse.o Node.o
+
+#Add all the traversals
+CPP_FILES += $(wildcard traversal/*.cpp)
+OBJS += $(CPP_FILES:.cpp=.o)
 
 # Use the cs225 makefile template:
 include cs225/make/cs225.mk

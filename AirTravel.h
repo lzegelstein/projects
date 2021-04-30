@@ -5,9 +5,14 @@
 #include <map>
 #include <iostream>
 #include <fstream>
+#include "cs225/PNG.h"
+#include "Node.h"
 
 class AirTravel {
 
+/**
+ * Functions included in AirTravel_parse.cpp
+ */
 public:
     /**
      * Aiport struct are the nodes of the graphs
@@ -19,70 +24,78 @@ public:
      * //Modified 4/23 @ 7 am. We shouldn't be creating a new airport object
      */
     struct Airport {
-        std::string name;   //name of airport
-        std::string city;   //city of airport
-        std::string country;//country of airport
-        std::string IATA;   //IATA code of airport
-        double latitude;    //latitude of airport
-        double longitude;   //longitude of airport
+            std::string name;   //name of airport
+            std::string city;   //city of airport
+            std::string country;//country of airport
+            std::string IATA;   //IATA code of airport
+            double latitude;    //latitude of airport
+            double longitude;   //longitude of airport
 
-        /**
-         * Default constructor, set the Airport to (0, 0)
-         */
-        Airport() : name(""), city(""), country(""), IATA(""), latitude(0), longitude(0) { }
-        /**
-         * Constructor
-         * @param name 
-         * @param city 
-         * @param country
-         * @param IATA
-         * @param latitude
-         * @param longitude
-         */
-        Airport(std::string name, std::string city, std::string country,
-        std::string IATA, double latitude, double longitude) : name(name), city(city), country(country),
-        IATA(IATA), latitude(latitude), longitude(longitude) { }
+            /**
+             * Default constructor, set the Airport to (0, 0)
+             */
+            Airport() : name(""), city(""), country(""), IATA(""), latitude(0), longitude(0) { }
+            /**
+             * Constructor
+             * @param name 
+             * @param city 
+             * @param country
+             * @param IATA
+             * @param latitude
+             * @param longitude
+             */
+            Airport(std::string name, std::string city, std::string country,
+            std::string IATA, double latitude, double longitude) : name(name), city(city), country(country),
+            IATA(IATA), latitude(latitude), longitude(longitude) { }
 
-        /**
-         * overload operator <
-         * @param other The other point
-         * @return True for smaller in map, false for otherwise
-         */
-        bool operator<(const Airport &other) const {
-            return (IATA < other.IATA);
-        }
+            /**
+             * overload operator <
+             * @param other The other point
+             * @return True for smaller in map, false for otherwise
+             */
+            bool operator<(const Airport &other) const {
+                return (IATA < other.IATA);
+            }
 
-        /**
-         * overload operator ==
-         * @param other The other point
-         * @return True for smaller, false for otherwise
-         */
-        bool operator==(const Airport &other) const {
-            return (IATA == other.IATA);
-        }
+            /**
+             * overload operator ==
+             * @param other The other point
+             * @return True for smaller, false for otherwise
+             */
+            bool operator==(const Airport &other) const {
+                return (IATA == other.IATA);
+            }
 
 
-        /**
-        * Weighted edges for our graph
-        *
-        * Takes into account one way flights!!
-        */
-        struct Flights {
-            //Airport* other_airport = new Airport(); //connected node
-            Airport * other_airport;
-            //Need to find the airport in the map and when populating the edges, find the other airport
-            double distance; //weight
+            /**
+            * Weighted edges for our graph
+            *
+            * Takes into account one way flights!!
+            */
+            struct Flights {
+                //Airport* other_airport = new Airport(); //connected node
+                Airport * other_airport;
+                //Need to find the airport in the map and when populating the edges, find the other airport
+                double distance; //weight
+            };
+
+            std::vector<Flights> destinations; //outgoing flights from airport
+            
+            /**
+             * Function for calculating distance between airports and adding a new Flight struct to the destinations vector
+             *
+             * @param other A pointer to the destination airport to be added
+             */
+            void addDestination(Airport* other);
         };
 
-        std::vector<Flights> destinations; //outgoing flights from airport
-        
-        /**
-         * Function for calculating distance between airports and adding a new Flight struct to the destinations vector
-         *
-         * @param other A pointer to the destination airport to be added
-         */
-        void addDestination(Airport* other);
-    };
+    /**
+     * Constructor
+     *
+     * @param Airport_File name of csv file containing airport data
+     * @param Routes_File name of csv file containing routes data
+     */
+    AirTravel (std::string Airport_File, std::string Routes_File);
 
     /** Map
      * Key is airport code
@@ -90,7 +103,7 @@ public:
      */
     std::map<std::string, Airport*> AirportList;
 
-    /** MOVED TO PUBLIC FOR TESTING
+    /** MOVED TO PUBLIC FOR TESTCASES
      * Takes a line of the airport data
      * Goes through character by character looking for a comma
      * As we parse, build the data structure -> be populating the map
@@ -106,7 +119,10 @@ public:
      */
     void AirportParseLine(std::string input);
 
-    private:
+/**
+ * Functions included in AirTravel_parse.cpp
+ */
+private:
 
     //Member Functions for disconnected graph
     /**
@@ -115,7 +131,7 @@ public:
      * @param fileName name of file to be analyzed
      */
     void readInAirportData(std::string fileName);
-    
+
     /**
      * Removes the quotation marks from the string
      * (first and last indexes of the array)
@@ -123,7 +139,7 @@ public:
      * @param temp string to modify
      */
     std::string removeQuotes(std::string temp);
-    
+
     /**
      * Makes sure that inputed data of airports is valid.
      *
@@ -160,20 +176,16 @@ public:
      */
     void RoutesParseLine(std::string input);
 
-    public:
+
+/**
+ * Functions included in AirTravel.cpp
+ */
+public:
 
     /**
      * Default Constructor
      */
     AirTravel();
-
-    /**
-     * Constructor
-     *
-     * @param Airport_File name of csv file containing airport data
-     * @param Routes_File name of csv file containing routes data
-     */
-    AirTravel (std::string Airport_File, std::string Routes_File);
 
     /**
      * getter for airport
@@ -184,7 +196,7 @@ public:
      * NULL if airport not found;
      */
     Airport* IATAsearch(std::string code);
-    
+
     /**
      * The busiest airport is the airport which the most number of outgoing flights.
      * We will find the busiest airport by comparing the size of the destination vector.
@@ -202,5 +214,16 @@ public:
      * @returns true if there is a direct flight.
      */
     bool isDirectFlight(std::string start, std::string end);
+
+
+    /**
+     * Creates a graph PNG output ready to be writtentoFile
+     * Use the functions drawNode and drawEdge 
+     * 
+     * @param list to obtain nodes and edges from map
+     * 
+     * @returns png output
+     */
+    cs225::PNG createGraph(std::map<std::string, Airport*> list);
 
 };
