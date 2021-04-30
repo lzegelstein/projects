@@ -19,8 +19,11 @@ void drawNode(Node circle, cs225::PNG image){
     int size_x_min = circle.x - circle.size;
     int size_y_min = circle.y - circle.size;
 
-    for(int i = size_x_min; i <= size_x_max; i++){
-        for(int j = size_y_min; j <= size_y_max; j++){
+    int distx = size_x_max - size_x_min; 
+    int disty = size_y_max - size_y_min;
+
+    for(int i = 0; i <= distx; i++){
+        for(int j = 0; j <= disty; j++){
             //calculate euclidean distance
             double dx = (circle.x - i);
             double dy = (circle.y - j);

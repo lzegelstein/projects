@@ -80,7 +80,7 @@ TEST_CASE("DFS iterator visits all points in the correct order", "[DFS]") {
     REQUIRE( *it == *(AT.AirportList.at(ans[5])) ); ++it;
 }
 
-TEST_CASE("DFS maintains a depth-first ordering", "[weight=0][part=1][part=1a]") {
+TEST_CASE("DFS maintains a depth-first ordering", "[DFS]") {
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
     AirTravel::Airport node0 = *(AT.AirportList.at("ATL"));
@@ -100,7 +100,7 @@ TEST_CASE("DFS maintains a depth-first ordering", "[weight=0][part=1][part=1a]")
   REQUIRE( dfs.pop() == node0);
 }
 
-TEST_CASE("DFS maintains the deepest point on top", "[weight=0][part=1][part=1a]") {
+TEST_CASE("DFS maintains the deepest point on top", "[DFS]") {
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
     AirTravel::Airport startNode("Adolfo Suárez Madrid–Barajas Airport","Madrid","Spain","MAD",40.471926,-3.56264);
     DFS dfs(AT.AirportList, startNode);

@@ -10,5 +10,8 @@ OBJS = AirTravel.o AirTravel_parse.o Node.o
 CPP_FILES += $(wildcard traversal/*.cpp)
 OBJS += $(CPP_FILES:.cpp=.o)
 
+# Generated files
+CLEAN_RM = out-*.png 
+
 # Use the cs225 makefile template:
 include cs225/make/cs225.mk
