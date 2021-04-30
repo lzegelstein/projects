@@ -6,13 +6,12 @@
 #include <stack>
 #include "AirTravel.h"
 #include "AirportTraversal.h"
-//copied from mp traversals
 
 /**
- * A depth-first ImageTraversal.
- * Derived from base class ImageTraversal
+ * A depth-first AirportTraversal.
+ * Derived from base class AirportTraversal
  */
-class DFS  {
+class DFS : public AirportTraversal{
 public:
   DFS(const std::map<std::string, AirTravel::Airport*> list, const AirTravel::Airport & start);
 
@@ -24,11 +23,9 @@ public:
   AirTravel::Airport peek() const;
   bool empty() const;
 
-private:
-	/** @todo [Part 1] */
-	/** add private members here*/
   std::stack<AirTravel::Airport> S;
+private:
+  
   std::map<std::string, AirTravel::Airport*> list;
   AirTravel::Airport current;
-  double tolerance;
 };

@@ -16,7 +16,7 @@ AirportTraversal::Iterator::Iterator() {
 AirportTraversal::Iterator::Iterator(AirportTraversal* traversal, std::map<std::string, AirTravel::Airport*> list,
                                    AirTravel::Airport& start)
     : list(list), traversal(traversal), start(start){
-  /** initialize the current iterator to top Node of the stack*/
+  /*initialize the current iterator to top Node of the stack*/
   current = start;
   //initialize vector to have all Airport 3 code and all false
   for(auto it: list){

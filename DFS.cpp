@@ -5,6 +5,7 @@
 #include <queue>
 #include <stack>
 #include <vector>
+#include "AirportTraversal.h"
 #include "DFS.h"
 
 
@@ -24,6 +25,7 @@ DFS::DFS(const std::map<std::string, AirTravel::Airport*> list, const AirTravel:
 : list(list), current(start) {
     S.push(start);
 }
+
 
 /**
  * Returns an iterator for the traversal starting at the first point.
