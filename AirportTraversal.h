@@ -39,13 +39,13 @@ public:
     bool operator!=(const Iterator &other);
 
     Iterator(AirportTraversal* traversal, std::map<std::string, AirTravel::Airport*> list, AirTravel::Airport& start);
-    bool checkValid(AirTravel::Airport node);
+    bool isValid(AirTravel::Airport node);
+    
   private:
     std::map<std::string, bool> visited;
     std::map<std::string, AirTravel::Airport*> list;
     AirTravel::Airport current;
     AirportTraversal* traversal;
-    double tolerance;
     AirTravel::Airport start;
   };
 

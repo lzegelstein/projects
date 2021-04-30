@@ -1,5 +1,6 @@
 #include <iterator>
 #include <cmath>
+#include <iostream>
 	
 #include <list>
 #include <queue>

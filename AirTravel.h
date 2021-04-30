@@ -27,6 +27,42 @@ public:
         double longitude;   //longitude of airport
 
         /**
+         * Default constructor, set the Airport to (0, 0)
+         */
+        Airport() : name(""), city(""), country(""), IATA(""), latitude(0), longitude(0) { }
+        /**
+         * Constructor
+         * @param name 
+         * @param city 
+         * @param country
+         * @param IATA
+         * @param latitude
+         * @param longitude
+         */
+        Airport(std::string name, std::string city, std::string country,
+        std::string IATA, double latitude, double longitude) : name(name), city(city), country(country),
+        IATA(IATA), latitude(latitude), longitude(longitude) { }
+
+        /**
+         * overload operator <
+         * @param other The other point
+         * @return True for smaller in map, false for otherwise
+         */
+        bool operator<(const Airport &other) const {
+            return (IATA < other.IATA);
+        }
+
+        /**
+         * overload operator ==
+         * @param other The other point
+         * @return True for smaller, false for otherwise
+         */
+        bool operator==(const Airport &other) const {
+            return (IATA == other.IATA);
+        }
+
+
+        /**
         * Weighted edges for our graph
         *
         * Takes into account one way flights!!
@@ -164,15 +200,3 @@ public:
     bool isDirectFlight(std::string start, std::string end);
 
 };
-
-
-//Unused functions :
-/*
-void DFS(int Airports);
-int findIndex(Airport* item);
-void createGraph();
-
-Airport* findAirport(std::string Airport);
-*/
-
-

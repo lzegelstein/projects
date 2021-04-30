@@ -28,47 +28,48 @@ AirportTraversal::Iterator::Iterator(AirportTraversal* traversal, std::map<std::
 //This is to check if it's visited or not
 //Possible error; we don't know if this should be taking in Airport or Airport*, so it might 
 //error out the way we are passing nodes in
-bool AirportTraversal::Iterator::checkValid(AirTravel::Airport node){
-    return visited.at(node.IATA);
+bool AirportTraversal::Iterator::isValid(AirTravel::Airport node){
+    //valid if it is not visited
+    return !(visited.at(node.IATA));
 }
 
 /**
  * Iterator increment opreator.
  *
- * Advances the traversal of the image.
+ * Advances the traversal of the graph.
  */
 AirportTraversal::Iterator & AirportTraversal::Iterator::operator++() {
-  /** @todo [Part 1] */
   if(traversal->empty()){
     return *this;
   } 
   traversal->pop();
-  visited.at(current.IATA) = true;
+  visited.at(current.IATA) = true; //we have visisted this point
 
-//we should look at every Airport destination
-int count = 0;
-for(int i = 0; i < current.destinations.size(); i++){
-    count++;
-    //this will count the number of destinations
-}
+  //we should look at every Airport destination
+  int count = current.destinations.size();
 
-//while stack is not empty, and we have either already visited the point or it greater than tolernace, pop and move to the next point
-  while(!traversal->empty() && !checkValid(traversal->peek())){
+  //std::cout<<"count: "<<count<<std::endl;
+
+  //while stack is not empty and we have already visited the point, pop and move to the next point
+  while(!traversal->empty() && !isValid(traversal->peek())){
     current = traversal->pop();
   }
 
 
-for(int i = 0; i < count; i++){
-    AirTravel::Airport* curr = current.destinations[i].other_airport;
-    //Hey, probably want to check if this actually works
-    if(checkValid(*curr)){
-        traversal->add(*curr);
-    }
-}
+  for(int i = 0; i < count; i++){
+      AirTravel::Airport curr = *(current.destinations[i].other_airport);
+      //std::cout<<"curr: "<<curr.IATA<<std::endl;
+      if(isValid(curr)){
+          traversal->add(curr);
+      }
+  }
 
   if(!traversal->empty()){
     current = traversal->peek();
   }
+
+  //std::cout<<"current: "<<current.IATA<<std::endl;
+
   return *this;
 
 }

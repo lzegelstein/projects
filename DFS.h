@@ -23,7 +23,9 @@ public:
   AirTravel::Airport peek() const;
   bool empty() const;
 
+  //need to move this back to private, moved for testing purposes
   std::stack<AirTravel::Airport> S;
+  
 private:
   
   std::map<std::string, AirTravel::Airport*> list;
