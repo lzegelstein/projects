@@ -68,6 +68,11 @@ public:
      */
     cs225::PNG createGraph(std::map<std::string, Airport*> list);
 
+    /**
+     * TODO: - finish writing this and move it out of the class probs into another class
+     */
+    double Dijkstras(std::map<std::string, Airport*> AirportList, Airport* source);
+
 private:
 
 //-------------------------------------------------------------

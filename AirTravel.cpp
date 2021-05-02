@@ -8,6 +8,8 @@
 #include <cstdlib>
 #include <map>
 #include <math.h>
+#include <queue>
+#include <float.h>
 
 using std::string;
 
@@ -120,6 +122,46 @@ cs225::PNG AirTravel::createGraph(std::map<std::string, Airport*> list){
     }
 
     return image;
+}
+
+double AirTravel::Dijkstras(std::map<std::string, Airport*> airportList, Airport* source) { //TODO
+    
+    struct Vertex {
+        double source_distance = DBL_MAX;
+        Vertex * previous = NULL;
+        Airport * data = NULL; //i think this should be a Vertex * and the source needs a previous to point at itself
+        bool visited = false;
+    };
+    
+    std::priority_queue<Vertex, std::greater<int>> pq;
+    std::map<std::string, Airport *>::iterator it;
+    Vertex * current;
+
+    for (it = airportList.begin(); it != airportList.end(); it ++) {
+        Vertex vertex;
+        vertex.data = it->second;
+        
+        if (vertex.data == source) {
+            vertex.source_distance = 0;
+            vertex.previous = &vertex;
+            pq.push(vertex);
+        }
+
+    }
+    
+    while (!pq.empty()) {
+        current = pq.top();
+        pq.pop();
+        unsigned long num_destinations = current->data->destinations.size();
+        for (auto i = 0; i < num_destinations; i ++) {
+            if (current->previous == NULL) {            //this means we haven't seen this node before
+               // node.previous = previous_vertex;    //we set the previous ptr to just be previous_vertex, which is the one it came from
+               // node.source_distance = node.current->destinations[i].distance + previous_vertex->source_distance;
+            }
+        }
+    }
+    
+    return 0;
 }
 
 //-------------------------------------------------------------

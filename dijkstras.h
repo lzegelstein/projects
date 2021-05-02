@@ -1,9 +1,3 @@
-//
-//  dijstrika.hpp
-//  cs225FinalProject
-//
-//  Created by Lyla Zegelstein on 4/29/21.
-//
 #pragma once
 #include <vector>
 #include <algorithm>
