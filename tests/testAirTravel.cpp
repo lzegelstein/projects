@@ -16,7 +16,7 @@ using namespace std;
 //     std::string JFK = "3797,\"John F Kennedy International Airport\",\"New York\",\"United States\",\"JFK\",\"KJFK\",40.63980103,-73.77890015,13,-5,\"A\",\"America/New_York\",\"airport\",\"OurAirports\"";
 //     AirTravel AT = AirTravel();
 //     AT.AirportParseLine(JFK);
-//     AirTravel::Airport jfk = *(AT.AirportList.at("JFK"));
+//     Airport jfk = *(AT.IATAsearch("JFK"));
 //     REQUIRE(jfk.city == "New York");
 //     REQUIRE(jfk.country == "United States");
 //     REQUIRE(jfk.IATA == "JFK");
@@ -29,13 +29,9 @@ using namespace std;
 TEST_CASE("Airport List Populated Correctly", "[AirTravel]"){
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
-    REQUIRE(!AT.AirportList.empty());
-
     vector<std::string> ans = {"ATL", "CDG", "JFK", "LAX", "LPL", "MAD", "ORD", "PEK"};
-    int i = 0;
-    for(auto it: AT.AirportList){
-        REQUIRE(it.first == ans[i]);
-        i++;
+    for(auto it: ans){
+        REQUIRE(AT.IATAsearch(it) != NULL);
     }
 }
 
@@ -58,7 +54,7 @@ TEST_CASE("JFK Destinations", "[AirTravel]"){
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
-    AirTravel::Airport JFK = *(AT.AirportList.at("JFK"));
+    Airport JFK = *(AT.IATAsearch("JFK"));
     REQUIRE(JFK.destinations.size() == 4);
 
     vector<std::string> ans = {"CDG", "LAX", "MAD", "ORD"};
@@ -73,7 +69,7 @@ TEST_CASE("ATL Destinations", "[AirTravel]"){
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
-    AirTravel::Airport ATL = *(AT.AirportList.at("ATL"));
+    Airport ATL = *(AT.IATAsearch("ATL"));
     REQUIRE(ATL.destinations.size() == 5);
 
     vector<std::string> ans = {"CDG", "JFK", "LAX", "MAD", "ORD"};
@@ -89,7 +85,7 @@ TEST_CASE("ORD Destinations", "[AirTravel]"){
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
-    AirTravel::Airport ORD = *(AT.AirportList.at("ORD"));
+    Airport ORD = *(AT.IATAsearch("ORD"));
     REQUIRE(ORD.destinations.size() == 5);
 
     vector<std::string> ans = {"CDG", "JFK", "LAX", "MAD", "PEK"};
@@ -104,7 +100,7 @@ TEST_CASE("CDG Destinations", "[AirTravel]"){
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
-    AirTravel::Airport CDG = *(AT.AirportList.at("CDG"));
+    Airport CDG = *(AT.IATAsearch("CDG"));
     REQUIRE(CDG.destinations.size() == 2);
 
     vector<std::string> ans = {"JFK", "ORD"};
@@ -119,7 +115,7 @@ TEST_CASE("MAD Destinations", "[AirTravel]"){
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
-    AirTravel::Airport MAD = *(AT.AirportList.at("MAD"));
+    Airport MAD = *(AT.IATAsearch("MAD"));
     REQUIRE(MAD.destinations.size() == 4);
 
     vector<std::string> ans = {"JFK", "LAX", "ORD", "PEK"};
@@ -134,7 +130,7 @@ TEST_CASE("PEK Destinations", "[AirTravel]"){
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
-    AirTravel::Airport PEK = *(AT.AirportList.at("PEK"));
+    Airport PEK = *(AT.IATAsearch("PEK"));
     REQUIRE(PEK.destinations.size() == 5);
 
     vector<std::string> ans = {"CDG", "JFK", "LAX", "MAD", "ORD"};

@@ -17,16 +17,16 @@ TEST_CASE("DFS iterator starts at the start Airport", "[DFS]") {
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
     Airport startNode("Los Angeles International Airport","Los Angeles","United States","LAX",33.94250107,-118.4079971);
-    DFS dfs(AT.AirportList, startNode);
-    REQUIRE(*(dfs.begin()) == startNode);
+    DFS *dfs = AT.DepthFirstSearch(&startNode);
+    REQUIRE(*(dfs->begin()) == startNode);
 
 }
 
 TEST_CASE("DFS visits the correct Airport first", "[DFS]") {
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
-    DFS dfs(AT.AirportList, *(AT.AirportList.at("ATL")));
-    AirportTraversal::Iterator it = dfs.begin();
+    DFS *dfs = AT.DepthFirstSearch(AT.IATAsearch("ATL"));
+    AirportTraversal::Iterator it = dfs->begin();
     ++it;
     Airport nextNode("Chicago O'Hare International Airport","Chicago","United States","ORD",41.9786,-87.9048);
     REQUIRE( *it == nextNode );
@@ -57,8 +57,7 @@ TEST_CASE("DFS visits the correct Airport first", "[DFS]") {
 TEST_CASE("DFS visits all points for an Airport (CDG)", "[DFS]]") {
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
-    DFS dfs(AT.AirportList, *(AT.AirportList.at("CDG")));
-
+    DFS dfs = *(AT.DepthFirstSearch(AT.IATAsearch("CDG")));
     unsigned count = 0;
     for (const Airport & p : dfs) {
         count++;
@@ -69,23 +68,23 @@ TEST_CASE("DFS visits all points for an Airport (CDG)", "[DFS]]") {
 TEST_CASE("DFS iterator visits all points in the correct order", "[DFS]") {
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
-    DFS dfs(AT.AirportList, *(AT.AirportList.at("CDG")));
+    DFS dfs = *(AT.DepthFirstSearch(AT.IATAsearch("CDG")));
     vector<std::string> ans = {"CDG", "ORD", "PEK", "MAD", "LAX", "JFK"};
     AirportTraversal::Iterator it = dfs.begin();
 
-    REQUIRE( *it == *(AT.AirportList.at(ans[0])) ); ++it;
-    REQUIRE( *it == *(AT.AirportList.at(ans[1])) ); ++it;
-    REQUIRE( *it == *(AT.AirportList.at(ans[2])) ); ++it;
-    REQUIRE( *it == *(AT.AirportList.at(ans[3])) ); ++it;
-    REQUIRE( *it == *(AT.AirportList.at(ans[4])) ); ++it;
-    REQUIRE( *it == *(AT.AirportList.at(ans[5])) ); ++it;
+    REQUIRE( *it == *(AT.IATAsearch(ans[0])) ); ++it;
+    REQUIRE( *it == *(AT.IATAsearch(ans[1])) ); ++it;
+    REQUIRE( *it == *(AT.IATAsearch(ans[2])) ); ++it;
+    REQUIRE( *it == *(AT.IATAsearch(ans[3])) ); ++it;
+    REQUIRE( *it == *(AT.IATAsearch(ans[4])) ); ++it;
+    REQUIRE( *it == *(AT.IATAsearch(ans[5])) ); ++it;
 }
 
 TEST_CASE("DFS maintains a depth-first ordering", "[DFS]") {
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
-    Airport node0 = *(AT.AirportList.at("ATL"));
-    DFS dfs(AT.AirportList, node0);
+    Airport node0 = *(AT.IATAsearch("ATL"));
+    DFS dfs = *(AT.DepthFirstSearch(&node0));
     
     Airport node1("Liverpool John Lennon Airport","Liverpool","United Kingdom","LPL",53.33359909057617,-2.849720001220703);
     Airport node2("Charles de Gaulle International Airport","Paris","France","CDG",49.012798,2.55);
@@ -104,8 +103,8 @@ TEST_CASE("DFS maintains a depth-first ordering", "[DFS]") {
 TEST_CASE("DFS maintains the deepest point on top", "[DFS]") {
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
     Airport startNode("Adolfo Suárez Madrid–Barajas Airport","Madrid","Spain","MAD",40.471926,-3.56264);
-    DFS dfs(AT.AirportList, startNode);
 
+    DFS dfs = *(AT.DepthFirstSearch(&startNode));
     Airport node1("Liverpool John Lennon Airport","Liverpool","United Kingdom","LPL",53.33359909057617,-2.849720001220703);
     Airport node2("Charles de Gaulle International Airport","Paris","France","CDG",49.012798,2.55);
     Airport node3("Chicago O'Hare International Airport","Chicago","United States","ORD",41.9786,-87.9048);
@@ -116,4 +115,3 @@ TEST_CASE("DFS maintains the deepest point on top", "[DFS]") {
 
     REQUIRE( dfs.peek() == node3 );
 }
-
