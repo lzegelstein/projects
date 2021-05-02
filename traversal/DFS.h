@@ -4,6 +4,7 @@
 #include <cmath>
 #include <list>
 #include <stack>
+#include <map>
 #include "../AirTravel.h"
 #include "AirportTraversal.h"
 
@@ -50,12 +51,12 @@ public:
    */
   bool empty() const;
 
+private:
   /**
    * The current DFS stack of Airports
    */
   std::stack<Airport> S;
-  
-private:
+
   /**
    * All Airport IATA codes mapped to Airport nodes
    * @param list map

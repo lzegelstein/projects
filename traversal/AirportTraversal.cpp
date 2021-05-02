@@ -2,7 +2,7 @@
 #include <iterator>
 #include <iostream>
 #include <vector>
-#include "Airport.h"
+#include "../Airport.h"
 #include "AirportTraversal.h"
 
 /**
@@ -20,7 +20,7 @@ AirportTraversal::Iterator::Iterator(AirportTraversal* traversal, std::map<std::
   current = start;
   //initialize vector to have all Airport 3 code and all false
   for(auto it: list){
-      visited.insert({it.first, false});
+      visited[it.first] = false;
   }
 
 }

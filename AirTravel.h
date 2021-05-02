@@ -8,10 +8,11 @@
 #include "cs225/PNG.h"
 #include "Node.h"
 #include "Airport.h"
+#include "traversal/AirportTraversal.h"
+#include "traversal/DFS.h"
 
 class AirTravel {
 
-public:
 //-------------------------------------------------------------
 //                  Public Member Functions
 //-------------------------------------------------------------
@@ -27,7 +28,7 @@ public:
      * @param Airport_File name of csv file containing airport data
      * @param Routes_File name of csv file containing routes data
      */
-    AirTravel (std::string Airport_File, std::string Routes_File);
+    AirTravel(std::string Airport_File, std::string Routes_File);
 
     /**
      * getter for airport
@@ -57,7 +58,6 @@ public:
      */
     bool isDirectFlight(std::string start, std::string end);
 
-
     /**
      * Creates a graph PNG output ready to be writtentoFile
      * Use the functions drawNode and drawEdge 
@@ -69,12 +69,20 @@ public:
     cs225::PNG createGraph(std::map<std::string, Airport*> list);
 
     /**
-     * TODO: - finish writing this and move it out of the class probs into another class
+     * Function for creating dijkstra's algorithm
+     * 
+     * TODO: write function definition and finish dijkstras
      */
-    double Dijkstras(std::map<std::string, Airport*> AirportList, Airport* source);
+    int Air_Dijkstras(Airport* source);
+
+    /**
+     * Function for creating DFS
+     * 
+     * @returns pointer to DFS to access all member variables
+     */
+    DFS* DepthFirstSearch(Airport* source);
 
 private:
-
 //-------------------------------------------------------------
 //                Private Member Variables
 //-------------------------------------------------------------
@@ -97,8 +105,6 @@ private:
      */
     void readInAirportData(std::string fileName);
 
-    
-    
      /**
      * Takes a line of the airport data
      * Goes through character by character looking for a comma
@@ -158,5 +164,4 @@ private:
      * @param input the string of the current line from the routes file
      */
     void RoutesParseLine(std::string input);
-
 };

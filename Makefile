@@ -4,7 +4,7 @@ TEST = test
 
 # Add all object files needed for compiling:
 EXE_OBJ = main.o
-OBJS = AirTravel.o AirTravel_parse.o Node.o
+OBJS = AirTravel.o Node.o Airport.o 
 
 #Add all the traversals
 CPP_FILES += $(wildcard traversal/*.cpp)

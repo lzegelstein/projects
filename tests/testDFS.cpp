@@ -1,6 +1,7 @@
 
 #include "../cs225/catch/catch.hpp"
 #include "../AirTravel.h"
+#include "../Airport.h"
 #include "../traversal/AirportTraversal.h"
 #include "../traversal/DFS.h"
 
@@ -15,7 +16,7 @@ using namespace std;
 TEST_CASE("DFS iterator starts at the start Airport", "[DFS]") {
 
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
-    AirTravel::Airport startNode("Los Angeles International Airport","Los Angeles","United States","LAX",33.94250107,-118.4079971);
+    Airport startNode("Los Angeles International Airport","Los Angeles","United States","LAX",33.94250107,-118.4079971);
     DFS dfs(AT.AirportList, startNode);
     REQUIRE(*(dfs.begin()) == startNode);
 
@@ -27,7 +28,7 @@ TEST_CASE("DFS visits the correct Airport first", "[DFS]") {
     DFS dfs(AT.AirportList, *(AT.AirportList.at("ATL")));
     AirportTraversal::Iterator it = dfs.begin();
     ++it;
-    AirTravel::Airport nextNode("Chicago O'Hare International Airport","Chicago","United States","ORD",41.9786,-87.9048);
+    Airport nextNode("Chicago O'Hare International Airport","Chicago","United States","ORD",41.9786,-87.9048);
     REQUIRE( *it == nextNode );
     
 }
@@ -59,7 +60,7 @@ TEST_CASE("DFS visits all points for an Airport (CDG)", "[DFS]]") {
     DFS dfs(AT.AirportList, *(AT.AirportList.at("CDG")));
 
     unsigned count = 0;
-    for (const AirTravel::Airport & p : dfs) {
+    for (const Airport & p : dfs) {
         count++;
     }
     REQUIRE( count == 6 );
@@ -83,12 +84,12 @@ TEST_CASE("DFS iterator visits all points in the correct order", "[DFS]") {
 TEST_CASE("DFS maintains a depth-first ordering", "[DFS]") {
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
 
-    AirTravel::Airport node0 = *(AT.AirportList.at("ATL"));
+    Airport node0 = *(AT.AirportList.at("ATL"));
     DFS dfs(AT.AirportList, node0);
     
-    AirTravel::Airport node1("Liverpool John Lennon Airport","Liverpool","United Kingdom","LPL",53.33359909057617,-2.849720001220703);
-    AirTravel::Airport node2("Charles de Gaulle International Airport","Paris","France","CDG",49.012798,2.55);
-    AirTravel::Airport node3("Adolfo Suárez Madrid–Barajas Airport","Madrid","Spain","MAD",40.471926,-3.56264);
+    Airport node1("Liverpool John Lennon Airport","Liverpool","United Kingdom","LPL",53.33359909057617,-2.849720001220703);
+    Airport node2("Charles de Gaulle International Airport","Paris","France","CDG",49.012798,2.55);
+    Airport node3("Adolfo Suárez Madrid–Barajas Airport","Madrid","Spain","MAD",40.471926,-3.56264);
 
   dfs.add( node1 );
   dfs.add( node2 );
@@ -102,12 +103,12 @@ TEST_CASE("DFS maintains a depth-first ordering", "[DFS]") {
 
 TEST_CASE("DFS maintains the deepest point on top", "[DFS]") {
     AirTravel AT = AirTravel("data/airports-short.csv", "data/routes-short.csv");
-    AirTravel::Airport startNode("Adolfo Suárez Madrid–Barajas Airport","Madrid","Spain","MAD",40.471926,-3.56264);
+    Airport startNode("Adolfo Suárez Madrid–Barajas Airport","Madrid","Spain","MAD",40.471926,-3.56264);
     DFS dfs(AT.AirportList, startNode);
 
-    AirTravel::Airport node1("Liverpool John Lennon Airport","Liverpool","United Kingdom","LPL",53.33359909057617,-2.849720001220703);
-    AirTravel::Airport node2("Charles de Gaulle International Airport","Paris","France","CDG",49.012798,2.55);
-    AirTravel::Airport node3("Chicago O'Hare International Airport","Chicago","United States","ORD",41.9786,-87.9048);
+    Airport node1("Liverpool John Lennon Airport","Liverpool","United Kingdom","LPL",53.33359909057617,-2.849720001220703);
+    Airport node2("Charles de Gaulle International Airport","Paris","France","CDG",49.012798,2.55);
+    Airport node3("Chicago O'Hare International Airport","Chicago","United States","ORD",41.9786,-87.9048);
 
     dfs.add( node1 );
     dfs.add( node2 );

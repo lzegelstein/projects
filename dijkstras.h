@@ -2,15 +2,33 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <map>
+#include "Airport.h"
+#include "AirTravel.h"
 
 //does this need to be a class?
+// Maybe not... Does it need to return double
 class Dijkstras {
- /*   public:
+    public:
+ 
+    /**
+     * TODO: - finish writing this and move it out of the class probs into another class
+     */
+
+    //Return: double
+    Dijkstras(std::map<std::string, Airport* > AirportList, Airport* source);
+};
+
+
+//OLD COMMENTS
+//ASK LYLA TO DELETE
+
+/*   public:
     Dijkstras(const std::map<std::string, Airport*>&);
     //Need a function to return the path from A to B
     //Need const methods :0
-    /*
-        //Constructor that creates a graph from the data from airplane/routes
+    
+        /Constructor that creates a graph from the data from airplane/routes
         Dijkstras(std::vector<std::vector<std::string>> data);
     
         //Constructor creates vector of edges (shortest path)
@@ -22,6 +40,3 @@ class Dijkstras {
     private:
      const std::map<std::string, Airport*> & AirportList;
      */
-    
-};
-

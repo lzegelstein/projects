@@ -21,7 +21,7 @@
  * @param start The start point of this DFS
  */
 
-DFS::DFS(const std::map<std::string, AirTravel::Airport*> list, const AirTravel::Airport & start) 
+DFS::DFS(const std::map<std::string, Airport*> list, const Airport & start) 
 : list(list), current(start) {
     S.push(start);
 }
@@ -57,7 +57,7 @@ void DFS::add(const Airport & node) {
  */
 Airport DFS::pop() {
   
-  AirTravel::Airport p = S.top();
+  Airport p = S.top();
   S.pop();
   return p;
   

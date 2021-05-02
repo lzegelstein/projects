@@ -8,7 +8,7 @@
 #include <vector>
 #include <map>
 #include <iterator>
-#include "Airport.h"
+#include "../Airport.h"
 #include "../AirTravel.h"
 
 
@@ -30,36 +30,36 @@ public:
    * A forward iterator through an AirportTraversal.
    */
   class Iterator : std::iterator<std::forward_iterator_tag, Airport> {
+    public:
+    /**
+     * Default iterator constructor
+     */
+    Iterator();
 
-  /**
-   * Default iterator constructor
-   */
-  Iterator();
+    /**
+    * Iterator constructor
+    */
+    Iterator(AirportTraversal* traversal, std::map<std::string, Airport*> list, Airport& start);
 
-  /**
-   * Iterator operations
-   */
-  Iterator & operator++();
-  Airport operator*();
-  bool operator!=(const Iterator &other);
-
-  /**
-   * Iterator constructor
-   */
-  Iterator(AirportTraversal* traversal, std::map<std::string, AirTravel::Airport*> list, AirTravel::Airport& start);
-
-  /**
-   * @returns true if node has not been visisted yet
-   */
-  bool isValid(Airport node);
+    /**
+     * Iterator operations
+     */
+    Iterator & operator++();
+    Airport operator*();
+    bool operator!=(const Iterator &other);
+    
+    /**
+     * @returns true if node has not been visisted yet
+     */
+    bool isValid(Airport node);
   
-  private:
+    private:
     std::map<std::string, bool> visited;
     std::map<std::string, Airport*> list; //Why does this exist?
     Airport current;
     AirportTraversal* traversal; 
     Airport start;
-  
+  };
 
   /**
    * The begining of an iterator
@@ -94,5 +94,4 @@ public:
    */
   virtual bool empty() const = 0;
 
-private:
 };
