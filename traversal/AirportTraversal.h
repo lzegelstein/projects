@@ -2,14 +2,13 @@
  * @file AirportTraversal.h
  */
 #pragma once
-
 #include <cmath>
 #include <list>
 #include <stack>
 #include <vector>
 #include <map>
-
 #include <iterator>
+#include "Airport.h"
 #include "../AirTravel.h"
 
 
@@ -30,37 +29,37 @@ public:
   /**
    * A forward iterator through an AirportTraversal.
    */
-  class Iterator : std::iterator<std::forward_iterator_tag, AirTravel::Airport> {
-  public:
-    /**
-     * Default iterator constructor
-     */
-    Iterator();
+  class Iterator : std::iterator<std::forward_iterator_tag, Airport> {
 
-    /**
-     * Iterator operations
-     */
-    Iterator & operator++();
-    AirTravel::Airport operator*();
-    bool operator!=(const Iterator &other);
+  /**
+   * Default iterator constructor
+   */
+  Iterator();
 
-    /**
-     * Iterator constructor
-     */
-    Iterator(AirportTraversal* traversal, std::map<std::string, AirTravel::Airport*> list, AirTravel::Airport& start);
+  /**
+   * Iterator operations
+   */
+  Iterator & operator++();
+  Airport operator*();
+  bool operator!=(const Iterator &other);
 
-    /**
-     * @returns true if node has not been visisted yet
-     */
-    bool isValid(AirTravel::Airport node);
-    
+  /**
+   * Iterator constructor
+   */
+  Iterator(AirportTraversal* traversal, std::map<std::string, AirTravel::Airport*> list, AirTravel::Airport& start);
+
+  /**
+   * @returns true if node has not been visisted yet
+   */
+  bool isValid(Airport node);
+  
   private:
     std::map<std::string, bool> visited;
-    std::map<std::string, AirTravel::Airport*> list;
-    AirTravel::Airport current;
-    AirportTraversal* traversal;
-    AirTravel::Airport start;
-  };
+    std::map<std::string, Airport*> list; //Why does this exist?
+    Airport current;
+    AirportTraversal* traversal; 
+    Airport start;
+  
 
   /**
    * The begining of an iterator
@@ -78,17 +77,17 @@ public:
    * Add new point to the traversal
    * Virtual function. Derived class need to implement this
    */
-  virtual void add(const AirTravel::Airport & t) = 0;
+  virtual void add(const Airport & t) = 0;
   /**
    * Remove and return the next point of the traversal
    * Virtual function. Derived class need to implement this
    */
-  virtual AirTravel::Airport pop() = 0;
+  virtual Airport pop() = 0;
   /**
    * Return but not remove the next point of the traversal
    * Virtual function. Derived class need to implement this
    */
-  virtual AirTravel::Airport peek() const = 0;
+  virtual Airport peek() const = 0;
   /**
    * To see if the traversal has no points left
    * Virtual function. Derived class need to implement this

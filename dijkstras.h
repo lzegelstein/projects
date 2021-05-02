@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <string>
 
-   
+//does this need to be a class?
 class Dijkstras {
  /*   public:
     Dijkstras(const std::map<std::string, Airport*>&);

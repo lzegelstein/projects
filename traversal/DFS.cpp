@@ -7,6 +7,7 @@
 #include <stack>
 #include <vector>
 #include "AirportTraversal.h"
+#include "../Airport.h"
 #include "DFS.h"
 
 
@@ -46,7 +47,7 @@ AirportTraversal::Iterator DFS::end() {
 /**
  * Adds a Airport for the traversal to visit at some point in the future.
  */
-void DFS::add(const AirTravel::Airport & node) {
+void DFS::add(const Airport & node) {
 
     S.push(node);
 }
@@ -54,7 +55,7 @@ void DFS::add(const AirTravel::Airport & node) {
 /**
  * Removes and returns the current Airport in the traversal.
  */
-AirTravel::Airport DFS::pop() {
+Airport DFS::pop() {
   
   AirTravel::Airport p = S.top();
   S.pop();
@@ -65,7 +66,7 @@ AirTravel::Airport DFS::pop() {
 /**
  * Returns the current Airport in the traversal.
  */
-AirTravel::Airport DFS::peek() const {
+Airport DFS::peek() const {
   
   return S.top();
 }

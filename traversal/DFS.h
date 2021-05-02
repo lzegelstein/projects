@@ -16,7 +16,7 @@ public:
   /**
    * Constructor for DFS
    */
-  DFS(const std::map<std::string, AirTravel::Airport*> list, const AirTravel::Airport & start);
+  DFS(const std::map<std::string, Airport*> list, const Airport & start);
 
   /**
    * Returns the iterator position for the beginning Airport
@@ -33,17 +33,17 @@ public:
    * 
    * @param node Airport
    */
-  void add(const AirTravel::Airport & node);
+  void add(const Airport& node);
 
   /**
    * Popping and returning the current Airport in the traversal
    */
-  AirTravel::Airport pop();
+  Airport pop();
 
   /**
    * Peeking at the current Airport in the traversal
    */
-  AirTravel::Airport peek() const;
+  Airport peek() const;
 
   /**
    * @returns true if traversal is empty
@@ -53,17 +53,18 @@ public:
   /**
    * The current DFS stack of Airports
    */
-  std::stack<AirTravel::Airport> S;
+  std::stack<Airport> S;
   
 private:
   /**
    * All Airport IATA codes mapped to Airport nodes
    * @param list map
    */
-  std::map<std::string, AirTravel::Airport*> list;
+  std::map<std::string, Airport*> list;
 
+  //Should this be a pointer?
   /**
    * Current airport node
    */
-  AirTravel::Airport current;
+  Airport current;
 };

@@ -2,7 +2,7 @@
 #include <iterator>
 #include <iostream>
 #include <vector>
-
+#include "Airport.h"
 #include "AirportTraversal.h"
 
 /**
@@ -13,8 +13,8 @@ AirportTraversal::Iterator::Iterator() {
   traversal=NULL;
 }
 
-AirportTraversal::Iterator::Iterator(AirportTraversal* traversal, std::map<std::string, AirTravel::Airport*> list,
-                                   AirTravel::Airport& start)
+AirportTraversal::Iterator::Iterator(AirportTraversal* traversal, std::map<std::string, Airport*> list,
+                                   Airport& start)
     : list(list), traversal(traversal), start(start){
   /*initialize the current iterator to top Node of the stack*/
   current = start;
@@ -28,7 +28,9 @@ AirportTraversal::Iterator::Iterator(AirportTraversal* traversal, std::map<std::
 //This is to check if it's visited or not
 //Possible error; we don't know if this should be taking in Airport or Airport*, so it might 
 //error out the way we are passing nodes in
-bool AirportTraversal::Iterator::isValid(AirTravel::Airport node){
+
+//This needs pass in the pointer
+bool AirportTraversal::Iterator::isValid(Airport node){
     //valid if it is not visited
     return !(visited.at(node.IATA));
 }
@@ -46,7 +48,7 @@ AirportTraversal::Iterator & AirportTraversal::Iterator::operator++() {
   visited.at(current.IATA) = true; //we have visisted this point
 
   //we should look at every Airport destination
-  std::vector<AirTravel::Airport> curr_dest;
+  std::vector<Airport> curr_dest;
   for(auto it: current.destinations){
     curr_dest.push_back(*(it.other_airport));
   }
@@ -57,7 +59,7 @@ AirportTraversal::Iterator & AirportTraversal::Iterator::operator++() {
   }
 
   for(unsigned i = 0; i < curr_dest.size(); i++){
-      AirTravel::Airport curr = curr_dest.at(i);
+      Airport curr = curr_dest.at(i);
       if(isValid(curr)){
           traversal->add(curr);
       }
@@ -78,8 +80,10 @@ AirportTraversal::Iterator & AirportTraversal::Iterator::operator++() {
  *
  * Accesses the current Point in the AirportTraversal.
  */
-AirTravel::Airport AirportTraversal::Iterator::operator*() {
 
+//I'm confused on what the useful data from this is?
+// like how do you access the information in the airport?
+Airport AirportTraversal::Iterator::operator*() {
   return current;
 }
 
@@ -91,16 +95,31 @@ AirTravel::Airport AirportTraversal::Iterator::operator*() {
 bool AirportTraversal::Iterator::operator!=(const AirportTraversal::Iterator &other) {
  //Hey, probably don't change this rn, this was copy/pasted from another iterator checker in another mp
  //pretty sure it works   
+ 
   bool thisEmpty = false; 
   bool otherEmpty = false;
 
-  if (traversal == NULL) { thisEmpty = true; }
-  if (other.traversal == NULL) { otherEmpty = true; }
+  if (traversal == NULL) { 
+    thisEmpty = true; 
+  }
+  if (other.traversal == NULL) { 
+    otherEmpty = true; 
+  }
 
-  if (!thisEmpty)  { thisEmpty = traversal->empty(); }
-  if (!otherEmpty) { otherEmpty = other.traversal->empty(); }
+  if (!thisEmpty)  { 
+    thisEmpty = traversal->empty(); 
+  }
+  if (!otherEmpty) { 
+    otherEmpty = other.traversal->empty(); 
+  }
 
-  if (thisEmpty && otherEmpty) return false; // both empty then the traversals are equal, return false
-  else if ((!thisEmpty)&&(!otherEmpty)) return (traversal != other.traversal); //both not empty then compare the traversals
-  else return true; // one is empty while the other is not, return true
+  if (thisEmpty && otherEmpty) {
+    return false; // both empty then the traversals are equal, return false
+    }
+  else if ((!thisEmpty)&&(!otherEmpty)) {
+    return (traversal != other.traversal); //both not empty then compare the traversals
+    } 
+  else {
+    return true; // one is empty while the other is not, return true
+    }
 }
