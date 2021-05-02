@@ -125,43 +125,57 @@ cs225::PNG AirTravel::createGraph(std::map<std::string, Airport*> list){
 }
 
 double AirTravel::Dijkstras(std::map<std::string, Airport*> airportList, Airport* source) { //TODO
-    
-    struct Vertex {
+        struct Vertex {
         double source_distance = DBL_MAX;
         Vertex * previous = NULL;
         Airport * data = NULL; //i think this should be a Vertex * and the source needs a previous to point at itself
         bool visited = false;
     };
     
-    std::priority_queue<Vertex, std::greater<int>> pq;
+    std::priority_queue<Vertex, std::greater<double> > pq;
+//we need a vector of verticies
+    
     std::map<std::string, Airport *>::iterator it;
     Vertex * current;
 
     for (it = airportList.begin(); it != airportList.end(); it ++) {
         Vertex vertex;
         vertex.data = it->second;
-        
+
         if (vertex.data == source) {
             vertex.source_distance = 0;
             vertex.previous = &vertex;
             pq.push(vertex);
         }
-
     }
+    
+    Vertex* start;
+    start->source_distance = 0;
+    start->previous = start;
+    start->data = source;
+    pq.push(start);
     
     while (!pq.empty()) {
         current = pq.top();
         pq.pop();
         unsigned long num_destinations = current->data->destinations.size();
         for (auto i = 0; i < num_destinations; i ++) {
-            if (current->previous == NULL) {            //this means we haven't seen this node before
-               // node.previous = previous_vertex;    //we set the previous ptr to just be previous_vertex, which is the one it came from
-               // node.source_distance = node.current->destinations[i].distance + previous_vertex->source_distance;
+            if (current->visited == false) {            //this means we haven't seen this node before
+                current->visited = true;
+                //mark it as visited, find the distance to the source
+                current->source_distance = current->data->destinations[i].distance + current->previous->source_distance;
+                //Now, need to see where else you can get to, and push those vertices to the pq
+                unsigned long other_vertices_inreach = current->data->destinations.size();
+                for (auto j = 0; j < other_vertices_inreach; j ++) {
+                    
+                }
             }
         }
     }
     
     return 0;
+
+ 
 }
 
 //-------------------------------------------------------------
