@@ -8,7 +8,7 @@
 
 //needs testing & fix memory leaks
 
-
+/*
 void Dijkstras::dijkstras(std::map<std::string, Airport*> airportList, Airport* source) {
 
     //Section 1: building the graph seen in lecture
@@ -53,7 +53,7 @@ void Dijkstras::dijkstras(std::map<std::string, Airport*> airportList, Airport* 
     
     return;
 }
-
+*/
 
 
 
