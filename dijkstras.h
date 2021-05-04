@@ -1,42 +1,32 @@
 #pragma once
-#include <vector>
 #include <algorithm>
-#include <string>
-#include <map>
+#include <float.h>
 #include "Airport.h"
 #include "AirTravel.h"
+//#include "airport.hpp"
+//#include "air_travel.hpp"
 
-//does this need to be a class?
-// Maybe not... Does it need to return double
-class Dijkstras {
-    public:
- 
-    /**
-     * TODO: - finish writing this and move it out of the class probs into another class
-     */
-
-    //Return: double
-    Dijkstras(std::map<std::string, Airport* > AirportList, Airport* source);
+struct Path { //iterate through these in the queues
+    Airport * start;
+    Airport * end;
+    double weight;
+    Path(Airport * s, Airport * e, double w = DBL_MAX) : start(s), end(e), weight(w) {}
 };
 
+struct AirportNode {
+    bool visited;
+    double weight;
+    Airport * airport;
+    AirportNode(Airport * a) : visited(false), weight(DBL_MAX), airport(a) {}
+};
 
-//OLD COMMENTS
-//ASK LYLA TO DELETE
+class Dijkstras {
+    
+public:
+    void dijkstras(std::map<std::string, Airport*> airportList, Airport* source);
 
-/*   public:
-    Dijkstras(const std::map<std::string, Airport*>&);
-    //Need a function to return the path from A to B
-    //Need const methods :0
     
-        /Constructor that creates a graph from the data from airplane/routes
-        Dijkstras(std::vector<std::vector<std::string>> data);
     
-        //Constructor creates vector of edges (shortest path)
-        std::vector<Edge> edges(Vertex a, Vertex b);
+private:
     
-        //Main Dijkstras function, has all the helper functions
-        std::vector<Edge> mainDijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b);
-
-    private:
-     const std::map<std::string, Airport*> & AirportList;
-     */
+};
