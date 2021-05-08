@@ -1,4 +1,5 @@
 #include "Node.h"
+#include <cmath>
 
 void drawNode(Node circle, cs225::PNG image){
     //if the node is invalid
@@ -52,7 +53,7 @@ void drawEdge(Edge line, cs225::PNG image){
     for(unsigned i = line.start.x; i <= line.end.x; i++){
         for(unsigned j = line.start.y; j <= line.end.y; j++){
             double ij_slope = (line.end.y - j) / (line.end.x - i);
-            double error = abs(slope - ij_slope); //need error to account for pixel slopes not being perfect
+            double error = abs( (slope - ij_slope)); //need error to account for pixel slopes not being perfect
             if(error <= 0.5){
                 cs225::HSLAPixel& curr_pixel = image.getPixel(i, j);
                 curr_pixel = color;
