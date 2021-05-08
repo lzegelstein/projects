@@ -125,9 +125,10 @@ cs225::PNG AirTravel::createGraph(std::map<std::string, Airport*> list){
     return image;
 }
 
-// int AirTravel::dijkstras(Airport* source){
-//     return Dijkstras(AirportList, source);
-// }
+Dijkstras* AirTravel::Air_Dijkstras(Airport* source){
+   Dijkstras* dij = new Dijkstras(AirportList, source);
+   return dij;
+   }
 
 DFS* AirTravel::DepthFirstSearch(Airport* source){
     DFS* dfs = new DFS(AirportList, *source);

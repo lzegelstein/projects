@@ -8,12 +8,10 @@
 
 //needs testing & fix memory leaks
 
-/*
-void Dijkstras::dijkstras(std::map<std::string, Airport*> airportList, Airport* source) {
+Dijkstras::Dijkstras(std::map<std::string, Airport*> airportList, Airport* source) {
 
     //Section 1: building the graph seen in lecture
-    std::map<std::string *, AirportNode *> allAirports;
-    std::map<std::string *, Path *> pathMap; //should create a class, and have this as a private member within the class, that way you have access to the results from Dijkstras
+     //should create a class, and have this as a private member within the class, that way you have access to the results from Dijkstras
     
     auto my_comp = [](const Path* p1, const Path* p2) { return p1->weight > p2->weight; };
     std::priority_queue<Path *, std::vector<Path*>, decltype(my_comp)> pq(my_comp);
@@ -53,7 +51,7 @@ void Dijkstras::dijkstras(std::map<std::string, Airport*> airportList, Airport* 
     
     return;
 }
-*/
+
 
 
 

@@ -9,7 +9,6 @@
  * Default iterator constructor.
  */
 AirportTraversal::Iterator::Iterator() {
-  /** @todo [Part 1] */
   traversal=NULL;
 }
 

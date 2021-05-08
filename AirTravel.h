@@ -10,6 +10,7 @@
 #include "Airport.h"
 #include "traversal/AirportTraversal.h"
 #include "traversal/DFS.h"
+#include "dijkstras.h"
 
 class AirTravel {
     public:
@@ -71,9 +72,11 @@ class AirTravel {
     /**
      * Function for creating dijkstra's algorithm
      * 
-     * TODO: write function definition and finish dijkstras
+     * @param soruce airport to start Dijkstra's algorithm from
+     * 
+     * @returns pointer to the class to access all memeber variables
      */
-    int Air_Dijkstras(Airport* source);
+    Dijkstras* Air_Dijkstras(Airport* source);
 
     /**
      * Function for creating DFS
@@ -87,7 +90,8 @@ private:
 //                Private Member Variables
 //-------------------------------------------------------------
 
-    /** Map
+    /** 
+     * Map
      * Key is airport code
      * the value is pointer to airport struct
      */

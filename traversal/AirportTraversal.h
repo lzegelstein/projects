@@ -30,6 +30,7 @@ public:
    */
   class Iterator : std::iterator<std::forward_iterator_tag, Airport> {
     public:
+
     /**
      * Default iterator constructor
      */
@@ -54,7 +55,7 @@ public:
   
     private:
     std::map<std::string, bool> visited;
-    std::map<std::string, Airport*> list; //Why does this exist?
+    std::map<std::string, Airport*> list;
     Airport current;
     AirportTraversal* traversal; 
     Airport start;
@@ -77,16 +78,19 @@ public:
    * Virtual function. Derived class need to implement this
    */
   virtual void add(const Airport & t) = 0;
+
   /**
    * Remove and return the next point of the traversal
    * Virtual function. Derived class need to implement this
    */
   virtual Airport pop() = 0;
+
   /**
    * Return but not remove the next point of the traversal
    * Virtual function. Derived class need to implement this
    */
   virtual Airport peek() const = 0;
+
   /**
    * To see if the traversal has no points left
    * Virtual function. Derived class need to implement this

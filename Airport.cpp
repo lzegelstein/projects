@@ -22,6 +22,14 @@ Airport::Airport(std::string name, std::string city, std::string country,
     //Nothing
 }
 
+bool Airport::operator<(const Airport& other) const {
+    return (IATA < other.IATA);
+}
+
+bool Airport::operator==(const Airport& other) const {
+    return (IATA == other.IATA);
+}
+
 void Airport::addDestination(Airport* that) {
     double lat_diff = this->latitude - that->latitude;
     double lon_diff = this->longitude - that->longitude;
@@ -33,13 +41,17 @@ void Airport::addDestination(Airport* that) {
     route.other_airport = that;
     route.distance = sqrt(lat_diff + lon_diff);
     
-    this->destinations.push_back(route);
-}
-
-bool Airport::operator<(const Airport& other) const {
-    return (IATA < other.IATA);
-}
-
-bool Airport::operator==(const Airport& other) const {
-    return (IATA == other.IATA);
+    int i = 0; 
+    bool same = false;
+    while(i < (int) destinations.size()) {
+        if (destinations[i].other_airport == route.other_airport){
+            same = true;
+            break;
+        }
+        i++;
+    }
+    
+    if (!same) {
+        this->destinations.push_back(route);
+    }
 }
