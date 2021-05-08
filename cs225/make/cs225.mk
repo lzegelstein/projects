@@ -76,6 +76,7 @@ $(TEST): output_msg $(patsubst %.o, $(OBJS_DIR)/%.o, $(OBJS_TEST))
 -include $(OBJS_DIR)/cs225/catch/*.d
 -include $(OBJS_DIR)/cs225/lodepng/*.d
 -include $(OBJS_DIR)/tests/*.d
+-include $(OBJS_DIR)/traversal/*.d
 
 # Custom Clang version enforcement Makefile rule:
 ccred=$(shell echo -e "\033[0;31m")
