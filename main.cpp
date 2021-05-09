@@ -4,8 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-//#include "air_travel.hpp"
 #include "AirTravel.h"
+#include "Airport.h"
 /*
  Questions for mentor meeting:
  1. Is there a way to get around having to do AirTravel:: like in line for loop of findBusiestAirport()?
@@ -38,12 +38,12 @@
  
  */
 //"/Users/lylazegelstein/Desktop/airportnames.csv"
-int main(int argc, char** argv) {
+int main() {
     std::cout << "AirTravel application started" << std::endl;
-    AirTravel ourmap("/Users/lylazegelstein/Desktop/airports-short.csv", "/Users/lylazegelstein/Desktop/routes-short.csv");
+    AirTravel ourmap("data/airports-short.csv", "data/routes-short.csv");
     
-    AirTravel::Airport* busiest = ourmap.findBusiestAirport();
-    std::cout<<"busiest airport is "<<busiest->name<<std::endl;
+    Airport* busiest = ourmap.findBusiestAirport();
+    std::cout<<"busiest airport is "<< busiest->name <<std::endl;
     
     std::string ohare = "ORD";
     std::string atlanta = "CDG";

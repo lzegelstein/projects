@@ -1,5 +1,5 @@
 # Executable names:
-EXE = main
+EXE = AirTravel
 TEST = test
 
 # Add all object files needed for compiling:
