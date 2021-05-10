@@ -96,7 +96,7 @@ void drawNode(Node circle, cs225::PNG &image);
  * @param line current edge (line between two nodes) to draw
  * @param image PNG for the node to draw on
  */
-void drawEdge(Edge line, cs225::PNG &image);
+void drawEdge(Node* start, Node* end, cs225::PNG &image);
 
 
 class Graph {

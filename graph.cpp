@@ -52,35 +52,34 @@ void drawNode(Node circle, cs225::PNG &image){
     }
 }
 
-void drawEdge(Edge line, cs225::PNG &image){
+void drawEdge(Node* start, Node* end, cs225::PNG &image){
 
     //if the line is invalid
-    if (line.start->x > image.width() || line.end->x > image.width() ||
-       line.start->y > image.height() || line.end->y > image.height()) {
+    if (start->x > image.width() || end->x > image.width() ||
+       start->y > image.height() || end->y > image.height()) {
         return;
     }
 
     cs225::HSLAPixel color(360, 1, 0, 1);
-    double increment = 0.5/line.length; //will increase the lumosity of hsla pixel
 
-    double slope = (line.end->y - line.start->y) / (line.end->x - line.start->x);
+    double slope = (end->y - start->y) / (end->x - start->x);
 
     unsigned i_start, i_end, j_start, j_end;
 
-    if(line.start->x <= line.end->x){
-        i_start = line.start->x;
-        i_end = line.end->x;
+    if(start->x <= end->x){
+        i_start = start->x;
+        i_end = end->x;
     } else {
-        i_start = line.end->x;
-        i_end = line.start->x;
+        i_start = end->x;
+        i_end = start->x;
     }
 
-    if(line.start->y <= line.end->y){
-        j_start = line.start->y;
-        j_end = line.end->y;
+    if(start->y <= end->y){
+        j_start = start->y;
+        j_end = end->y;
     } else {
-        j_start = line.end->y;
-        j_end = line.start->y;
+        j_start = end->y;
+        j_end = start->y;
     }
 
     double num = j_end - j_start;
@@ -92,9 +91,9 @@ void drawEdge(Edge line, cs225::PNG &image){
     if(den < 3){
         //case if the slope is vertical facing
         for(unsigned j = j_start; j <= j_end; j++){
-            cs225::HSLAPixel& curr_pixel = image.getPixel(line.start->x, j);
+            cs225::HSLAPixel& curr_pixel = image.getPixel(start->x, j);
             curr_pixel = color;
-            color.l = color.l + increment; //increasing lumosity of line
+            color.l = color.l; //increasing lumosity of line
 
         }
         return;
@@ -103,25 +102,25 @@ void drawEdge(Edge line, cs225::PNG &image){
     if(num < 3){
         //case if slope is horizontally facing
         for(unsigned i = i_start; i <= i_end; i++){
-            cs225::HSLAPixel& curr_pixel = image.getPixel(i, line.start->y);
+            cs225::HSLAPixel& curr_pixel = image.getPixel(i, start->y);
             curr_pixel = color;
-            color.l = color.l + increment; //increasing lumosity of line
+            color.l = color.l; //increasing lumosity of line
 
         }
         return;
     }
 
-    //hey this doesn't work if line.end->x is less than the line.start->x
+    //hey this doesn't work if end->x is less than the start->x
     for (unsigned i = i_start; i <= i_end; i++) {
         for (unsigned j = j_start; j <= j_end; j++) {
 
-            double ij_slope = (line.end->y - j) / (line.end->x - i);
+            double ij_slope = (end->y - j) / (end->x - i);
             double error = abs(float(slope - ij_slope)); //need error to account for pixel slopes not being perfect
             
             if (error <= 0.0197) {
                 cs225::HSLAPixel& curr_pixel = image.getPixel(i, j);
                 curr_pixel = color;
-                color.l = color.l + increment; //increasing lumosity of line
+                color.l = color.l; //increasing lumosity of line
                 break;
             }
         }
@@ -147,6 +146,8 @@ Graph::Graph(std::map<std::string, Airport*> list){
         Node* node = new Node(x, y, (unsigned int) it.second->destinations.size(), it.second);
         nodes.push_back(node);
     }
+
+    
 }
 
 
