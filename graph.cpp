@@ -1,5 +1,6 @@
 
 #include <map>
+
 #include <vector>
 #include <string>
 #include <cmath>
@@ -31,6 +32,7 @@ Graph::Graph(std::map<std::string, Airport*> list){
     
     
 }
+// don't forget to cite this!!
 
 double Graph::scaleX(double lon, int width) {
     double x = fmod((width*(180+lon)/360), (width +(width/2)));
