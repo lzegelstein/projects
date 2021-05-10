@@ -1,6 +1,8 @@
 #pragma once
 #include <algorithm>
 #include <float.h>
+#include <map>
+#include <list>
 #include "Airport.h"
 
 /**
@@ -33,6 +35,19 @@ public:
      * @param source
      */
     Dijkstras(std::map<std::string, Airport*> airportList, Airport* source);
+
+    /**
+     * Function that returns useful information from Dijkstra's algorithm
+     * Takes in the ending point and returns the shortest path to the 
+     * source airport from the constructor
+     * 
+     * @param destination aiport to find the route to
+     * 
+     * @returns a list of airports needed to visit. 
+     *   Starting with source, ending with destination
+     *   List is empty if there is no route
+     */
+    std::list<Airport*> getShortestRoute(Airport* destination);
 
 private:
     /**

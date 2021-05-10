@@ -15,10 +15,19 @@ int main() {
     std::cout<<"busiest airport is "<< busiest->name <<std::endl;
     
     std::string ohare = "ORD";
-    std::string atlanta = "CDG";
+    std::string atlanta = "ATL";
     bool x = ourmap.isDirectFlight(ohare, atlanta);
     std::cout<<"Direct flight from ORD to ATL? "<< x << " routes"<<std::endl;
     
+    Dijkstras* dij = ourmap.Air_Dijkstras(ourmap.IATAsearch("CDG"));
+    std::list<Airport*> routed = dij->getShortestRoute(ourmap.IATAsearch("LAX"));
+    std::cout<<"Routes!:"<<std::endl;
+    int count = 1;
+    for (auto it : routed){
+        std::cout<<count<<": "<<it->IATA<<std::endl;
+        count++;
+    }
+
     std::cout << "AirTravel application ended" << std::endl;
     return 0;
 }

@@ -1,6 +1,7 @@
 #include <sstream>
 //#include <iostream>
 #include <queue>
+#include <list>
 #include "dijkstras.h"
 //#include "dijkstras.hpp"
 #include "Airport.h"
@@ -52,14 +53,25 @@ Dijkstras::Dijkstras(std::map<std::string, Airport*> airportList, Airport* sourc
     return;
 }
 
-
-
-
 /*
  Need to make sure this is not a multi edge graph.
  Must take every unique path and sort it by distance using a priority queue.
  Need a visisted vector or something
  */
+
+std::list<Airport*> Dijkstras::getShortestRoute(Airport* destination){
+    std::list<Airport*> route;
+    Path* current = pathMap[&destination->IATA];
+    if (current == NULL){
+        return route;
+    }
+    route.push_front(current->end);
+    while (current->start != NULL){
+        current = pathMap[&(current->start->IATA)];
+        route.push_front(current->end);
+    }
+    return route;
+}
 
 
 
