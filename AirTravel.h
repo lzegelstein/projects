@@ -11,6 +11,7 @@
 #include "traversal/AirportTraversal.h"
 #include "traversal/DFS.h"
 #include "dijkstras.h"
+#include "graph.h"
 
 class AirTravel {
     public:
@@ -70,7 +71,8 @@ class AirTravel {
     cs225::PNG createGraph(std::map<std::string, Airport*> list);
 
     /**
-     * Function for creating dijkstra's algorithm
+     * Function for creating dijkstra's algorithm with this class's 
+     * data sets
      * 
      * @param soruce airport to start Dijkstra's algorithm from
      * 
@@ -79,11 +81,18 @@ class AirTravel {
     Dijkstras* Air_Dijkstras(Airport* source);
 
     /**
-     * Function for creating DFS
+     * Function for creating DFS with this class's data sets
      * 
      * @returns pointer to DFS to access all member variables
      */
     DFS* DepthFirstSearch(Airport* source);
+
+    /**
+     * Function for crating a visual graph with this class's data sets
+     * 
+     * @returns point to graph class to access all member variables
+     */
+    graph* worldMap();
 
 private:
 //-------------------------------------------------------------
