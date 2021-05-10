@@ -9,6 +9,7 @@ class Graph {
 
 public:
     Graph(std::map<std::string, Airport*> list);
+    cs225::PNG* getPNG();
 
 private:
     std::vector<Node*> nodes;
