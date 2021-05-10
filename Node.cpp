@@ -60,14 +60,30 @@ void drawEdge(Edge line, cs225::PNG &image){
 
     double slope = (line.end->y - line.start->y) / (line.end->x - line.start->x);
 
-    for (unsigned i = line.start->x; i <= line.end->x; i++) {
-        for (unsigned j = line.start->y; j <= line.end->y; j++) {
+    unsigned i_start, i_end, j_start, j_end;
+    if(line.start->x <= line.end->x){
+        i_start = line.start->x;
+        i_end = line.end->x;
+    } else {
+        i_start = line.end->x;
+        i_end = line.start->x;
+    }
+
+    if(line.start->y <= line.end->y){
+        j_start = line.start->y;
+        j_end = line.end->y;
+    } else {
+        j_start = line.end->y;
+        j_end = line.start->y;
+    }
+    //hey this doesn't work if line.end->x is less than the line.start->x
+    for (unsigned i = i_start; i <= i_end; i++) {
+        for (unsigned j = j_start; j <= j_end; j++) {
             
             double ij_slope = (line.end->y - j) / (line.end->x - i);
             double error = abs(float(slope - ij_slope)); //need error to account for pixel slopes not being perfect
             
-            if (error <= 0.5) {
-                
+            if (error <= 0.005) {
                 cs225::HSLAPixel& curr_pixel = image.getPixel(i, j);
                 curr_pixel = color;
                 color.l = color.l + increment; //increasing lumosity of line

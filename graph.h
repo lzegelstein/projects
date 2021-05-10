@@ -16,6 +16,7 @@ public:
      * being the key
      */
     Graph(std::map<std::string, Airport*> list);
+    cs225::PNG* getPNG();
 
     void addNewEdge(Airport* source, Airport* end);
 
