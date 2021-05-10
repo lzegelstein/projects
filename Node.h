@@ -3,9 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include "cs225/PNG.h"
-//#include "cs225/PNG.hpp"
 #include "cs225/HSLAPixel.h"
-//#include "airport.hpp"
 #include "Airport.h"
 /**
  * @file Graph.h

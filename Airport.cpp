@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <vector>
 #include <string>
-#include "AirTravel.h"
-//#include "air_travel.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <map>
 #include <math.h>
+#include "Airport.h"
 
 using std::string;
 

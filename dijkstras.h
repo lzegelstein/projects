@@ -1,8 +1,6 @@
 #pragma once
 #include <algorithm>
 #include <float.h>
-//#include "airport.hpp"
-//#include "air_travel.hpp" - not in here anymore
 #include <map>
 #include <list>
 #include "Airport.h"

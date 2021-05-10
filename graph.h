@@ -1,11 +1,9 @@
+#pragma once
 #include <map>
 #include <string>
 #include "Airport.h"
 #include "cs225/PNG.h"
 #include "Node.h"
-//#include "airport.hpp"
-//#include "cs225/PNG.hpp"
-//#include "node.hpp"
 
 class Graph {
 

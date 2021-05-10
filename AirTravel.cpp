@@ -2,16 +2,15 @@
 #include <vector>
 #include <string>
 #include "AirTravel.h"
-//#include "air_travel.hpp"
-//#include "airport.hpp"
 #include "Airport.h"
 #include "dijkstras.h"
-//#include "dijkstras.hpp"
+#include "Node.h"
+#include "traversal/DFS.h"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <map>
-#include <math.h>
+#include <cmath>
 #include <queue>
 #include <float.h>
 
@@ -26,9 +25,6 @@ using std::string;
  * This file includes all the usable functions from AirTravel.h
  */
 
-/**
- * This file includes all the parseing functions used by AirTravel.h
- */
 
 //-------------------------------------------------------------
 //                  Public Member Functions
@@ -80,8 +76,8 @@ DFS* AirTravel::DepthFirstSearch(Airport* source){
 }
 
 Graph* AirTravel::worldMap(){
-    Graph* map = new Graph(AirportList);
-    return map;
+    Graph* gph = new Graph(AirportList);
+    return gph;
 }
 
 //-------------------------------------------------------------

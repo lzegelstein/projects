@@ -1,5 +1,4 @@
 #include "Node.h"
-//#include "node.hpp"
 #include <math.h>
 
 void drawNode(Node circle, cs225::PNG &image){

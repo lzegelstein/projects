@@ -6,19 +6,11 @@
 #include <iostream>
 #include <fstream>
 #include "cs225/PNG.h"
-#include "Node.h"
 #include "Airport.h"
 #include "traversal/AirportTraversal.h"
 #include "traversal/DFS.h"
 #include "dijkstras.h"
 #include "graph.h"
-// #include "cs225/PNG.hpp"
-// #include "node.hpp"
-// #include "airport.hpp"
-// #include "traversals/airport_traversal.hpp"
-// #include "traversals/dfs.hpp"
-// #include "dijkstras.hpp"
-// #include "graph.hpp"
 
 class AirTravel {
     public:

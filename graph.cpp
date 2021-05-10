@@ -1,14 +1,9 @@
 
-//#include "graph.hpp"
 #include <map>
 #include <vector>
 #include <string>
 #include <cmath>
 #include "graph.h"
-//#include "cs225/PNG.h"
-//#include "cs225/PNG.hpp"
-#include "Node.h"
-//#include "node.hpp"
 
 /**
  * TODO: Rework to work with new class definition
