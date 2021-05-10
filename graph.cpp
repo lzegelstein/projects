@@ -6,11 +6,6 @@
 #include "graph.h"
 #include <math.h>
 
-bool Edge::operator==(const Edge& other) {
-    bool oneway = (start == other.start && end == other.end);
-    bool another = (start == other.end && end == other.start);
-    return (oneway || another);
-}
 
 void drawNode(Node circle, cs225::PNG &image){
     //if the node is invalid
@@ -170,18 +165,18 @@ double Graph::scaleY(double lat, int width, int height) {
     return y;
 }
 
-void Graph::addEdge(Node* source, Node* dest, double distance) {
-    bool done;
-    Edge* current = new Edge(source, dest, distance);
-    for (int i = 0; i < (int) edges.size(); i++) {
-        if(current == edges[i]){
-            done = true;
-            delete current;
-            return;
-        }
-    }
-    edges.push_back(current);
-}
+// void Graph::addEdge(Node* source, Node* dest, double distance) {
+//     bool done;
+//     Edge* current = new Edge(source, dest, distance);
+//     for (int i = 0; i < (int) edges.size(); i++) {
+//         if(current == edges[i]){
+//             done = true;
+//             delete current;
+//             return;
+//         }
+//     }
+//     edges.push_back(current);
+// }
 
 /*
  
