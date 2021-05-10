@@ -4,7 +4,6 @@
 #include "AirTravel.h"
 #include "Airport.h"
 #include "dijkstras.h"
-#include "Node.h"
 #include "traversal/DFS.h"
 #include <iostream>
 #include <fstream>
