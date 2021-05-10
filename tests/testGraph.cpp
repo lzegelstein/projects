@@ -2,7 +2,7 @@
 #include "../AirTravel.h"
 #include "../traversal/AirportTraversal.h"
 #include "../traversal/DFS.h"
-#include "../Node.h"
+#include "../graph.h"
 #include "../cs225/PNG.h"
 
 using namespace std;
