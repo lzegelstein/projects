@@ -45,10 +45,10 @@ struct Node {
    * @param other The other point
    * @return True for smaller, false for otherwise
    */
-//  bool operator==(const Node &other) const {
-//    return (x == other.x && y == other.y);
-//  }
-//
+  bool operator==(const Node &other) const {
+    return (x == other.x && y == other.y);
+  }
+
     
     };
 
@@ -68,6 +68,8 @@ struct Edge {
      * @param length distance
      */
     Edge(Node * start, Node * end, double length) : start(start), end(end), length(length) { }
+
+    bool operator==(const Edge& other);
 };
 
   /**
