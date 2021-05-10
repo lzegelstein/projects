@@ -1,6 +1,12 @@
 #include "Node.h"
 #include <math.h>
 
+bool Edge::operator==(const Edge& other) {
+    bool oneway = (start == other.start && end == other.end);
+    bool another = (start == other.end && end == other.start);
+    return (oneway || another);
+}
+
 void drawNode(Node circle, cs225::PNG &image){
     //if the node is invalid
     if (circle.x > image.width() || circle.y > image.height()) {
