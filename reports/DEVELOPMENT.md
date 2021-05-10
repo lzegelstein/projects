@@ -3,3 +3,11 @@ Our group has been struggling to get a solid proposal and throughout the week we
 
 Week 2 (April 17 - 23):
 We were able to import the data, perform data cleaning through our code itself, and load it into a class we constructed called AirTravel. In this class, we assigned nodes as Airports, containing IATA 3-letter codes. Each of these nodes have a vector of destinations, which we populated by cleaning and importing routes data. Finally, our output creates a map of every Airport 3-letter code mapping onto the specific Airport Node. We also attempted to implement a DFS algorithm, however this was unsuccessful in performing a node traversal. 
+
+Week 3 (April 24 - May 1):
+
+
+Week 4 (May 2 - May 8):
+During this week, Dijkstras was completed. It turned out to be significantly harder than we imagined because we were approaching it wrong from the begining. After re-watching the 4/26 lecture, we decided to model Dijkstras exactly as seen in lecture and it worked. The solution was to create 2 structs, one to keep track of the Path and another one to keep track of each vertex (AirportNode). The Path struct kept track of where each edge starts, ends, and the respective edge weight. The AirportNode struct keeps track of whether the vertex was visited or not, the total weight, and the airport that is represented by the vertex. Trying to stay as close to the in class example as possible, a new testing file was made with less airports and made up latitudes and longitudes found by the distance formula to model vertices and edge weights A through H from the example. 
+
+
