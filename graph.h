@@ -3,7 +3,15 @@
 #include <string>
 #include "Airport.h"
 #include "cs225/PNG.h"
+<<<<<<< HEAD
 
+=======
+#pragma once
+#include <iostream>
+#include <sstream>
+#include "cs225/HSLAPixel.h"
+#include "Airport.h"
+>>>>>>> 319ef270ae783f474cf8ef009d1a6e2eaae988dd
 
 /**
  * Simple Node class containing a public unsigned `x` and `y` for representing 2D points on an image.
@@ -34,7 +42,12 @@ struct Node {
     return (x == other.x && y == other.y);
   }
 
+<<<<<<< HEAD
  };
+=======
+    
+    };
+>>>>>>> 319ef270ae783f474cf8ef009d1a6e2eaae988dd
 
 /**
  * Draws the node onto the image PNG
@@ -52,6 +65,10 @@ void drawNode(Node circle, cs225::PNG &image);
  */
 void drawEdge(Node* start, Node* end, cs225::PNG &image);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 319ef270ae783f474cf8ef009d1a6e2eaae988dd
 class Graph {
 public:
     /**
@@ -67,7 +84,11 @@ public:
 
     void addNewEdge(Airport* source, Airport* end);
 
+<<<<<<< HEAD
     void removeEdge(Airport* source, Airport* end);
+=======
+    void removeEdge(Airport* source, Airport* end);  
+>>>>>>> 319ef270ae783f474cf8ef009d1a6e2eaae988dd
 
     /**
      * function that finds nodes given
@@ -88,6 +109,10 @@ public:
 
 private:
     std::vector<Node*> nodes;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 319ef270ae783f474cf8ef009d1a6e2eaae988dd
 
     cs225::PNG * image;
     
@@ -125,4 +150,8 @@ private:
      * @param distance distance on the image
      */
     void addEdge(Node* source, Node* destination, double distance);
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 319ef270ae783f474cf8ef009d1a6e2eaae988dd
