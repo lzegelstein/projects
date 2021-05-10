@@ -50,25 +50,6 @@ struct Node {
     
     };
 
-struct Edge {
-    Node * start;
-    Node * end;
-    double length;
-
-    /**
-     * Default constructor, set the point to (0, 0): 0
-     */
-    Edge () : start(NULL), end (NULL), length(0) { }
-    /**
-     * Constructor
-     * @param start node
-     * @param end node
-     * @param length distance
-     */
-    Edge(Node * start, Node * end, double length) : start(start), end(end), length(length) { }
-
-    bool operator==(const Edge& other);
-};
 
   /**
    * overload operator <<
@@ -137,7 +118,6 @@ public:
 
 private:
     std::vector<Node*> nodes;
-    std::vector<Edge*> edges;
     
 
     cs225::PNG * image;
