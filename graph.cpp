@@ -1,5 +1,6 @@
 
 #include <map>
+
 #include <vector>
 #include <string>
 #include <cmath>
@@ -22,15 +23,11 @@ Graph::Graph(std::map<std::string, Airport*> list){
         
         Node* node = new Node(x, y, (unsigned int) it.second->destinations.size(), it.second);
         nodes.push_back(node);
-        
-//        unsigned long size_ = it.second->destinations.size();
-//        for (unsigned long i = 0; i < size_; i ++) {
-//            //add in edges here
-//        }
     }
     
     
 }
+// don't forget to cite this!!
 
 double Graph::scaleX(double lon, int width) {
     double x = fmod((width*(180+lon)/360), (width +(width/2)));
@@ -47,6 +44,19 @@ double Graph::scaleY(double lat, int width, int height) {
     double y     = (height/2)-(width*mercN/(2*PI));
     
     return y;
+}
+
+void Graph::addEdge(Node* source, Node* dest, double distance) {
+    bool done;
+    Edge* current = new Edge(source, dest, distance);
+    for (int i = 0; i < (int) edges.size(); i++) {
+        if(current == edges[i]){
+            done = true;
+            delete current;
+            return;
+        }
+    }
+    edges.push_back(current);
 }
 
 /*
