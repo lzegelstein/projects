@@ -1,12 +1,14 @@
 #pragma once
 #include <algorithm>
 #include <float.h>
+//#include "airport.hpp"
+//#include "air_travel.hpp" - not in here anymore
 #include <map>
 #include <list>
 #include "Airport.h"
 
 /**
- * 
+ *
  */
 struct Path { //iterate through these in the queues
     Airport * start;
@@ -16,7 +18,7 @@ struct Path { //iterate through these in the queues
 };
 
 /**
- * 
+ *
  */
 struct AirportNode {
     bool visited;
@@ -25,25 +27,25 @@ struct AirportNode {
     AirportNode(Airport * a) : visited(false), weight(DBL_MAX), airport(a) {}
 };
 
-class Dijkstras { 
+class Dijkstras {
 public:
 
     /**
      * Dijkstra's constructor
-     * 
-     * @param aiportList Map containing all the airports in the dataset with the key being the 
+     *
+     * @param aiportList Map containing all the airports in the dataset with the key being the
      * @param source
      */
     Dijkstras(std::map<std::string, Airport*> airportList, Airport* source);
 
     /**
      * Function that returns useful information from Dijkstra's algorithm
-     * Takes in the ending point and returns the shortest path to the 
+     * Takes in the ending point and returns the shortest path to the
      * source airport from the constructor
-     * 
+     *
      * @param destination aiport to find the route to
-     * 
-     * @returns a list of airports needed to visit. 
+     *
+     * @returns a list of airports needed to visit.
      *   Starting with source, ending with destination
      *   List is empty if there is no route
      */
@@ -51,12 +53,12 @@ public:
 
 private:
     /**
-     * 
+     *
      */
     std::map<std::string *, AirportNode *> allAirports;
 
     /**
-     * 
+     *
      */
     std::map<std::string *, Path *> pathMap;
 };

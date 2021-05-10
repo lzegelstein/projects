@@ -1,11 +1,11 @@
 #include <sstream>
-//#include <iostream>
+//#include <iostream> - not in here anymore
 #include <queue>
-#include <list>
 #include "dijkstras.h"
 //#include "dijkstras.hpp"
 #include "Airport.h"
 //#include "airport.hpp"
+#include <list>
 
 //needs testing & fix memory leaks
 

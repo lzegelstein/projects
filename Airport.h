@@ -5,8 +5,8 @@
 #include <map>
 #include <iostream>
 #include <fstream>
-#include "cs225/PNG.h"
-#include "Node.h"
+
+
 
 struct Airport {
 public:
@@ -14,16 +14,16 @@ public:
      * Default constructor,
      * All strings are empty
      * Latitude and Longitude to (0,0)
-     * The vector is also empty 
+     * The vector is also empty
      */
     Airport();
     
     /**
      * Constructor
-     * 
+     *
      * All Parameters match the explaination given in the member variables
-     * @param name 
-     * @param city 
+     * @param name
+     * @param city
      * @param country
      * @param IATA
      * @param latitude
@@ -34,28 +34,28 @@ public:
 
     /**
      * overload operator <
-     * 
+     *
      * Compares the strings containing IATA codes
-     * 
+     *
      * @param other The other point
      * @return True for smaller in map, false for otherwise
      */
-    bool operator<(const Airport& other) const; 
+    bool operator<(const Airport& other) const;
 
     /**
      * overload operator ==
-     * 
+     *
      * Compares the strings containing IATA codes
-     * 
+     *
      * @param other The other point
      * @return True for smaller, false for otherwise
      */
-    bool operator==(const Airport& other) const; 
+    bool operator==(const Airport& other) const;
 
     /**
-     * Function for calculating distance between airports and adding a 
+     * Function for calculating distance between airports and adding a
      * new Flight struct to the destinations vector
-     * 
+     *
      * Makes sure not to include repeats since airlines are ignored in
      * this graph
      *
@@ -65,13 +65,13 @@ public:
 
     /**
     * Struct for the outgoing flights from this airport
-    * 
-    * Contains pointer to other airport and a double of 
+    *
+    * Contains pointer to other airport and a double of
     * distsnce to that airport
     */
     struct Flights {
         Airport* other_airport;
-        double distance; 
+        double distance;
     };
 
     /**

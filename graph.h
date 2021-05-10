@@ -1,12 +1,26 @@
-#pragma once
 #include <map>
 #include <string>
 #include "Airport.h"
 #include "cs225/PNG.h"
+#include "Node.h"
+//#include "airport.hpp"
+//#include "cs225/PNG.hpp"
+//#include "node.hpp"
 
+class Graph {
 
-class graph {
 public:
-    graph(std::map<std::string, Airport*> list);
+    Graph(std::map<std::string, Airport*> list);
+
 private:
+    std::vector<Node*> nodes;
+    std::vector<Edge*> edges;
+    
+    //create image PNG
+    cs225::PNG * image;
+    
+    double scaleX(double lon, int width);
+    double scaleY(double lat, int width, int height);
+    
+
 };

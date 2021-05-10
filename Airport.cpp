@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "AirTravel.h"
+//#include "air_travel.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -15,9 +16,9 @@ Airport::Airport() : name(""), city(""), country(""), IATA(""), latitude(0), lon
 }
 
 // Not sure how to format this to look pretty
-Airport::Airport(std::string name, std::string city, std::string country, 
-                std::string IATA, double latitude, double longitude)  
-                : name(name), city(city), country(country), IATA(IATA), 
+Airport::Airport(std::string name, std::string city, std::string country,
+                std::string IATA, double latitude, double longitude)
+                : name(name), city(city), country(country), IATA(IATA),
                     latitude(latitude), longitude(longitude) {
     //Nothing
 }
@@ -41,7 +42,7 @@ void Airport::addDestination(Airport* that) {
     route.other_airport = that;
     route.distance = sqrt(lat_diff + lon_diff);
     
-    int i = 0; 
+    int i = 0;
     bool same = false;
     while(i < (int) destinations.size()) {
         if (destinations[i].other_airport == route.other_airport){

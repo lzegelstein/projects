@@ -12,6 +12,13 @@
 #include "traversal/DFS.h"
 #include "dijkstras.h"
 #include "graph.h"
+// #include "cs225/PNG.hpp"
+// #include "node.hpp"
+// #include "airport.hpp"
+// #include "traversals/airport_traversal.hpp"
+// #include "traversals/dfs.hpp"
+// #include "dijkstras.hpp"
+// #include "graph.hpp"
 
 class AirTravel {
     public:
@@ -60,46 +67,32 @@ class AirTravel {
      */
     bool isDirectFlight(std::string start, std::string end);
 
-    /**
-     * Creates a graph PNG output ready to be writtentoFile
-     * Use the functions drawNode and drawEdge 
-     * 
-     * @param list to obtain nodes and edges from map
-     * 
-     * @returns png output
-     */
-    cs225::PNG createGraph(std::map<std::string, Airport*> list);
+    
 
     /**
-     * Function for creating dijkstra's algorithm with this class's 
-     * data sets
-     * 
+     * Function for creating dijkstra's algorithm
+     *
      * @param soruce airport to start Dijkstra's algorithm from
-     * 
+     *
      * @returns pointer to the class to access all memeber variables
      */
     Dijkstras* Air_Dijkstras(Airport* source);
 
     /**
-     * Function for creating DFS with this class's data sets
-     * 
+     * Function for creating DFS
+     *
      * @returns pointer to DFS to access all member variables
      */
     DFS* DepthFirstSearch(Airport* source);
-
-    /**
-     * Function for crating a visual graph with this class's data sets
-     * 
-     * @returns point to graph class to access all member variables
-     */
-    graph* worldMap();
+    
+    Graph* worldMap();
 
 private:
 //-------------------------------------------------------------
 //                Private Member Variables
 //-------------------------------------------------------------
 
-    /** 
+    /**
      * Map
      * Key is airport code
      * the value is pointer to airport struct
@@ -107,7 +100,7 @@ private:
     std::map<std::string, Airport*> AirportList;
 
 //-------------------------------------------------------------
-//                Private Member Functions 
+//                Private Member Functions
 //-------------------------------------------------------------
 
     //Member Functions for disconnected graph

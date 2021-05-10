@@ -2,8 +2,11 @@
 #include <vector>
 #include <string>
 #include "AirTravel.h"
+//#include "air_travel.hpp"
+//#include "airport.hpp"
 #include "Airport.h"
 #include "dijkstras.h"
+//#include "dijkstras.hpp"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -65,6 +68,7 @@ bool AirTravel::isDirectFlight(std::string start, std::string end) {
     return false;
 }
 
+
 Dijkstras* AirTravel::Air_Dijkstras(Airport* source){
    Dijkstras* dij = new Dijkstras(AirportList, source);
    return dij;
@@ -75,9 +79,9 @@ DFS* AirTravel::DepthFirstSearch(Airport* source){
     return dfs;
 }
 
-graph* AirTravel::worldMap(){
-    graph* map = new graph(AirportList);
-    return map; 
+Graph* AirTravel::worldMap(){
+    Graph* map = new Graph(AirportList);
+    return map;
 }
 
 //-------------------------------------------------------------
@@ -102,114 +106,114 @@ void AirTravel::readInAirportData(std::string fileName) {
 }
 
 void AirTravel::AirportParseLine(std::string input) { //TODO
-    int str_size = (int) input.size();
+    int str_size = (int)input.size();
     int begin_index, field_num, num_commas;
     begin_index = field_num = num_commas = 0;
     std::string temp;
     Airport* airport = new Airport;
-    
-    for (int x = 0; x < str_size; x++) {
-        
-        if (input[x] == ',') {
-            num_commas ++;
-            temp.append(input, begin_index, x - begin_index);
-            begin_index = x + 1;
-            
-            if ((field_num == 0) && !AirportLineCheck(field_num, temp)) {
-                return;
-            }
-             
-            if (field_num == 1) {
-                
-                if (AirportLineCheck(field_num, temp)) {
-                    temp = removeQuotes(temp);
-                    airport->name = temp;
-                }
-                else {
-                    delete airport;
-                    return;
-                }
-            }
-            else if (field_num == 2) {
-                
-                if (AirportLineCheck(field_num, temp)) {
-                    temp = removeQuotes(temp);
-                    airport->city = temp;
-                }
-                else {
-                    delete airport;
-                    return;
-                }
-            }
-            else if (field_num == 3) {
-                
-                if (AirportLineCheck(field_num, temp)) {
-                    temp = removeQuotes(temp);
-                    airport->country = temp;
-                }
-                else {
-                    delete airport;
-                    return;
-                }
-            }
-            else if (field_num == 4) {
-                
-                if (AirportLineCheck(field_num, temp)) {
-                    temp = removeQuotes(temp);
-                    airport->IATA = temp;
-                }
-                else {
-                    delete airport;
-                    return;
-                }
-            }
-            else if (field_num == 6) {
-                
-                if (!temp.empty()) {
-                    double latitude = std::stod(temp);
-                    
-                    if ((latitude <= 90) && (latitude >= -90)) {
-                        airport->latitude = latitude;
-                    }
-                    else {
-                        delete airport;
-                        return; //ignore line
-                    }
-                }
-                else {
-                    delete airport;
-                    return;
-                }
-                
-            }
-            else if (field_num == 7) {
-                
-                if (!temp.empty()) {
-                    double longitude = std::stod(temp);
-                    
-                    if ((longitude <= 180) && (longitude >= -180)) {
-                        airport->longitude = longitude;
-                    }
-                    else {
-                        delete airport;
-                        return; //ignore line
-                    }
-                }
-                else {
-                    delete airport;
-                    return;
-                }
+       
+       for (int x = 0; x < str_size; x++) {
+           
+           if (input[x] == ',') {
+               num_commas ++;
+               temp.append(input, begin_index, x - begin_index);
+               begin_index = x + 1;
                
-            }
-            field_num++;
-            temp.erase();
-        }
-    }
-    //Took care of the no trailing comma case
-    temp.append(input, begin_index, str_size - begin_index);
-    temp.erase();
+               if ((field_num == 0) && !AirportLineCheck(field_num, temp)) {
+                   return;
+               }
+                
+               if (field_num == 1) {
+                   
+                   if (AirportLineCheck(field_num, temp)) {
+                       temp = removeQuotes(temp);
+                       airport->name = temp;
+                   }
+                   else {
+                       delete airport;
+                       return;
+                   }
+               }
+               else if (field_num == 2) {
+                   
+                   if (AirportLineCheck(field_num, temp)) {
+                       temp = removeQuotes(temp);
+                       airport->city = temp;
+                   }
+                   else {
+                       delete airport;
+                       return;
+                   }
+               }
+               else if (field_num == 3) {
+                   
+                   if (AirportLineCheck(field_num, temp)) {
+                       temp = removeQuotes(temp);
+                       airport->country = temp;
+                   }
+                   else {
+                       delete airport;
+                       return;
+                   }
+               }
+               else if (field_num == 4) {
+                   
+                   if (AirportLineCheck(field_num, temp)) {
+                       temp = removeQuotes(temp);
+                       airport->IATA = temp;
+                   }
+                   else {
+                       delete airport;
+                       return;
+                   }
+               }
+               else if (field_num == 6) {
+                   
+                   if (!temp.empty()) {
+                       double latitude = std::stod(temp);
+                       
+                       if ((latitude <= 90) && (latitude >= -90)) {
+                           airport->latitude = latitude;
+                       }
+                       else {
+                           delete airport;
+                           return; //ignore line
+                       }
+                   }
+                   else {
+                       delete airport;
+                       return;
+                   }
+                   
+               }
+               else if (field_num == 7) {
+                   
+                   if (!temp.empty()) {
+                       double longitude = std::stod(temp);
+                       
+                       if ((longitude <= 180) && (longitude >= -180)) {
+                           airport->longitude = longitude;
+                       }
+                       else {
+                           delete airport;
+                           return; //ignore line
+                       }
+                   }
+                   else {
+                       delete airport;
+                       return;
+                   }
+                  
+               }
+               field_num++;
+               temp.erase();
+           }
+       }
+       //Took care of the no trailing comma case
+       temp.append(input, begin_index, str_size - begin_index);
+       temp.erase();
 
-    addAirport(airport);
+       addAirport(airport);
 }
 
 std::string AirTravel::removeQuotes(std::string temp) {
@@ -317,3 +321,6 @@ void AirTravel::RoutesParseLine(std::string input){
     }
     source->addDestination(destination); //Add in check to make sure
 }
+
+
+
