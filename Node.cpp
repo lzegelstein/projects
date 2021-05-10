@@ -61,6 +61,7 @@ void drawEdge(Edge line, cs225::PNG &image){
     double slope = (line.end->y - line.start->y) / (line.end->x - line.start->x);
 
     unsigned i_start, i_end, j_start, j_end;
+
     if(line.start->x <= line.end->x){
         i_start = line.start->x;
         i_end = line.end->x;
@@ -76,17 +77,47 @@ void drawEdge(Edge line, cs225::PNG &image){
         j_start = line.end->y;
         j_end = line.start->y;
     }
+
+    double num = j_end - j_start;
+    double den = i_end - i_start;
+    double diff_1 = j_end - i_start;
+    double diff_2 = i_end - j_start;
+
+
+    if(den < 3){
+        //case if the slope is vertical facing
+        for(unsigned j = j_start; j <= j_end; j++){
+            cs225::HSLAPixel& curr_pixel = image.getPixel(line.start->x, j);
+            curr_pixel = color;
+            color.l = color.l + increment; //increasing lumosity of line
+
+        }
+        return;
+    }
+
+    if(num < 3){
+        //case if slope is horizontally facing
+        for(unsigned i = i_start; i <= i_end; i++){
+            cs225::HSLAPixel& curr_pixel = image.getPixel(i, line.start->y);
+            curr_pixel = color;
+            color.l = color.l + increment; //increasing lumosity of line
+
+        }
+        return;
+    }
+
     //hey this doesn't work if line.end->x is less than the line.start->x
     for (unsigned i = i_start; i <= i_end; i++) {
         for (unsigned j = j_start; j <= j_end; j++) {
-            
+
             double ij_slope = (line.end->y - j) / (line.end->x - i);
             double error = abs(float(slope - ij_slope)); //need error to account for pixel slopes not being perfect
             
-            if (error <= 0.005) {
+            if (error <= 0.0197) {
                 cs225::HSLAPixel& curr_pixel = image.getPixel(i, j);
                 curr_pixel = color;
                 color.l = color.l + increment; //increasing lumosity of line
+                break;
             }
         }
     }
