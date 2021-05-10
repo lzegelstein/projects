@@ -80,14 +80,10 @@ If time permits, we would like to be able to analyze the cycles in the graph to 
 We will perform a conditional DFS because we don’t want to end up in an infinite loop. Cycles will be present in this graph. The DFS can be used to answer question 4. The complexity of DFS is O(n).
 
 #### Dijkstra's Algorithm
-**Categorize()**
-We will perform k clustering using MST to group the genres for the user to see the artist recommendations. (k clustering problem can be viewed as finding an MST and deleting the k-1 most)
-
-#### Iterative Deepening Depth First Search
-We will use Dijkstra's algorithm to find the shortest path and answer question 3. The complexity of this algorithm is  O(ElogV) where: V is the number of vertices. E is the total number of edges.
+We will use Dijkstra's algorithm to find the shortest path and answer question 3. The complexity of this algorithm is O(ElogV) where: V is the number of vertices. E is the total number of edges.
 
 #### Visual Output of Graph
-We will use a force-directed graph drawing in order to visually display the airport hubs and flight connections. The force will come from the distance that is set to the weight of the edges. The complexity of this algorithm is O(n). [Wikipedia](https://en.wikipedia.org/wiki/Force-directed_graph_drawing)
+We will create a graph where will plot the longitude and latitude coordinates of the airports. The airport node's size and color will be based on the popularity of the airport. These airports will be connected with lines whose size will be determined by the weight, which is the distance between the airports. The complexity of this algorithm is O(n).
 
 ## Questions We Can Answer Based Off of Our Graph
 1. What is the busiest airport?
