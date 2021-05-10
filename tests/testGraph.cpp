@@ -16,16 +16,28 @@ using namespace std;
 TEST_CASE("PNG output of a Node", "[Graph]") {
     Node curr(100,100,15, NULL);
     cs225::PNG image;
-    //image.readFromFile("graphs/out-1.png");
     image.resize(200,200);
     drawNode(curr, image);
+    image.writeToFile("graphs/out-1.png");
+}
+
+TEST_CASE("PNG output Node Colors", "[Graph]") {
+    cs225::PNG image;
+    image.resize(400, 400);
+    Node curr1(100,100,5, NULL);
+    Node curr2(50,50,10, NULL);
+    Node curr3(300,300,15, NULL);
+    
+    drawNode(curr1, image);
+    drawNode(curr2, image);
+    drawNode(curr3, image);
+
     image.writeToFile("graphs/out-2.png");
 }
 
 TEST_CASE("PNG output of two Nodes and edge (Northwest)", "[Graph]") {
     Node one(50, 50, 2, NULL);
     Node two(100,100, 4, NULL);
-    //Edge line(&one, &two, 70.71);
     cs225::PNG image;
     image.resize(500, 500);
     drawNode(one, image);
