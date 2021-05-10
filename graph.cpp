@@ -6,11 +6,6 @@
 #include "graph.h"
 #include <math.h>
 
-bool Edge::operator==(const Edge& other) {
-    bool oneway = (start == other.start && end == other.end);
-    bool another = (start == other.end && end == other.start);
-    return (oneway || another);
-}
 
 void drawNode(Node circle, cs225::PNG &image){
     //if the node is invalid
@@ -134,9 +129,9 @@ void drawEdge(Node* start, Node* end, cs225::PNG &image){
 Graph::Graph(std::map<std::string, Airport*> list){
    
    // image->resize(600,600); //TODO: make it an input later :)
-    image = new cs225::PNG(600,600);
+    image = new cs225::PNG(2400,2400);
     
-    for (auto it : list){
+    for (auto it : list) {
         double x = it.second->longitude;
         double y = it.second->latitude;
 
@@ -144,15 +139,35 @@ Graph::Graph(std::map<std::string, Airport*> list){
         y = scaleY(y, image->width(), image->height());
         
         Node* node = new Node(x, y, (unsigned int) it.second->destinations.size(), it.second);
-        nodes.push_back(node);
+        nodeMap[it.second] = node;
+    }
+    
+    for (auto i : nodeMap) {
+        for (auto j : i.first->destinations) {
+            i.second->edges.push_back(nodeMap[j.other_airport]);
+        }
     }
 
-    
 }
 
+ cs225::PNG* Graph::makeImage() {
+//drawNode(Node circle, cs225::PNG &image)
+//void drawEdge(Node* start, Node* end, cs225::PNG &image)
+
+     for (auto i : nodeMap) {
+         for (auto j : i.second->edges) {  
+            drawEdge(i.second, j, * image);
+         }
+     }
+
+     for (auto i : nodeMap) {
+         drawNode(*i.second, * image);
+     }
+
+     return image;
+ }
 
 // don't forget to cite this!!
-
 double Graph::scaleX(double lon, int width) {
     double x = fmod((width*(180+lon)/360), (width +(width/2)));
 
@@ -170,18 +185,7 @@ double Graph::scaleY(double lat, int width, int height) {
     return y;
 }
 
-void Graph::addEdge(Node* source, Node* dest, double distance) {
-    bool done;
-    Edge* current = new Edge(source, dest, distance);
-    for (int i = 0; i < (int) edges.size(); i++) {
-        if(current == edges[i]){
-            done = true;
-            delete current;
-            return;
-        }
-    }
-    edges.push_back(current);
-}
+
 
 /*
  

@@ -6,29 +6,19 @@
 #include <cstdlib>
 #include "AirTravel.h"
 #include "Airport.h"
-
+#include "graph.h"
+#include "cs225/PNG.h"
 int main() {
     std::cout << "AirTravel application started" << std::endl;
-    AirTravel ourmap("data/airports-short.csv", "data/routes-short.csv");
-    
-    Airport* busiest = ourmap.findBusiestAirport();
-    std::cout<<"busiest airport is "<< busiest->name <<std::endl;
-    
-    std::string ohare = "ORD";
-    std::string atlanta = "ATL";
-    bool x = ourmap.isDirectFlight(ohare, atlanta);
-    std::cout<<"Direct flight from ORD to ATL? "<< x << " routes"<<std::endl;
-    
-    Dijkstras* dij = ourmap.Air_Dijkstras(ourmap.IATAsearch("CDG"));
-    std::list<Airport*> routed = dij->getShortestRoute(ourmap.IATAsearch("LAX"));
-    std::cout<<"Routes!:"<<std::endl;
-    int count = 1;
-    for (auto it : routed){
-        std::cout<<count<<": "<<it->IATA<<std::endl;
-        count++;
-    }
+    //AirTravel ourmap("data/airports-short.csv", "data/routes-short.csv");
+    AirTravel ourmap("data/airport.csv", "data/routes.csv");
+    Graph * gr = ourmap.worldMap();
+    cs225::PNG * png_ptr = gr->makeImage();
+
+    png_ptr->writeToFile("out-ourGraph.png");
 
     std::cout << "AirTravel application ended" << std::endl;
+
     return 0;
 }
 

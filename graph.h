@@ -1,9 +1,9 @@
 #pragma once
 #include <map>
 #include <string>
+#include <vector>
 #include "Airport.h"
 #include "cs225/PNG.h"
-#pragma once
 #include <iostream>
 #include <sstream>
 #include "cs225/HSLAPixel.h"
@@ -17,6 +17,7 @@ struct Node {
     double y;
     unsigned size; //this is the radius of the circle
     Airport * airport;
+    std::vector<Node *> edges;
     
   /**
    * Default constructor, set the point to (0, 0): 0
@@ -69,8 +70,7 @@ public:
      * being the key
      */
     Graph(std::map<std::string, Airport*> list);
-    cs225::PNG* getPNG();
-
+    
     void addNewEdge(Airport* source, Airport* end);
 
     void removeEdge(Airport* source, Airport* end);  
@@ -93,8 +93,7 @@ public:
     cs225::PNG* makeImage();
 
 private:
-    std::vector<Node*> nodes;
-    
+    std::map<Airport *, Node *> nodeMap;
 
     cs225::PNG * image;
     
@@ -121,15 +120,4 @@ private:
      */
     double scaleY(double lat, int width, int height);
 
-    /**
-     * creates and adds edge to the edges vector
-     * helper function to the constructor
-     * 
-     * Makes sure not to have repeat lines
-     * 
-     * @param source begining node
-     * @param destination ending node
-     * @param distance distance on the image
-     */
-    void addEdge(Node* source, Node* destination, double distance);
 };
