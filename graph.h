@@ -4,10 +4,13 @@
 #include <vector>
 #include "Airport.h"
 #include "cs225/PNG.h"
+<<<<<<< HEAD
 #include <iostream>
 #include <sstream>
 #include "cs225/HSLAPixel.h"
 #include "Airport.h"
+=======
+>>>>>>> 6277b808c9cf6bc8320c7e866fc9e98c13e9491c
 
 /**
  * Simple Node class containing a public unsigned `x` and `y` for representing 2D points on an image.
@@ -39,8 +42,7 @@ struct Node {
     return (x == other.x && y == other.y);
   }
 
-    
-    };
+ };
 
 /**
  * Draws the node onto the image PNG
@@ -58,7 +60,6 @@ void drawNode(Node circle, cs225::PNG &image);
  */
 void drawEdge(Node* start, Node* end, cs225::PNG &image);
 
-
 class Graph {
 public:
     /**
@@ -73,7 +74,7 @@ public:
     
     void addNewEdge(Airport* source, Airport* end);
 
-    void removeEdge(Airport* source, Airport* end);  
+    void removeEdge(Airport* source, Airport* end);
 
     /**
      * function that finds nodes given
@@ -93,7 +94,11 @@ public:
     cs225::PNG* makeImage();
 
 private:
+<<<<<<< HEAD
     std::map<Airport *, Node *> nodeMap;
+=======
+    std::vector<Node*> nodes;
+>>>>>>> 6277b808c9cf6bc8320c7e866fc9e98c13e9491c
 
     cs225::PNG * image;
     
@@ -120,4 +125,19 @@ private:
      */
     double scaleY(double lat, int width, int height);
 
+<<<<<<< HEAD
 };
+=======
+    /**
+     * creates and adds edge to the edges vector
+     * helper function to the constructor
+     * 
+     * Makes sure not to have repeat lines
+     * 
+     * @param source begining node
+     * @param destination ending node
+     * @param distance distance on the image
+     */
+    void addEdge(Node* source, Node* destination, double distance);
+};
+>>>>>>> 6277b808c9cf6bc8320c7e866fc9e98c13e9491c
