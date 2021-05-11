@@ -67,7 +67,7 @@ public:
      * @param list a map of airport pointers with their IATA codes
      * being the key
      */
-    Graph(std::map<std::string, Airport*> list);
+    Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width);
     
     void addNewEdge(Airport* source, Airport* end);
 

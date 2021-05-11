@@ -126,10 +126,10 @@ void drawEdge(Node* start, Node* end, cs225::PNG &image){
 /**
  * TODO: Rework to work with new class definition
  */
-Graph::Graph(std::map<std::string, Airport*> list){
+Graph::Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width){
    
    // image->resize(600,600); //TODO: make it an input later :)
-    image = new cs225::PNG(2400,2400);
+    image = new cs225::PNG(height,width);
     
     for (auto it : list) {
         double x = it.second->longitude;
