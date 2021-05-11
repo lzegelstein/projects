@@ -103,13 +103,15 @@ void AirTravel::readInAirportData(std::string fileName) {
 void AirTravel::AirportParseLine(std::string input) { //TODO
     int str_size = (int)input.size();
     int begin_index, field_num, num_commas;
+    bool open_quote = false;
     begin_index = field_num = num_commas = 0;
     std::string temp;
     Airport* airport = new Airport;
-       
        for (int x = 0; x < str_size; x++) {
-           
-           if (input[x] == ',') {
+           if (input[x] == '\"') {
+               open_quote = !open_quote;
+           }
+           if (input[x] == ',' && !open_quote) {
                num_commas ++;
                temp.append(input, begin_index, x - begin_index);
                begin_index = x + 1;

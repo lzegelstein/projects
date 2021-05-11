@@ -185,22 +185,6 @@ double Graph::scaleY(double lat, int width, int height) {
     return y;
 }
 
-<<<<<<< HEAD
-
-=======
-// void Graph::addEdge(Node* source, Node* dest, double distance) {
-//     bool done;
-//     Edge* current = new Edge(source, dest, distance);
-//     for (int i = 0; i < (int) edges.size(); i++) {
-//         if(current == edges[i]){
-//             done = true;
-//             delete current;
-//             return;
-//         }
-//     }
-//     edges.push_back(current);
-// }
->>>>>>> 6277b808c9cf6bc8320c7e866fc9e98c13e9491c
 
 /*
  
