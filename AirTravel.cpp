@@ -249,10 +249,10 @@ void AirTravel::readInRoutesData(std::string fileName) {
     //std::cout<<"entered readInRoutesData()"<<std::endl;
     std::fstream data_file;
     std::string trial;
-
     data_file.open(fileName, std::ios::in);
+
     if (data_file.is_open()) {
-        while (std::getline(data_file, trial) {
+        while (std::getline(data_file, trial)) {
             RoutesParseLine(trial);
         }
         data_file.close();
