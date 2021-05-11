@@ -77,7 +77,7 @@ class AirTravel {
      */
     DFS* DepthFirstSearch(Airport* source);
     
-    Graph* worldMap();
+    Graph* worldMap(unsigned int h, unsigned int w);
 
 private:
 //-------------------------------------------------------------

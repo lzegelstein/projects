@@ -74,8 +74,8 @@ DFS* AirTravel::DepthFirstSearch(Airport* source){
     return dfs;
 }
 
-Graph* AirTravel::worldMap(){
-    Graph* gph = new Graph(AirportList);
+Graph* AirTravel::worldMap(unsigned int h, unsigned int w){
+    Graph* gph = new Graph(AirportList, h, w);
     return gph;
 }
 
