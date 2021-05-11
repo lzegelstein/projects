@@ -1,144 +1,146 @@
-#include "../cs225/catch/catch.hpp"
-#include "../AirTravel.h"
-#include "../traversal/AirportTraversal.h"
-#include "../traversal/DFS.h"
-#include "../graph.h"
-#include "../cs225/PNG.h"
+//Used in intermitent testing
 
-using namespace std;
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <iterator>
-#include <string>
-#include <algorithm>
+// #include "../cs225/catch/catch.hpp"
+// #include "../AirTravel.h"
+// #include "../traversal/AirportTraversal.h"
+// #include "../traversal/DFS.h"
+// #include "../graph.h"
+// #include "../cs225/PNG.h"
 
-TEST_CASE("PNG output of a Node", "[Graph]") {
-    Node curr(100,100,15, NULL);
-    cs225::PNG image;
-    image.resize(200,200);
-    drawNode(curr, image);
-    image.writeToFile("graphs/out-1.png");
-}
+// using namespace std;
+// #include <iostream>
+// #include <fstream>
+// #include <vector>
+// #include <iterator>
+// #include <string>
+// #include <algorithm>
 
-TEST_CASE("PNG output Node Colors", "[Graph]") {
-    cs225::PNG image;
-    image.resize(400, 400);
-    Node curr1(100,100,5, NULL);
-    Node curr2(50,50,10, NULL);
-    Node curr3(300,300,15, NULL);
+// TEST_CASE("PNG output of a Node", "[Graph]") {
+//     Node curr(100,100,15, NULL);
+//     cs225::PNG image;
+//     image.resize(200,200);
+//     drawNode(curr, image);
+//     image.writeToFile("graphs/out-1.png");
+// }
+
+// TEST_CASE("PNG output Node Colors", "[Graph]") {
+//     cs225::PNG image;
+//     image.resize(400, 400);
+//     Node curr1(100,100,5, NULL);
+//     Node curr2(50,50,10, NULL);
+//     Node curr3(300,300,15, NULL);
     
-    drawNode(curr1, image);
-    drawNode(curr2, image);
-    drawNode(curr3, image);
+//     drawNode(curr1, image);
+//     drawNode(curr2, image);
+//     drawNode(curr3, image);
 
-    image.writeToFile("graphs/out-2.png");
-}
+//     image.writeToFile("graphs/out-2.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Northwest)", "[Graph]") {
-    Node one(50, 50, 2, NULL);
-    Node two(100,100, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Northwest)", "[Graph]") {
+//     Node one(50, 50, 2, NULL);
+//     Node two(100,100, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-3.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-3.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Southeast)", "[Graph]") {
-    Node one(100, 100, 2, NULL);
-    Node two(50, 50, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Southeast)", "[Graph]") {
+//     Node one(100, 100, 2, NULL);
+//     Node two(50, 50, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-4.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-4.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Horizontal)", "[Graph]") {
-    Node one(50, 100, 2, NULL);
-    Node two(100, 100, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Horizontal)", "[Graph]") {
+//     Node one(50, 100, 2, NULL);
+//     Node two(100, 100, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-5.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-5.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Vertical)", "[Graph]") {
-    Node one(100, 100, 2, NULL);
-    Node two(100, 50, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Vertical)", "[Graph]") {
+//     Node one(100, 100, 2, NULL);
+//     Node two(100, 50, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-6.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-6.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Northeast)", "[Graph]") {
-    Node one(100, 50, 2, NULL);
-    Node two(50, 100, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Northeast)", "[Graph]") {
+//     Node one(100, 50, 2, NULL);
+//     Node two(50, 100, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-7.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-7.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Southwest)", "[Graph]") {
-    Node one(50, 100, 2, NULL);
-    Node two(100, 50, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Southwest)", "[Graph]") {
+//     Node one(50, 100, 2, NULL);
+//     Node two(100, 50, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-8.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-8.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Edge case: not quite horizontal)", "[Graph]") {
-    Node one(50, 100, 2, NULL);
-    Node two(100, 99, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Edge case: not quite horizontal)", "[Graph]") {
+//     Node one(50, 100, 2, NULL);
+//     Node two(100, 99, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-9.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-9.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Edge case: not quite vertical)", "[Graph]") {
-    Node one(50, 100, 2, NULL);
-    Node two(49, 50, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Edge case: not quite vertical)", "[Graph]") {
+//     Node one(50, 100, 2, NULL);
+//     Node two(49, 50, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-10.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-10.png");
+// }
 
-TEST_CASE("PNG output of two Nodes and edge (Edge case: not quite Northeast)", "[Graph]") {
-    Node one(100, 50, 2, NULL);
-    Node two(49, 100, 4, NULL);
-    cs225::PNG image;
-    image.resize(500, 500);
-    drawNode(one, image);
-    drawNode(two, image);
+// TEST_CASE("PNG output of two Nodes and edge (Edge case: not quite Northeast)", "[Graph]") {
+//     Node one(100, 50, 2, NULL);
+//     Node two(49, 100, 4, NULL);
+//     cs225::PNG image;
+//     image.resize(500, 500);
+//     drawNode(one, image);
+//     drawNode(two, image);
 
-    drawEdge(&one, &two, image);
-    image.writeToFile("graphs/out-11.png");
-}
+//     drawEdge(&one, &two, image);
+//     image.writeToFile("graphs/out-11.png");
+// }
