@@ -83,33 +83,35 @@ Graph* AirTravel::worldMap(){
 //                 Private Member Functions
 //-------------------------------------------------------------
 
+//while (std::getline(file, str)) {
+  // process string ...
+//}
+
 void AirTravel::readInAirportData(std::string fileName) {
     std::fstream data_file;
     std::string trial;
     data_file.open(fileName, std::ios::in);
-    for (int x = 0; x < 25; x++) {
-        
-        if (data_file.is_open()) {
-            getline(data_file, trial);
+    if (data_file.is_open()) {
+        while (std::getline(data_file, trial)) {
+           // getline(data_file, trial);
             AirportParseLine(trial);
         }
-        else {
-            std::cout<<"open failed"<<std::endl;
-        }
+        data_file.close();
     }
-    data_file.close();
 }
 
 void AirTravel::AirportParseLine(std::string input) { //TODO
     int str_size = (int)input.size();
     int begin_index, field_num, num_commas;
+    bool open_quote = false;
     begin_index = field_num = num_commas = 0;
     std::string temp;
     Airport* airport = new Airport;
-       
        for (int x = 0; x < str_size; x++) {
-           
-           if (input[x] == ',') {
+           if (input[x] == '\"') {
+               open_quote = !open_quote;
+           }
+           if (input[x] == ',' && !open_quote) {
                num_commas ++;
                temp.append(input, begin_index, x - begin_index);
                begin_index = x + 1;
@@ -123,6 +125,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
                    if (AirportLineCheck(field_num, temp)) {
                        temp = removeQuotes(temp);
                        airport->name = temp;
+                       std::cout<<"airport name: "<<temp<<std::endl;
                    }
                    else {
                        delete airport;
@@ -207,7 +210,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
        //Took care of the no trailing comma case
        temp.append(input, begin_index, str_size - begin_index);
        temp.erase();
-
+       
        addAirport(airport);
 }
 
