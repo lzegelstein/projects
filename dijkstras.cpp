@@ -67,7 +67,21 @@ std::list<Airport*> Dijkstras::getShortestRoute(Airport* destination){
         current = pathMap[&(current->start->IATA)];
         route.push_front(current->end);
     }
+
+    printShortestRoute(route);
+
     return route;
+}
+
+void Dijkstras::printShortestRoute(std::list<Airport*> print_list) {
+
+    std::cout<<"Shortest Route: "<<std::endl;
+    while(!print_list.empty()) {
+        std::cout<<print_list.front()->name<<std::endl;
+        print_list.pop_front();
+    }
+    std::cout<<"----------"<<std::endl;
+    return;
 }
 
 

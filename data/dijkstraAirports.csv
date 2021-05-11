@@ -1,0 +1,8 @@
+1,"John F Kennedy International Airport","New York","United States","JFK","KJFK",0,50,13,-5,"A","America/New_York","airport","OurAirports"
+2,"Hartford Connecticut Airport","Connecticut","United States","BDL","KATL",10,50,1026,-5,"A","America/New_York","airport","OurAirports"
+3,"Westchester County Airport","New York","United States","HPN","KORD",5.1010205,45,672,-6,"A","America/Chicago","airport","OurAirports"
+4,"LaGuardia Airport","New York","United States","LGA","EGGP",3.5,45,80,0,"E","Europe/London","airport","OurAirports"
+5,"Portland Maine Airport","Maine","United States","PWM","LFPG",4,43,392,1,"E","Europe/Paris","airport","OurAirports"
+6,"Portland Oregon Airport","Oregon","United States","PDX","LEMD",2,44,1998,1,"E","Europe/Madrid","airport","OurAirports"
+7,"Rutland VT Airport","Vermont","United States","RUT","ZBAA",4.5,44.5,116,8,"U","Asia/Shanghai","airport","OurAirports"
+8,"Denver Airport", "Colorado","United States","DEN","HGHH",0,43,117,8,"America/New_York","Airport","OurAirports"
