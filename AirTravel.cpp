@@ -128,7 +128,7 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
                    if (AirportLineCheck(field_num, temp)) {
                        temp = removeQuotes(temp);
                        airport->name = temp;
-                       std::cout<<"airport name: "<<temp<<std::endl;
+                      // std::cout<<"airport name: "<<temp<<std::endl;
                    }
                    else {
                        delete airport;

@@ -13,6 +13,7 @@ void drawNode(Node circle, cs225::PNG &image){
         return;
     }
 
+    
     //set color
     int hue = 210 - (circle.size * circle.size);
     
@@ -20,6 +21,8 @@ void drawNode(Node circle, cs225::PNG &image){
         hue = 0;
     }
     
+    circle.size = 5;
+
     cs225::HSLAPixel color(hue, 1, 0.5, 1); //the color will change depending on node size exponentially
 
     //draw node
@@ -38,8 +41,7 @@ void drawNode(Node circle, cs225::PNG &image){
             double dy = (size_y_max - j);
             double dist = sqrt(((circle.x-dx) * (circle.x-dx)) + ((circle.y-dy) * (circle.y-dy)));
             
-            if (dist <= circle.size) {
-                
+            if (dist <= circle.size && dx < image.width() && dy < image.height()) {
                 cs225::HSLAPixel& curr_pixel = image.getPixel(dx, dy);
                 curr_pixel = color;
             }
@@ -50,8 +52,8 @@ void drawNode(Node circle, cs225::PNG &image){
 void drawEdge(Node* start, Node* end, cs225::PNG &image){
 
     //if the line is invalid
-    if (start->x > image.width() || end->x > image.width() ||
-       start->y > image.height() || end->y > image.height()) {
+    if (start->x >= image.width() || end->x >= image.width() ||
+       start->y >= image.height() || end->y >= image.height()) {
         return;
     }
 
@@ -61,7 +63,7 @@ void drawEdge(Node* start, Node* end, cs225::PNG &image){
 
     unsigned i_start, i_end, j_start, j_end;
 
-    if(start->x <= end->x){
+    if (start->x <= end->x) {
         i_start = start->x;
         i_end = end->x;
     } else {
