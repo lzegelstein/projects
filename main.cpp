@@ -9,21 +9,13 @@
 #include "graph.h"
 #include "cs225/PNG.h"
 
-
-
-/**
- * TODO: Questions that still need answering
- * 1. Use DFS somehow
- * 2. Call Dijkstras
+/** More things to add to the main:
+ * What is the busiest airport?
+ * Is there a non-stop flight between a and b?
+ * 
+ * What is the shortest path between multiple stops, looping to the original starting point (‘a’ to ‘b’ to ‘c’ to ‘a’)?
+ * Can we get from point a to point b in under 3 stops?
 */
-
-/**
- * Hi, welcome to the main of our Air Travel Program!
- * All of our algorithms on shorter datasets are commented out at the moment.
- * Whichever one you want to see, just uncomment out or you can work with the full dataset. 
-*/
-   
-//AirTravel ourmap("data/airports-short.csv", "data/routes-short.csv");
 
 void dfs_print(AirportTraversal::Iterator it, DFS dfs);
 
@@ -58,16 +50,22 @@ int main(int argc, char** argv) {
   */
     
   //Graphic Output
-  
     AirTravel ourmap("data/airport.csv", "data/routes.csv");
     Graph * gr = ourmap.worldMap(4000, 2000);
     cs225::PNG * png_ptr = gr->makeImage();
     png_ptr->writeToFile("out-ourGraph.png");
   
+  //QUESTIONS WE CAN ANSWER AS STATED IN OUR PROPOSAL (based on the full dataset)
+  Airport * busiestAirport = ourmap.findBusiestAirport();
+  std::cout<<"Busiest Airport: "<<busiestAirport->name<<std::endl;
 
-
-    std::cout << "AirTravel application ended" << std::endl;
-    return 0;
+  std::string isDirectStart("LYR");
+  std::string isDirectEnd("JFK");
+  bool answer = ourmap.isDirectFlight(isDirectStart, isDirectEnd);
+  std::cout<<"Is there a direct flight from "<<isDirectStart<<" to "<<isDirectEnd<<" ? "<<answer<<std::endl;
+  
+  std::cout << "AirTravel application ended" << std::endl;
+  return 0;
 }
 
 
