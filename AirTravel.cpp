@@ -98,6 +98,9 @@ void AirTravel::readInAirportData(std::string fileName) {
         }
         data_file.close();
     }
+    else {
+        std::cout<<"could not read in airport data, check your spelling"<<std::endl;
+    }
 }
 
 void AirTravel::AirportParseLine(std::string input) { //TODO
@@ -246,20 +249,17 @@ void AirTravel::readInRoutesData(std::string fileName) {
     //std::cout<<"entered readInRoutesData()"<<std::endl;
     std::fstream data_file;
     std::string trial;
+
     data_file.open(fileName, std::ios::in);
-    
-    for (int x = 0; x < 28; x++) {
-        
-        if (data_file.is_open()) {
-            getline(data_file, trial);
-         //   std::cout<<"from data_file: "<<trial<<std::endl;
+    if (data_file.is_open()) {
+        while (std::getline(data_file, trial) {
             RoutesParseLine(trial);
         }
-        else {
-            std::cout<<"open failed"<<std::endl;
-        }
+        data_file.close();
     }
-    data_file.close();
+    else {
+        std::cout<<"could not read in routes data, check your spelling"<<std::endl;
+    }
     //std::cout<<"finished readInRoutesData"<<std::endl;
 }
 
