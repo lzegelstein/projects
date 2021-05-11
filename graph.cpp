@@ -127,7 +127,7 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
     double diff_2 = i_end - j_start;
 
 
-    if(den < 3){
+    if(den < 1){
         //case if the slope is vertical facing
         for(unsigned j = j_start; j <= j_end; j++){
             cs225::HSLAPixel& curr_pixel = image.getPixel(start->x, j);
@@ -138,16 +138,16 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
         return;
     }
 
-    if(num < 3){
-        //case if slope is horizontally facing
-        for(unsigned i = i_start; i <= i_end; i++){
-            cs225::HSLAPixel& curr_pixel = image.getPixel(i, start->y);
-            curr_pixel = color;
-            color.l = color.l; //increasing lumosity of line
+    // if(num < 1){
+    //     //case if slope is horizontally facing
+    //     for(unsigned i = i_start; i <= i_end; i++){
+    //         cs225::HSLAPixel& curr_pixel = image.getPixel(i, start->y);
+    //         curr_pixel = color;
+    //         color.l = color.l; //increasing lumosity of line
 
-        }
-        return;
-    }
+    //     }
+    //     return;
+    // }
 
     //hey this doesn't work if end->x is less than the start->x
     for (unsigned i = i_start; i <= i_end; i++) {
@@ -156,7 +156,7 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
             double ij_slope = (end->y - j) / (end->x - i);
             double error = abs(float(slope - ij_slope)); //need error to account for pixel slopes not being perfect
             
-            if (error <= 0.015) {
+            if (error <= 0.0197) {
                 cs225::HSLAPixel& curr_pixel = image.getPixel(i, j);
                 curr_pixel = color;
                 color.l = color.l; //increasing lumosity of line
