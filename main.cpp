@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
     
   //Graphic Output
     AirTravel ourmap("data/airport.csv", "data/routes.csv");
-    Graph * gr = ourmap.worldMap(4000, 2000);
+    Graph * gr = ourmap.worldMap(10000, 10000);
     cs225::PNG * png_ptr = gr->makeImage();
     png_ptr->writeToFile("out-ourGraph.png");
   

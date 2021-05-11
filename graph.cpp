@@ -63,7 +63,7 @@ void Graph::drawNode(Node circle, cs225::PNG &image){
         hue = 0;
     }
     
-    circle.size = 5;
+    circle.size = int(image.width()/1000);
 
     cs225::HSLAPixel color(hue, 1, 0.5, 1); //the color will change depending on node size exponentially
 
@@ -83,7 +83,7 @@ void Graph::drawNode(Node circle, cs225::PNG &image){
             double dy = (size_y_max - j);
             double dist = sqrt(((circle.x-dx) * (circle.x-dx)) + ((circle.y-dy) * (circle.y-dy)));
             
-            if (dist <= circle.size && dx < image.width() && dy < image.height()) {
+            if (dist <= circle.size && dx < image.width() && dy < image.height() && dx > 0 && dy > 0) {
                 cs225::HSLAPixel& curr_pixel = image.getPixel(dx, dy);
                 curr_pixel = color;
             }
@@ -156,7 +156,7 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
             double ij_slope = (end->y - j) / (end->x - i);
             double error = abs(float(slope - ij_slope)); //need error to account for pixel slopes not being perfect
             
-            if (error <= 0.0197) {
+            if (error <= 0.015) {
                 cs225::HSLAPixel& curr_pixel = image.getPixel(i, j);
                 curr_pixel = color;
                 color.l = color.l; //increasing lumosity of line
@@ -184,59 +184,3 @@ double Graph::scaleY(double lat, int width, int height) {
     
     return y;
 }
-
-
-/*
- 
- int distx_max = 0;
- int distx_min = 0;
- int disty_max = 0;
- int disty_min = 0;
-
- //find current max/min size of image
- for(auto it: list){
-     Airport air_curr = *(it.second);
-     if(air_curr.latitude > distx_max){
-         distx_max = air_curr.latitude;
-     }
-     if(air_curr.latitude < distx_min){
-         distx_min = air_curr.latitude;
-     }
-     if(air_curr.longitude > disty_max){
-         disty_max = air_curr.longitude;
-     }
-     if(air_curr.longitude < disty_min){
-         disty_min = air_curr.longitude;
-     }
- }
-
- image->resize((distx_max - distx_min), (disty_max - disty_min));
-
- //populate nodes and edges
- for(auto it: list){
-     Airport air_curr = *(it.second);
-     int x = air_curr.latitude - distx_min;
-     int y = air_curr.longitude - disty_min;
-     Node node_curr(x, y, air_curr.destinations.size(), & air_curr);
-     nodes.push_back(node_curr);
-
-     for(auto j : air_curr.destinations){
-         int x = j.other_airport->latitude - distx_min;
-         int y = j.other_airport->longitude - disty_min;
-         Node other(x, y, j.other_airport->destinations.size(), & air_curr.destinations[j]);
-         Edge edge_curr(node_curr, other, j.distance);
-         edges.push_back(edge_curr);
-     }
- }
-
-
-//    for(auto it: nodes){
-//        drawNode(it, image);
-//    }
-//
-//    for(auto it: edges){
-//        drawEdge(it, image);
-//    }
-
-
- */
