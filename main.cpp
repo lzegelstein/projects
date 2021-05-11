@@ -12,7 +12,7 @@ int main() {
     std::cout << "AirTravel application started" << std::endl;
     //AirTravel ourmap("data/airports-short.csv", "data/routes-short.csv");
     AirTravel ourmap("data/airport.csv", "data/routes.csv");
-    Graph * gr = ourmap.worldMap();
+    Graph * gr = ourmap.worldMap(4000, 2000);
     cs225::PNG * png_ptr = gr->makeImage();
 
     png_ptr->writeToFile("out-ourGraph.png");

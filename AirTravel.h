@@ -77,6 +77,14 @@ class AirTravel {
      */
     DFS* DepthFirstSearch(Airport* source);
     
+    /**
+     * Creates the graph for an image of specified height and width
+     * 
+     * @param h the height in pixels of the final image
+     * @param w the witdh in pixels of the final image
+     * 
+     * @returns pointer to graph class
+     */
     Graph* worldMap(unsigned int h, unsigned int w);
 
 private:
