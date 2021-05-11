@@ -71,6 +71,16 @@ class AirTravel {
     Dijkstras* Air_Dijkstras(Airport* source);
 
     /**
+     * Prints a round trip of names between two airports using Dijkstras 
+     * in both directions
+     * 
+     * @param airportOne home airport
+     * @param airportTwo destination airport
+     */
+    void roundTrip(std::string airportOne, std::string airportTwo);
+    void printList(std::list<Airport*> list);
+
+    /**
      * Function for creating DFS
      *
      * @returns pointer to DFS to access all member variables

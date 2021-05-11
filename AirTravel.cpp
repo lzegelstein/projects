@@ -322,4 +322,23 @@ void AirTravel::RoutesParseLine(std::string input){
 }
 
 
+void AirTravel::roundTrip(std::string airportOne, std::string airportTwo) {
+    Airport * source = IATAsearch(airportOne);
+    Airport * destination = IATAsearch(airportTwo);
 
+    std::list<Airport*> toThere = Air_Dijkstras(source)->getShortestRoute(destination);
+    std::list<Airport*> fromThere = Air_Dijkstras(destination)->getShortestRoute(source);
+    printList(toThere);
+    fromThere.pop_front();
+    printList(fromThere);
+
+}
+
+void AirTravel::printList(std::list<Airport*> list) {
+   // std::list<Airport*>::iterator it = list.begin();
+    for (auto it = list.begin(); it != list.end(); it ++) {
+        std::cout<<list.front()->name<<std::endl;
+        list.pop_front();
+    }
+    return;
+}

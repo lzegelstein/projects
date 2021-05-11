@@ -68,12 +68,10 @@ std::list<Airport*> Dijkstras::getShortestRoute(Airport* destination){
         route.push_front(current->end);
     }
 
-    printShortestRoute(route);
-
     return route;
 }
 
-void Dijkstras::printShortestRoute(std::list<Airport*> print_list) {
+void printShortestRoute(std::list<Airport*> print_list) {
 
     std::cout<<"Shortest Route: "<<std::endl;
     while(!print_list.empty()) {

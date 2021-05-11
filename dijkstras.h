@@ -49,8 +49,6 @@ public:
      */
     std::list<Airport*> getShortestRoute(Airport* destination);
 
-    void printShortestRoute(std::list<Airport*> print_list);
-
 private:
     /**
      *
