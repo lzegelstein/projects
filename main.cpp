@@ -9,10 +9,18 @@
 #include "graph.h"
 #include "cs225/PNG.h"
 
-/** More things to add to the main:
- * Can we get from point a to point b in under 3 stops?
- * if list < 5
-*/ 
+
+std::string yesOrNo (bool value) {
+    std::string string;
+    if (value == 0) {
+        string = "No";
+    }
+    else {
+        string = "Yes";
+    }
+    return string;
+}
+
 
 void dfs_print(AirportTraversal::Iterator it, DFS dfs);
 
@@ -22,50 +30,63 @@ void dfs_print(AirportTraversal::Iterator it, DFS dfs) {
         ++ it;
     }
 }
+
 int main(int argc, char** argv) {
-   std::cout << "AirTravel application started" << std::endl;
+    std::cout << "AirTravel application started" << std::endl;
   
+    //CHOOSE YOUR DATASET
+    AirTravel ourmap("data/dijkstraAirports.csv", "data/dijkstrastestroutes.csv");
+    //AirTravel ourmap("/Users/lylazegelstein/Desktop/airports-short.csv", "/Users/lylazegelstein/Desktop/routes-short.csv");
+    //AirTravel ourmap("data/airport.csv", "data/routes.csv");
 
   //Dijkstra's algorithm
-  /*
-   AirTravel dijkstraAlg("data/dijkstraAirports.csv", "data/dijkstrastestroutes.csv");
+   std::cout<<"Dijkstra's"<<std::endl;
    std::string source_airport("JFK");
-   std::string destination_airport("RUT");
-   Airport* source = dijkstraAlg.IATAsearch(source_airport);
-   Airport* destination = dijkstraAlg.IATAsearch(destination_airport);
-   dijkstraAlg.Air_Dijkstras(source)->getShortestRoute(destination);
-   */
+   std::string destination_airport("HPN");
+   Airport* source = ourmap.IATAsearch(source_airport);
+   Airport* destination = ourmap.IATAsearch(destination_airport);
+   std::list<Airport*> ourList = ourmap.Air_Dijkstras(source)->getShortestRoute(destination);
+   ourmap.printList(ourList);
+   std::cout<<"-----------------------------"<<std::endl;
+   std::cout<<std::endl;
 
   //DFS
   /*
-    AirTravel dfsAlg("/Users/lylazegelstein/Desktop/airports-short.csv", "/Users/lylazegelstein/Desktop/routes-short.csv");
     std::string dfs_source_airport("ATL");
-    //std::string dfs_destination_airport("ULK");
-    Airport* dfs_source = dfsAlg.IATAsearch(dfs_source_airport);
-    DFS * dfs_ptr = dfsAlg.DepthFirstSearch(dfs_source);
+    Airport* dfs_source = ourmap.IATAsearch(dfs_source_airport);
+    DFS * dfs_ptr = ourmap.DepthFirstSearch(dfs_source);
     dfs_print(dfs_ptr->begin(), *dfs_ptr);
-  */
-    
+    std::cout<<"-----------------------------"<<std::endl;
+    std::cout<<std::endl;
+    */
   //Graphic Output
-    AirTravel ourmap("data/airport.csv", "data/routes.csv");
+  /*
     Graph * gr = ourmap.worldMap(10000, 10000);
     cs225::PNG * png_ptr = gr->makeImage();
     png_ptr->writeToFile("out-ourGraph.png");
-  
-  //QUESTIONS WE CAN ANSWER AS STATED IN OUR PROPOSAL (based on the full dataset)
-  Airport * busiestAirport = ourmap.findBusiestAirport();
-  std::cout<<"Busiest Airport: "<<busiestAirport->name<<std::endl;
+  */
 
-  std::string isDirectStart("LYR");
+
+  //QUESTIONS WE CAN ANSWER AS STATED IN OUR PROPOSAL (based on the full dataset)
+  Airport * busiestAirport = ourmap.findBusiestAirport(); 
+  std::cout<<"Busiest Airport: "<<busiestAirport->name<<std::endl;
+  std::cout<<std::endl;
+
+  std::string isDirectStart("RUT");
   std::string isDirectEnd("JFK");
   bool answer = ourmap.isDirectFlight(isDirectStart, isDirectEnd);
-  std::cout<<"Is there a direct flight from "<<isDirectStart<<" to "<<isDirectEnd<<" ? "<<answer<<std::endl;
-  
-  //a to c and c to a
-  ourmap.roundTrip("JFK", "LYR");
+  std::cout<<"Is there a direct flight from "<<isDirectStart<<" to "<<isDirectEnd<<" ? "<<yesOrNo(answer)<<std::endl;
+  std::cout<<std::endl;
 
+  ourmap.roundTrip("JFK", "HPN");
+  std::cout<<std::endl;
+
+  bool under3 = ourmap.underThreeStops("JFK", "RUT");
+  std::cout<<"Can we get from JFK to RUT in under 3 stops? "<<yesOrNo(under3)<<std::endl;
+  std::cout<<std::endl;
 
   std::cout << "AirTravel application ended" << std::endl;
+
   return 0;
 }
 

@@ -328,6 +328,7 @@ void AirTravel::roundTrip(std::string airportOne, std::string airportTwo) {
 
     std::list<Airport*> toThere = Air_Dijkstras(source)->getShortestRoute(destination);
     std::list<Airport*> fromThere = Air_Dijkstras(destination)->getShortestRoute(source);
+
     printList(toThere);
     fromThere.pop_front();
     printList(fromThere);
@@ -342,3 +343,13 @@ void AirTravel::printList(std::list<Airport*> list) {
     }
     return;
 }
+
+//dikstras get route, if route < 5 return true :)
+ bool AirTravel::underThreeStops(std::string airportOne, std::string airportTwo) {
+
+    Airport * source = IATAsearch(airportOne);
+    Airport * destination = IATAsearch(airportTwo);
+    std::list<Airport*> stops = Air_Dijkstras(source)->getShortestRoute(destination);
+    
+    return stops.size() < 5;
+ }

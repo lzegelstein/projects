@@ -79,6 +79,7 @@ class AirTravel {
      */
     void roundTrip(std::string airportOne, std::string airportTwo);
     void printList(std::list<Airport*> list);
+    bool underThreeStops(std::string airportOne, std::string airportTwo);
 
     /**
      * Function for creating DFS
