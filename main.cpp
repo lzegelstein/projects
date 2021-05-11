@@ -17,6 +17,10 @@ int main() {
 
     png_ptr->writeToFile("out-ourGraph.png");
 
+    Airport* lyr = ourmap.IATAsearch("LYR");
+
+    std::cout << lyr->name << std::endl;
+
     std::cout << "AirTravel application ended" << std::endl;
 
     return 0;

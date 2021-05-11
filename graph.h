@@ -4,13 +4,10 @@
 #include <vector>
 #include "Airport.h"
 #include "cs225/PNG.h"
-<<<<<<< HEAD
 #include <iostream>
 #include <sstream>
 #include "cs225/HSLAPixel.h"
 #include "Airport.h"
-=======
->>>>>>> 6277b808c9cf6bc8320c7e866fc9e98c13e9491c
 
 /**
  * Simple Node class containing a public unsigned `x` and `y` for representing 2D points on an image.
@@ -70,7 +67,7 @@ public:
      * @param list a map of airport pointers with their IATA codes
      * being the key
      */
-    Graph(std::map<std::string, Airport*> list);
+    Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width);
     
     void addNewEdge(Airport* source, Airport* end);
 
@@ -94,12 +91,7 @@ public:
     cs225::PNG* makeImage();
 
 private:
-<<<<<<< HEAD
     std::map<Airport *, Node *> nodeMap;
-=======
-    std::vector<Node*> nodes;
->>>>>>> 6277b808c9cf6bc8320c7e866fc9e98c13e9491c
-
     cs225::PNG * image;
     
     /**
@@ -125,19 +117,4 @@ private:
      */
     double scaleY(double lat, int width, int height);
 
-<<<<<<< HEAD
 };
-=======
-    /**
-     * creates and adds edge to the edges vector
-     * helper function to the constructor
-     * 
-     * Makes sure not to have repeat lines
-     * 
-     * @param source begining node
-     * @param destination ending node
-     * @param distance distance on the image
-     */
-    void addEdge(Node* source, Node* destination, double distance);
-};
->>>>>>> 6277b808c9cf6bc8320c7e866fc9e98c13e9491c
