@@ -10,12 +10,9 @@
 #include "cs225/PNG.h"
 
 /** More things to add to the main:
- * What is the busiest airport?
- * Is there a non-stop flight between a and b?
- * 
- * What is the shortest path between multiple stops, looping to the original starting point (‘a’ to ‘b’ to ‘c’ to ‘a’)?
  * Can we get from point a to point b in under 3 stops?
-*/
+ * if list < 5
+*/ 
 
 void dfs_print(AirportTraversal::Iterator it, DFS dfs);
 
@@ -64,6 +61,10 @@ int main(int argc, char** argv) {
   bool answer = ourmap.isDirectFlight(isDirectStart, isDirectEnd);
   std::cout<<"Is there a direct flight from "<<isDirectStart<<" to "<<isDirectEnd<<" ? "<<answer<<std::endl;
   
+  //a to c and c to a
+  ourmap.roundTrip("JFK", "LYR");
+
+
   std::cout << "AirTravel application ended" << std::endl;
   return 0;
 }
