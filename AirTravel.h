@@ -107,7 +107,7 @@ private:
     /**
      * Reads data from airport file line by line
      *
-     * @param fileName name of file to be analyzed
+     * @param fileName name of file to be analyed
      */
     void readInAirportData(std::string fileName);
 

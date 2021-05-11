@@ -41,22 +41,6 @@ struct Node {
 
  };
 
-/**
- * Draws the node onto the image PNG
- *
- * @param circle current node to draw
- * @param image PNG for the node to draw on
- */
-void drawNode(Node circle, cs225::PNG &image);
-
-/**
- * Draws the edge line onto the image PNG
- *
- * @param line current edge (line between two nodes) to draw
- * @param image PNG for the node to draw on
- */
-void drawEdge(Node* start, Node* end, cs225::PNG &image);
-
 class Graph {
 public:
     /**
@@ -67,21 +51,11 @@ public:
      * @param list a map of airport pointers with their IATA codes
      * being the key
      */
-    Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width);
+    Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width, Airport* busy);
     
     void addNewEdge(Airport* source, Airport* end);
 
     void removeEdge(Airport* source, Airport* end);
-
-    /**
-     * function that finds nodes given
-     * an IATA code in a string
-     * 
-     * @param IATA string of code to look for
-     * 
-     * @returns a poitner to the node found
-     */
-    Node* getNode(std::string IATA);
 
     /**
      * Draws edges and nodes on to PNG
@@ -92,8 +66,25 @@ public:
 
 private:
     std::map<Airport *, Node *> nodeMap;
+    Airport* busiest;
     cs225::PNG * image;
     
+    /**
+     * Draws the node onto the image PNG
+     *
+     * @param circle current node to draw
+     * @param image PNG for the node to draw on
+     */
+    void drawNode(Node circle, cs225::PNG &image);
+
+    /**
+     * Draws the edge line onto the image PNG
+     *
+     * @param line current edge (line between two nodes) to draw
+     * @param image PNG for the node to draw on
+     */
+    void drawEdge(Node* start, Node* end, cs225::PNG &image);
+
     /**
      * scales the longitude to the image width using a
      * Mercator projection

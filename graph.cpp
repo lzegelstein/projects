@@ -6,16 +6,58 @@
 #include "graph.h"
 #include <math.h>
 
+Graph::Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width, Airport* busy){
+   
+    busiest = busy;
+    image = new cs225::PNG(width,height);
+    
+    for (auto it : list) {
+        double x = it.second->longitude;
+        double y = it.second->latitude;
 
-void drawNode(Node circle, cs225::PNG &image){
+        x = scaleX(x, image->width());
+        y = scaleY(y, image->width(), image->height());
+        
+        Node* node = new Node(x, y, (unsigned int) it.second->destinations.size(), it.second);
+        nodeMap[it.second] = node;
+    }
+    
+    for (auto i : nodeMap) {
+        for (auto j : i.first->destinations) {
+            i.second->edges.push_back(nodeMap[j.other_airport]);
+        }
+    }
+
+}
+
+ cs225::PNG* Graph::makeImage() {
+//drawNode(Node circle, cs225::PNG &image)
+//void drawEdge(Node* start, Node* end, cs225::PNG &image)
+
+     for (auto i : nodeMap) {
+         for (auto j : i.second->edges) {  
+            drawEdge(i.second, j, * image);
+         }
+     }
+
+     for (auto i : nodeMap) {
+         drawNode(*i.second, * image);
+     }
+
+     return image;
+ }
+
+void Graph::drawNode(Node circle, cs225::PNG &image){
     //if the node is invalid
     if (circle.x > image.width() || circle.y > image.height()) {
         return;
     }
-
     
+    double max_color = (double) busiest->destinations.size();
+    double percent_color = ((double) circle.size) / max_color;
+
     //set color
-    int hue = 210 - (circle.size * circle.size);
+    double hue = 210 - (210 * percent_color);
     
     if (hue < 0) {
         hue = 0;
@@ -49,7 +91,7 @@ void drawNode(Node circle, cs225::PNG &image){
     }
 }
 
-void drawEdge(Node* start, Node* end, cs225::PNG &image){
+void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
 
     //if the line is invalid
     if (start->x >= image.width() || end->x >= image.width() ||
@@ -124,50 +166,6 @@ void drawEdge(Node* start, Node* end, cs225::PNG &image){
     }
 
 }
-
-/**
- * TODO: Rework to work with new class definition
- */
-Graph::Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width){
-   
-   // image->resize(600,600); //TODO: make it an input later :)
-    image = new cs225::PNG(height,width);
-    
-    for (auto it : list) {
-        double x = it.second->longitude;
-        double y = it.second->latitude;
-
-        x = scaleX(x, image->width());
-        y = scaleY(y, image->width(), image->height());
-        
-        Node* node = new Node(x, y, (unsigned int) it.second->destinations.size(), it.second);
-        nodeMap[it.second] = node;
-    }
-    
-    for (auto i : nodeMap) {
-        for (auto j : i.first->destinations) {
-            i.second->edges.push_back(nodeMap[j.other_airport]);
-        }
-    }
-
-}
-
- cs225::PNG* Graph::makeImage() {
-//drawNode(Node circle, cs225::PNG &image)
-//void drawEdge(Node* start, Node* end, cs225::PNG &image)
-
-     for (auto i : nodeMap) {
-         for (auto j : i.second->edges) {  
-            drawEdge(i.second, j, * image);
-         }
-     }
-
-     for (auto i : nodeMap) {
-         drawNode(*i.second, * image);
-     }
-
-     return image;
- }
 
 // don't forget to cite this!!
 double Graph::scaleX(double lon, int width) {

@@ -75,7 +75,8 @@ DFS* AirTravel::DepthFirstSearch(Airport* source){
 }
 
 Graph* AirTravel::worldMap(unsigned int h, unsigned int w){
-    Graph* gph = new Graph(AirportList, h, w);
+    Airport* busy = findBusiestAirport();
+    Graph* gph = new Graph(AirportList, h, w, busy);
     return gph;
 }
 
