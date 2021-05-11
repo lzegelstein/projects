@@ -17,4 +17,13 @@ TEST_CASE("Check CDG to LAX smallestDestination", "[Dijkstras]"){
     Dijkstras* D = AT.Air_Dijkstras(AT.IATAsearch("CDG"));
     std::list<Airport*> list = D->getShortestRoute(AT.IATAsearch("LAX"));
 
+    std::string curr = list.back()->IATA;
+    list.pop_back();
+    REQUIRE( curr == "LAX");
+    curr = list.back()->IATA;
+    list.pop_back();
+    REQUIRE( curr == "JFK");
+    curr = list.back()->IATA;
+    list.pop_back();
+    REQUIRE( curr == "CDG");
 }
