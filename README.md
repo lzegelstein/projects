@@ -15,8 +15,8 @@ traversals folder - Contains dfs and airport traversal. Airport traversal is an 
 tests folder - In here, there are 4 different files used for testing the various components of our program
 
 
-To run the main type: make clean; make; ./AirTravel
-To run our test cases type: make clean; make test; ./test
+To run the main type: module load llvm/6.0.1; make clean; make; ./AirTravel
+To run our test cases type: module load llvm/6.0.1; make clean; make test; ./test
 
 Video Presentation:
 https://youtu.be/x1dCkCp-uEw
