@@ -11,7 +11,6 @@
 #include "../Airport.h"
 
 
-//using namespace AirTravel;
 /**
  * A base class for traversal algorithms on images.
  *
@@ -54,7 +53,7 @@ public:
     bool isValid(Airport node);
   
     private:
-    
+
     std::map<std::string, bool> visited;
     std::map<std::string, Airport*> list;
     Airport current;

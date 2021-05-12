@@ -31,8 +31,6 @@ Graph::Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned
 }
 
 cs225::PNG* Graph::makeImage() {
-//drawNode(Node circle, cs225::PNG &image)
-//void drawEdge(Node* start, Node* end, cs225::PNG &image)
 
     for (auto i : nodeMap) {
         for (auto j : i.second->edges) {  

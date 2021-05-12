@@ -62,7 +62,6 @@ private:
    */
   std::map<std::string, Airport*> list;
 
-  //Should this be a pointer?
   /**
    * Current airport node
    */

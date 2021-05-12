@@ -6,7 +6,9 @@
 #include "Airport.h"
 
 /**
- *
+ * Represents flights between different airports
+ * start is the starting airport, end is the ending airport
+ * weight is distance between these airports
  */
 struct Path { //iterate through these in the queues
     Airport * start;
@@ -16,7 +18,9 @@ struct Path { //iterate through these in the queues
 };
 
 /**
- *
+ * Each airport from the dataset will be represented by an AirportNode.
+ * We have a boolean to see if we already visited it or not. The visited boolean lets us know whether we will need to push 
+ * the destinations of the airport * to the priority queue in the dijkstra's algorithm
  */
 struct AirportNode {
     bool visited;
