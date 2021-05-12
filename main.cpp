@@ -9,26 +9,9 @@
 #include "graph.h"
 #include "cs225/PNG.h"
 
-//Printing Routines
-std::string yesOrNo (bool value) {
-    std::string string;
-    
-    if (value == 0) {
-        string = "No";
-    }
-    else {
-        string = "Yes";
-    }
-    return string;
-}
+std::string yesOrNo (bool value);
+void dfs_print(AirportTraversal::Iterator it, DFS dfs);
 
-void dfs_print(AirportTraversal::Iterator it, DFS dfs) {
-
-    while (it != dfs.end()) {
-        std::cout<<(*it).name<<std::endl;
-        ++ it;
-    }
-}
 
 int main(int argc, char** argv) {
   std::cout << "AirTravel application started" << std::endl;
@@ -42,6 +25,7 @@ int main(int argc, char** argv) {
   AirTravel ourmap(airports,routes);
 
   //Dijkstra's algorithm
+  
   std::cout<<"Dijkstra's"<<std::endl;
   std::string source_airport("JFK");
   std::string destination_airport("HPN");
@@ -53,8 +37,10 @@ int main(int argc, char** argv) {
   std::cout<<std::endl;
   std::cout<<"-----------------------------"<<std::endl;
   std::cout<<std::endl;
+  
 
   //DFS
+  
   std::cout<<"DFS"<<std::endl;
   std::string dfs_source_airport("ATL");
   Airport* dfs_source = ourmap.IATAsearch(dfs_source_airport);
@@ -67,20 +53,24 @@ int main(int argc, char** argv) {
   std::cout<<"-----------------------------"<<std::endl;
   std::cout<<std::endl;
   
+
+
   // //Graphic Output
-  // std::cout<<"Graphic Output"<<std::endl;
-  // Graph * gr = ourmap.worldMap(7500, 10000);
-  // if(gr != NULL) { 
-  //   cs225::PNG * png_ptr = gr->makeImage();
-  //   png_ptr->writeToFile("out-ourGraph.png");
-  //   std::cout<< "Image writen to out-ourGraph.png"<<std::endl;
-  // }
-  // else {
-  //   std::cout << "Graphical Output Failed."<<std::endl;
-  // }
+  
+   std::cout<<"Graphic Output"<<std::endl;
+   Graph * gr = ourmap.worldMap(7500, 10000);
+   if(gr != NULL) { 
+     cs225::PNG * png_ptr = gr->makeImage();
+     png_ptr->writeToFile("out-ourGraph.png");
+     std::cout<< "Image writen to out-ourGraph.png"<<std::endl;
+   }
+   else {
+     std::cout << "Graphical Output Failed."<<std::endl;
+   }
   std::cout<<std::endl;
   std::cout<<"-----------------------------"<<std::endl;
   std::cout<<std::endl;
+  
 
   //QUESTIONS WE CAN ANSWER AS STATED IN OUR PROPOSAL (based on the full dataset)
   Airport * busiestAirport = ourmap.findBusiestAirport();
@@ -119,3 +109,24 @@ int main(int argc, char** argv) {
 
 
 
+
+//Printing Routines
+std::string yesOrNo (bool value) {
+    std::string string;
+    
+    if (value == 0) {
+        string = "No";
+    }
+    else {
+        string = "Yes";
+    }
+    return string;
+}
+
+void dfs_print(AirportTraversal::Iterator it, DFS dfs) {
+
+    while (it != dfs.end()) {
+        std::cout<<(*it).name<<std::endl;
+        ++ it;
+    }
+}
