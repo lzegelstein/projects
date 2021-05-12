@@ -21,8 +21,7 @@
  * @param start The start point of this DFS
  */
 
-DFS::DFS(const std::map<std::string, Airport*> list, const Airport & start) 
-: list(list), current(start) {
+DFS::DFS(const std::map<std::string, Airport*> list, const Airport & start) : list(list), current(start) {
     S.push(start);
 }
 
@@ -31,7 +30,6 @@ DFS::DFS(const std::map<std::string, Airport*> list, const Airport & start)
  * Returns an iterator for the traversal starting at the first Airport
  */
 AirportTraversal::Iterator DFS::begin() {
-  //Office hours question 
   return AirportTraversal::Iterator(this, list, current);
 }
 
@@ -39,35 +37,29 @@ AirportTraversal::Iterator DFS::begin() {
  * Returns an iterator for the traversal one past the end of the traversal.
  */
 AirportTraversal::Iterator DFS::end() {
-
   return AirportTraversal::Iterator();
-
 }
 
 /**
  * Adds a Airport for the traversal to visit at some point in the future.
  */
 void DFS::add(const Airport & node) {
-
     S.push(node);
 }
 
 /**
  * Removes and returns the current Airport in the traversal.
  */
-Airport DFS::pop() {
-  
+Airport DFS::pop() { 
   Airport p = S.top();
   S.pop();
   return p;
-  
 }
 
 /**
  * Returns the current Airport in the traversal.
  */
 Airport DFS::peek() const {
-  
   return S.top();
 }
 
@@ -75,6 +67,5 @@ Airport DFS::peek() const {
  * Returns true if the traversal is empty.
  */
 bool DFS::empty() const {
-
   return S.empty();
 }

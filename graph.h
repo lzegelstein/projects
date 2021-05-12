@@ -28,7 +28,7 @@ struct Node {
    * @param x coordinate of a point
    * @param y coordinate of a point
    */
-  Node(double x, double y, unsigned int size, Airport * airport) : x(x), y(y), size(size), airport(airport) {}
+  Node(double x, double y, unsigned int size, Airport * airport) : x(x), y(y), size(size), airport(airport) { }
 
   /**
    * overload operator ==

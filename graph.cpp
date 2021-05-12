@@ -6,7 +6,7 @@
 #include "graph.h"
 #include <math.h>
 
-Graph::Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width, Airport* busy){
+Graph::Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned int width, Airport* busy) {
    
     busiest = busy;
     image = new cs225::PNG(width,height);
@@ -33,11 +33,13 @@ Graph::Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned
 cs225::PNG* Graph::makeImage() {
 //drawNode(Node circle, cs225::PNG &image)
 //void drawEdge(Node* start, Node* end, cs225::PNG &image)
+
     for (auto i : nodeMap) {
         for (auto j : i.second->edges) {  
             drawEdge(i.second, j, * image);
         }
     }
+
     for (auto i : nodeMap) {
         drawNode(*i.second, * image);
     }
@@ -105,15 +107,17 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
     if (start->x <= end->x) {
         i_start = start->x;
         i_end = end->x;
-    } else {
+    } 
+    else {
         i_start = end->x;
         i_end = start->x;
     }
 
-    if(start->y <= end->y){
+    if (start->y <= end->y) {
         j_start = start->y;
         j_end = end->y;
-    } else {
+    } 
+    else {
         j_start = end->y;
         j_end = start->y;
     }
@@ -124,7 +128,7 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
     double diff_2 = i_end - j_start;
 
 
-    if(den < 1){
+    if (den < 1) {
         //case if the slope is vertical facing
         for(unsigned j = j_start; j <= j_end; j++){
             cs225::HSLAPixel& curr_pixel = image.getPixel(start->x, j);
@@ -146,7 +150,6 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
     //     return;
     // }
 
-    //hey this doesn't work if end->x is less than the start->x
     for (unsigned i = i_start; i <= i_end; i++) {
         for (unsigned j = j_start; j <= j_end; j++) {
 
@@ -169,7 +172,6 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
 
 double Graph::scaleX(double lon, int width) {
     double x = fmod((width*(180+lon)/360), (width +(width/2)));
-
     return x;
 }
 
@@ -180,6 +182,5 @@ double Graph::scaleY(double lat, int width, int height) {
     // get y value
     double mercN = log(tan((PI/4)+(latRad/2)));
     double y     = (height/2)-(width*mercN/(2*PI));
-    
     return y;
 }

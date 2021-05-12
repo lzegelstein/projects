@@ -14,10 +14,8 @@ Airport::Airport() : name(""), city(""), country(""), IATA(""), latitude(0), lon
     //Nothing
 }
 
-Airport::Airport(std::string name, std::string city, std::string country,
-                std::string IATA, double latitude, double longitude)
-                : name(name), city(city), country(country), IATA(IATA),
-                    latitude(latitude), longitude(longitude) {
+Airport::Airport(std::string name, std::string city, std::string country, std::string IATA, double latitude, double longitude)
+                : name(name), city(city), country(country), IATA(IATA), latitude(latitude), longitude(longitude) {
     //Nothing
 }
 
@@ -42,8 +40,9 @@ void Airport::addDestination(Airport* that) {
     
     int i = 0;
     bool same = false;
-    while(i < (int) destinations.size()) {
-        if (destinations[i].other_airport == route.other_airport){
+
+    while (i < (int) destinations.size()) {
+        if (destinations[i].other_airport == route.other_airport) {
             same = true;
             break;
         }

@@ -35,8 +35,10 @@ Airport* AirTravel::IATAsearch(std::string code) {
 Airport* AirTravel::findBusiestAirport() {
     Airport* current_busiest = AirportList.begin()->second;
     std::map<std::string, Airport*>::iterator it;
+    
     for (it = AirportList.begin(); it != AirportList.end(); it++) {
-        if (it->second->destinations.size() >= current_busiest->destinations.size()){
+
+        if (it->second->destinations.size() >= current_busiest->destinations.size()) {
             current_busiest = it->second;
         }
     }
@@ -46,8 +48,10 @@ Airport* AirTravel::findBusiestAirport() {
 bool AirTravel::isDirectFlight(std::string start, std::string end) {
     Airport* source = AirportList[start];
     Airport* dest = AirportList[end];
-    for (unsigned int i = 0; i< source->destinations.size(); i++){
-        if(source->destinations[i].other_airport->IATA == dest->IATA){
+
+    for (unsigned int i = 0; i< source->destinations.size(); i++) {
+
+        if (source->destinations[i].other_airport->IATA == dest->IATA) {
             return true;
         }
     }
@@ -55,7 +59,8 @@ bool AirTravel::isDirectFlight(std::string start, std::string end) {
 }
 
 
-Dijkstras* AirTravel::Air_Dijkstras(Airport* source){
+Dijkstras* AirTravel::Air_Dijkstras(Airport* source) {
+
     if (!AirportList.empty()) {
         Dijkstras* dij = new Dijkstras(AirportList, source);
         return dij;
@@ -63,9 +68,10 @@ Dijkstras* AirTravel::Air_Dijkstras(Airport* source){
     else {
         return nullptr;
     }    
-    }
+}
 
 DFS* AirTravel::DepthFirstSearch(Airport* source){
+
     if (!AirportList.empty()) {
         DFS* dfs = new DFS(AirportList, *source);
         return dfs;
@@ -75,7 +81,8 @@ DFS* AirTravel::DepthFirstSearch(Airport* source){
     }
 }
 
-Graph* AirTravel::worldMap(unsigned int h, unsigned int w){
+Graph* AirTravel::worldMap(unsigned int h, unsigned int w) {
+
     if (!AirportList.empty()) {
         Airport* busy = findBusiestAirport();
         Graph* gph = new Graph(AirportList, h, w, busy);
@@ -94,9 +101,11 @@ void AirTravel::readInAirportData(std::string fileName) {
     std::fstream data_file;
     std::string trial;
     data_file.open(fileName, std::ios::in);
+
     if (data_file.is_open()) {
+
         while (std::getline(data_file, trial)) {
-           // getline(data_file, trial);
+
             AirportParseLine(trial);
         }
         data_file.close();
@@ -113,10 +122,13 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
     begin_index = field_num = num_commas = 0;
     std::string temp;
     Airport* airport = new Airport;
+
        for (int x = 0; x < str_size; x++) {
+
            if (input[x] == '\"') {
                open_quote = !open_quote;
            }
+
            if (input[x] == ',' && !open_quote) {
                num_commas ++;
                temp.append(input, begin_index, x - begin_index);
@@ -131,7 +143,6 @@ void AirTravel::AirportParseLine(std::string input) { //TODO
                    if (AirportLineCheck(field_num, temp)) {
                        temp = removeQuotes(temp);
                        airport->name = temp;
-                      // std::cout<<"airport name: "<<temp<<std::endl;
                    }
                    else {
                        delete airport;
@@ -238,7 +249,6 @@ bool AirTravel::AirportLineCheck(int field_num, std::string value) {
     first_char = value[1];
 
     if ((first_char > 0x40) && (first_char < 0x5B)) {
-
         return true;
     }
     return false;
@@ -249,7 +259,7 @@ void AirTravel::addAirport(Airport* Airport) {
 }
 
 void AirTravel::readInRoutesData(std::string fileName) {
-    //std::cout<<"entered readInRoutesData()"<<std::endl;
+
     std::fstream data_file;
     std::string trial;
     data_file.open(fileName, std::ios::in);
@@ -263,7 +273,7 @@ void AirTravel::readInRoutesData(std::string fileName) {
     else {
         std::cout<<"could not read in routes data, check your spelling"<<std::endl;
     }
-    //std::cout<<"finished readInRoutesData"<<std::endl;
+ 
 }
 
 void AirTravel::RoutesParseLine(std::string input){
@@ -278,9 +288,7 @@ void AirTravel::RoutesParseLine(std::string input){
         
         if (input[x] == ',') {
             num_commas ++;
-            //std::cout <<"We found a comma at location " << x << std::endl;
             temp.append(input, begin_index, x - begin_index);
-            //std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
             begin_index = x + 1;
             
             if ((field_num != 2) && (field_num != 4)) { //do nothing
@@ -314,6 +322,7 @@ void AirTravel::RoutesParseLine(std::string input){
     temp.append(input, begin_index, str_size - begin_index);
     //std::cout<<"emp: " <<temp<<std::endl;
     temp.erase();
+
     if (source == NULL) {
         std::cout<<"source is NULL in RoutesParseLine(), error"<<std::endl;
         return;

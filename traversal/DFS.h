@@ -11,7 +11,7 @@
  * A depth-first AirportTraversal.
  * Derived from base class AirportTraversal
  */
-class DFS : public AirportTraversal{
+class DFS : public AirportTraversal {
 public:
   /**
    * Constructor for DFS
