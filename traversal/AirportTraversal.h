@@ -54,6 +54,7 @@ public:
     bool isValid(Airport node);
   
     private:
+    
     std::map<std::string, bool> visited;
     std::map<std::string, Airport*> list;
     Airport current;

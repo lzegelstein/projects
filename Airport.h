@@ -27,8 +27,7 @@ public:
      * @param latitude
      * @param longitude
      */
-    Airport(std::string name, std::string city, std::string country,
-    std::string IATA, double latitude, double longitude);
+    Airport(std::string name, std::string city, std::string country, std::string IATA, double latitude, double longitude);
 
     /**
      * overload operator <

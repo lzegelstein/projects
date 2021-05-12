@@ -12,6 +12,7 @@
 //Printing Routines
 std::string yesOrNo (bool value) {
     std::string string;
+    
     if (value == 0) {
         string = "No";
     }
@@ -22,6 +23,7 @@ std::string yesOrNo (bool value) {
 }
 
 void dfs_print(AirportTraversal::Iterator it, DFS dfs) {
+
     while (it != dfs.end()) {
         std::cout<<(*it).name<<std::endl;
         ++ it;
@@ -57,7 +59,9 @@ int main(int argc, char** argv) {
   std::string dfs_source_airport("ATL");
   Airport* dfs_source = ourmap.IATAsearch(dfs_source_airport);
   DFS * dfs_ptr = NULL;
+
   if (dfs_source != NULL){ dfs_ptr = ourmap.DepthFirstSearch(dfs_source); }
+
   //if (dfs_ptr != NULL) { dfs_print(dfs_ptr->begin(), *dfs_ptr); } //Prints all of DFS (Only uncomment if working with short data).
   std::cout<<std::endl;
   std::cout<<"-----------------------------"<<std::endl;
@@ -66,7 +70,7 @@ int main(int argc, char** argv) {
   //Graphic Output
   std::cout<<"Graphic Output"<<std::endl;
   Graph * gr = ourmap.worldMap(1200, 600);
-  if(gr != NULL) { 
+  if (gr != NULL) { 
     cs225::PNG * png_ptr = gr->makeImage();
     png_ptr->writeToFile("out-ourGraph.png");
     std::cout<< "Image writen to out-ourGraph.png"<<std::endl;
