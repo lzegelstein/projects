@@ -13,22 +13,22 @@
  * Simple Node class containing a public unsigned `x` and `y` for representing 2D points on an image.
  */
 struct Node {
-    double x;
-    double y;
-    unsigned size; //this is the radius of the circle
-    Airport * airport;
-    std::vector<Node *> edges;
+  double x;
+  double y;
+  unsigned size; //this is the radius of the circle
+  Airport * airport;
+  std::vector<Node *> edges;
     
   /**
    * Default constructor, set the point to (0, 0): 0
    */
-    Node() : x(0), y(0), size(0), airport(NULL) { }
+  Node() : x(0), y(0), size(0), airport(NULL) { }
   /**
    * Constructor
    * @param x coordinate of a point
    * @param y coordinate of a point
    */
-    Node(double x, double y, unsigned int size, Airport * airport) : x(x), y(y), size(size), airport(airport) {}
+  Node(double x, double y, unsigned int size, Airport * airport) : x(x), y(y), size(size), airport(airport) {}
 
   /**
    * overload operator ==
@@ -39,7 +39,7 @@ struct Node {
     return (x == other.x && y == other.y);
   }
 
- };
+};
 
 class Graph {
 public:
@@ -88,6 +88,7 @@ private:
     /**
      * scales the longitude to the image width using a
      * Mercator projection
+     *
      * 
      * @param lon Longitude of airport
      * @param width width of PNG
@@ -107,5 +108,8 @@ private:
      * @returns y-coordinatre after scaling
      */
     double scaleY(double lat, int width, int height);
+
+    //Source for scaleX and scaleY:
+    //https://stackoverflow.com/questions/16080225/convert-lat-long-to-x-y-coordinates-c
 
 };

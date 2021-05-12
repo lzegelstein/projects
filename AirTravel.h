@@ -78,8 +78,24 @@ class AirTravel {
      * @param airportTwo destination airport
      */
     void roundTrip(std::string airportOne, std::string airportTwo);
+
+    /**
+     * Printing routine for a list of aiport pointers
+     * Prints the name of the airports
+     * 
+     * @param list the list to be printed
+     */
     void printList(std::list<Airport*> list);
-    bool underThreeStops(std::string airportOne, std::string airportTwo);
+
+    /**
+     * Boolean function that determines if an airport can be gotten to in under three flights
+     * 
+     * @param airportOne IATA of the starting airport
+     * @param airportTwo IATA of the ending airport
+     * 
+     * @returns true if the IATA shortest path is less than three flights
+     */
+    bool underThreeFlights(std::string airportOne, std::string airportTwo);
 
     /**
      * Function for creating DFS

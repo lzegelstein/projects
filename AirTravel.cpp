@@ -15,22 +15,13 @@
 
 using std::string;
 
-/*
- Perhaps, we need to create different print routines i.e. print all the destinations of _______ airport
- Be able to pass it in a 3 letter code
- */
-
 /**
  * This file includes all the usable functions from AirTravel.h
  */
 
-
 //-------------------------------------------------------------
 //                  Public Member Functions
 //-------------------------------------------------------------
-
-AirTravel::AirTravel(){
-}
 
 AirTravel::AirTravel (std::string Airport_File, std::string Routes_File) {
     readInAirportData(Airport_File);
@@ -65,28 +56,39 @@ bool AirTravel::isDirectFlight(std::string start, std::string end) {
 
 
 Dijkstras* AirTravel::Air_Dijkstras(Airport* source){
-   Dijkstras* dij = new Dijkstras(AirportList, source);
-   return dij;
-   }
+    if (!AirportList.empty()) {
+        Dijkstras* dij = new Dijkstras(AirportList, source);
+        return dij;
+    }
+    else {
+        return nullptr;
+    }    
+    }
 
 DFS* AirTravel::DepthFirstSearch(Airport* source){
-    DFS* dfs = new DFS(AirportList, *source);
-    return dfs;
+    if (!AirportList.empty()) {
+        DFS* dfs = new DFS(AirportList, *source);
+        return dfs;
+    }
+    else {
+        return nullptr;
+    }
 }
 
 Graph* AirTravel::worldMap(unsigned int h, unsigned int w){
-    Airport* busy = findBusiestAirport();
-    Graph* gph = new Graph(AirportList, h, w, busy);
-    return gph;
+    if (!AirportList.empty()) {
+        Airport* busy = findBusiestAirport();
+        Graph* gph = new Graph(AirportList, h, w, busy);
+        return gph;
+    }
+    else {
+        return nullptr;
+    }
 }
 
 //-------------------------------------------------------------
 //                 Private Member Functions
 //-------------------------------------------------------------
-
-//while (std::getline(file, str)) {
-  // process string ...
-//}
 
 void AirTravel::readInAirportData(std::string fileName) {
     std::fstream data_file;
@@ -227,7 +229,7 @@ std::string AirTravel::removeQuotes(std::string temp) {
 bool AirTravel::AirportLineCheck(int field_num, std::string value) {
     char first_char = value[0];
     
-    if (field_num == 0) {                                  //Checking for an integer value
+    if (field_num == 0) { //Checking for an integer value
         if ((first_char > 0x2F) && (first_char < 0x3A)) {
             return true;
         }
@@ -278,7 +280,7 @@ void AirTravel::RoutesParseLine(std::string input){
             num_commas ++;
             //std::cout <<"We found a comma at location " << x << std::endl;
             temp.append(input, begin_index, x - begin_index);
-           //std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
+            //std::cout<<"field: "<<field_num<<", <"<<temp<<">"<<std::endl;
             begin_index = x + 1;
             
             if ((field_num != 2) && (field_num != 4)) { //do nothing
@@ -291,7 +293,6 @@ void AirTravel::RoutesParseLine(std::string input){
                     }
                     else {
                         source = AirportList.find(temp)->second;  //if it is found
-                        // TODO - verify that source was found, otherwise, print error and skip line
                     }
             }
             else if (field_num == 4) {
@@ -303,7 +304,6 @@ void AirTravel::RoutesParseLine(std::string input){
                     else {
                         //if it is found
                         destination = AirportList.find(temp)->second;
-                        // TODO - verify that destination was found, otherwise, print error and skip line
                     }
             }
         field_num++;
@@ -318,7 +318,7 @@ void AirTravel::RoutesParseLine(std::string input){
         std::cout<<"source is NULL in RoutesParseLine(), error"<<std::endl;
         return;
     }
-    source->addDestination(destination); //Add in check to make sure
+    source->addDestination(destination);
 }
 
 
@@ -344,12 +344,11 @@ void AirTravel::printList(std::list<Airport*> list) {
     return;
 }
 
-//dikstras get route, if route < 5 return true :)
- bool AirTravel::underThreeStops(std::string airportOne, std::string airportTwo) {
+bool AirTravel::underThreeFlights(std::string airportOne, std::string airportTwo) {
 
     Airport * source = IATAsearch(airportOne);
     Airport * destination = IATAsearch(airportTwo);
     std::list<Airport*> stops = Air_Dijkstras(source)->getShortestRoute(destination);
     
-    return stops.size() < 5;
- }
+    return stops.size() < 4;
+}

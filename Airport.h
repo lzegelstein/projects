@@ -6,8 +6,6 @@
 #include <iostream>
 #include <fstream>
 
-
-
 struct Airport {
 public:
     /**

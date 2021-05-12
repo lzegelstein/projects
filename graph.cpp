@@ -30,22 +30,19 @@ Graph::Graph(std::map<std::string, Airport*> list, unsigned int height, unsigned
 
 }
 
- cs225::PNG* Graph::makeImage() {
+cs225::PNG* Graph::makeImage() {
 //drawNode(Node circle, cs225::PNG &image)
 //void drawEdge(Node* start, Node* end, cs225::PNG &image)
-
-     for (auto i : nodeMap) {
-         for (auto j : i.second->edges) {  
+    for (auto i : nodeMap) {
+        for (auto j : i.second->edges) {  
             drawEdge(i.second, j, * image);
-         }
-     }
-
-     for (auto i : nodeMap) {
-         drawNode(*i.second, * image);
-     }
-
-     return image;
- }
+        }
+    }
+    for (auto i : nodeMap) {
+        drawNode(*i.second, * image);
+    }
+    return image;
+    }
 
 void Graph::drawNode(Node circle, cs225::PNG &image){
     //if the node is invalid
@@ -57,13 +54,13 @@ void Graph::drawNode(Node circle, cs225::PNG &image){
     double percent_color = ((double) circle.size) / max_color;
 
     //set color
-    double hue = 210 - (210 * percent_color);
+    double hue = 270 - (270 * percent_color);
     
     if (hue < 0) {
         hue = 0;
     }
     
-    circle.size = int(image.width()/1000);
+    circle.size = sqrt(int(circle.size)) * (image.width() / image.height());
 
     cs225::HSLAPixel color(hue, 1, 0.5, 1); //the color will change depending on node size exponentially
 
@@ -167,7 +164,9 @@ void Graph::drawEdge(Node* start, Node* end, cs225::PNG &image){
 
 }
 
-// don't forget to cite this!!
+//Source for scaleX and scaleY:
+//https://stackoverflow.com/questions/16080225/convert-lat-long-to-x-y-coordinates-c
+
 double Graph::scaleX(double lon, int width) {
     double x = fmod((width*(180+lon)/360), (width +(width/2)));
 

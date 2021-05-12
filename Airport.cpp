@@ -14,7 +14,6 @@ Airport::Airport() : name(""), city(""), country(""), IATA(""), latitude(0), lon
     //Nothing
 }
 
-// Not sure how to format this to look pretty
 Airport::Airport(std::string name, std::string city, std::string country,
                 std::string IATA, double latitude, double longitude)
                 : name(name), city(city), country(country), IATA(IATA),
