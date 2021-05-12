@@ -346,7 +346,7 @@ void AirTravel::roundTrip(std::string airportOne, std::string airportTwo) {
 
 void AirTravel::printList(std::list<Airport*> list) {
    // std::list<Airport*>::iterator it = list.begin();
-    for (auto it = list.begin(); it != list.end(); it ++) {
+    while (!list.empty()) {
         std::cout<<list.front()->name<<std::endl;
         list.pop_front();
     }
