@@ -11,8 +11,6 @@
 #include "DFS.h"
 
 
-
-//Copied from mp traversals
 /**
  * Initializes a depth-first AirportTraversal on a given `png` image,
  * starting at `start' Airport Node
