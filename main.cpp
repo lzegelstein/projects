@@ -65,7 +65,7 @@ int main(int argc, char** argv) {
   
   //Graphic Output
   std::cout<<"Graphic Output"<<std::endl;
-  Graph * gr = ourmap.worldMap(1200, 600);
+  Graph * gr = ourmap.worldMap(7500, 10000);
   if(gr != NULL) { 
     cs225::PNG * png_ptr = gr->makeImage();
     png_ptr->writeToFile("out-ourGraph.png");

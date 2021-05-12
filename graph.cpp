@@ -54,13 +54,13 @@ void Graph::drawNode(Node circle, cs225::PNG &image){
     double percent_color = ((double) circle.size) / max_color;
 
     //set color
-    double hue = 270 - (270 * percent_color);
+    double hue = 235 - (235 * percent_color);
     
     if (hue < 0) {
         hue = 0;
     }
     
-    circle.size = sqrt(int(circle.size)) * (image.width() / image.height());
+    circle.size = sqrt(int(circle.size)) * (image.width() / image.height()) + image.width()/2000;
 
     cs225::HSLAPixel color(hue, 1, 0.5, 1); //the color will change depending on node size exponentially
 
