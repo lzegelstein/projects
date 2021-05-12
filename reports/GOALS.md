@@ -83,7 +83,7 @@ We will perform a conditional DFS because we don’t want to end up in an infini
 We will use Dijkstra's algorithm to find the shortest path and answer question 3. The complexity of this algorithm is O(ElogV) where: V is the number of vertices. E is the total number of edges.
 
 #### Visual Output of Graph
-We will create a graph where we will plot the longitude and latitude coordinates of the airports. The airport node's color will be based on how busy of the airport. These airports will be connected with lines which shows if there a route connecting two airports. The complexity of this algorithm is very complex and we believe it to be (tbd).
+We will create a graph where we will plot the longitude and latitude coordinates of the airports. The airport node's color will be based on how busy of the airport. These airports will be connected with lines which shows if there a route connecting two airports. The complexity of this algorithm is O(n+m), where n is number of edges and m is the number of nodes. 
 
 ## Questions We Can Answer Based Off of Our Graph
 1. What is the busiest airport?
