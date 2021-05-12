@@ -17,3 +17,6 @@ tests folder - In here, there are 4 different files used for testing the various
 
 To run the main type: make clean; make; ./AirTravel
 To run our test cases type: make clean; make test; ./test
+
+Video Presentation:
+https://youtu.be/x1dCkCp-uEw
