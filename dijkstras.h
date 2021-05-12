@@ -30,9 +30,9 @@ public:
 
     /**
      * Dijkstra's constructor
-     *
+     * 
      * @param aiportList Map containing all the airports in the dataset with the key being the
-     * @param source
+     * @param source All distances will be calculated relative to the source airport which is passed in 
      */
     Dijkstras(std::map<std::string, Airport*> airportList, Airport* source);
 
@@ -51,12 +51,12 @@ public:
 
 private:
     /**
-     *
+     * Holds all of the "vertices" aka AirportNodes
      */
     std::map<std::string *, AirportNode *> allAirports;
 
     /**
-     *
+     * Holds all "edges" aka Paths
      */
     std::map<std::string *, Path *> pathMap;
 };

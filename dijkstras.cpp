@@ -31,7 +31,7 @@ Dijkstras::Dijkstras(std::map<std::string, Airport*> airportList, Airport* sourc
 
         if (current->weight < endNode->weight) {
             endNode->weight = current->weight;
-            pathMap.erase(& current->end->IATA); //TODO: -> see if this creates a memory leak
+            pathMap.erase(& current->end->IATA); 
             pathMap.insert(std::make_pair(& current->end->IATA, current));
         }
         
@@ -43,7 +43,6 @@ Dijkstras::Dijkstras(std::map<std::string, Airport*> airportList, Airport* sourc
             
             endNode->visited = true;
         }
-        //TODO: possible memory leak here, because the Path() we new() needs to get deleted
         
     }
     
