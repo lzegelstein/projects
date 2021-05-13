@@ -138,7 +138,7 @@ private:
      */
     void readInAirportData(std::string fileName);
 
-     /**
+    /**
      * Takes a line of the airport data
      * Goes through character by character looking for a comma
      * As we parse, build the data structure -> be populating the map
