@@ -77,17 +77,14 @@ If time permits, we would like to be able to analyze the cycles in the graph to 
 
 ## Traversals/Algorithms
 #### DFS
-We will perform a conditional DFS because we don’t want to end up in an infinite loop. Cycles will be present in this graph. The DFS can be used to answer question 4. The complexity of DFS is O(n).
+We will perform a DFS that is aware of cycles as they will definetly be present. The DFS can be used to answer question 4. The complexity of DFS is O(n).
 
 #### Dijkstra's Algorithm
-**Categorize()**
-We will perform k clustering using MST to group the genres for the user to see the artist recommendations. (k clustering problem can be viewed as finding an MST and deleting the k-1 most)
+We will create a function or class that finds the shortest distance from one source airport to all other airports in the data file. To do this, we will first have to store all of the airport data in a map and then go from there. We will need to figure out how to rework the inclass example to make the verticies be airports and the edges be flights between different airports. The complexity is O(n) where n is the number of verticies.
 
-#### Iterative Deepening Depth First Search
-We will use Dijkstra's algorithm to find the shortest path and answer question 3. The complexity of this algorithm is  O(ElogV) where: V is the number of vertices. E is the total number of edges.
 
 #### Visual Output of Graph
-We will use a force-directed graph drawing in order to visually display the airport hubs and flight connections. The force will come from the distance that is set to the weight of the edges. The complexity of this algorithm is O(n). [Wikipedia](https://en.wikipedia.org/wiki/Force-directed_graph_drawing)
+We will create a graph where we scale the latitudes and longitudes to a standard mercator projection. We will plot the airports as circles based off of varying size and color based on the number of outgoing flights to different airports. We expect to see an outline of the world. 
 
 ## Questions We Can Answer Based Off of Our Graph
 1. What is the busiest airport?
@@ -102,4 +99,4 @@ Week of: | What we hope to accomplish: | What We Can Demonstrate: | Assignments:
 4/19 | Have an algorithm implemented. Import data from the website so that the algorithm creates nodes and edges based on the data. Be able to output the graph that it has created. | We will be able to show that our program has received the data correctly and has populated the edges and nodes. We also will be able to output our graph as a visual force directed graph. | Note Taker: Shree  
 4/26 |Implement and test BFS and Dijkstra’s Algorithm on our current dataset using test cases. |We should be able to receive the shortest distance path from any two or more airport nodes by naming starting airport “a” and stops/destination airports through the 3-digit codes.|Note Taker: Jared 
 5/3| Finish debugging and have working test cases for the second half of the week. |Entire project works, including all individual functions and test cases to simulate use. New functionality will include calculating the busiest airport.|Note Taker: Lyla
-5/10|Finish report and video | Have all the components of the final project done. The code, test cases, report, and video | Note Taker: Angela
+5/12|Finish report and video | Have all the components of the final project done. The code, test cases, report, and video | Note Taker: Angela
