@@ -1,6 +1,3 @@
-# jafrank2-angelaj4-shree2-lrz2
-
-
 Welcome to our Air Travel Program!
 In main.cpp, you will see that there are two datasets to choose from. Right now, everything is based off of the full dataset. 
 DFS doesn't print anything unless you uncomment a line, since it will print out all of the airports, we recommend doing that on the shorter data set. The line to uncomment is specified in main.cpp. Additionally, the graph takes about 50 seconds to produce, so sit tight, a beautiful map is coming! It takes longer with a larger dataset and image size. 
@@ -20,4 +17,8 @@ To run our test cases type: make clean; make test; ./test
 
 Video Presentation:
 https://youtu.be/x1dCkCp-uEw
+
+Sincerely, 
+Jared, Angela, Shree, and Lyla
+
 <img width="1092" alt="airportsWithRoutes" src="https://user-images.githubusercontent.com/77509822/184348182-3a68e337-06d0-4eb7-a5d6-fa4af8d7888c.png">
