@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
 
   if (dfs_source != NULL){ dfs_ptr = ourmap.DepthFirstSearch(dfs_source); }
 
-  //if (dfs_ptr != NULL) { dfs_print(dfs_ptr->begin(), *dfs_ptr); } //Prints all of DFS (Only uncomment if working with short data).
+  if (dfs_ptr != NULL) { dfs_print(dfs_ptr->begin(), *dfs_ptr); } //Prints all of DFS (Only uncomment if working with short data).
   std::cout<<std::endl;
   std::cout<<"-----------------------------"<<std::endl;
   std::cout<<std::endl;
