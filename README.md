@@ -18,7 +18,9 @@ To run our test cases type: make clean; make test; ./test
 Video Presentation:
 https://youtu.be/x1dCkCp-uEw
 
+<img width="701" alt="Screen Shot 2022-08-18 at 11 07 48 PM" src="https://user-images.githubusercontent.com/77509822/185541676-9e8b00f0-e0b1-4b97-aa17-47d4581e7869.png">
+
 Sincerely, 
 Jared, Angela, Shree, and Lyla
 
-<img width="1092" alt="airportsWithRoutes" src="https://user-images.githubusercontent.com/77509822/184348182-3a68e337-06d0-4eb7-a5d6-fa4af8d7888c.png">
+
