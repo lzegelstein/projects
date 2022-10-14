@@ -4,7 +4,6 @@
 #include "Airport.h"
 #include <list>
 
-//needs testing & fix memory leaks
 
 Dijkstras::Dijkstras(std::map<std::string, Airport*> airportList, Airport* source) {
 
@@ -49,11 +48,7 @@ Dijkstras::Dijkstras(std::map<std::string, Airport*> airportList, Airport* sourc
     return;
 }
 
-/*
- Need to make sure this is not a multi edge graph.
- Must take every unique path and sort it by distance using a priority queue.
- Need a visisted vector or something
- */
+
 
 std::list<Airport*> Dijkstras::getShortestRoute(Airport* destination){
     std::list<Airport*> route;
